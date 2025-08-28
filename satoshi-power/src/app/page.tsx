@@ -1,12 +1,14 @@
+import Header from "@/app/ui/modules/Header";
+import Footer from "@/app/ui/modules/Footer";
+
 export default function Home() {
 	return (
-		<div>
+		<>
+			<Header/>
 			<main>
 				<p>Main here</p>
 			</main>
-			<footer>
-				<p>Footer here</p>
-			</footer>
-		</div>
+			<Footer/>
+		</>
 	);
 }
