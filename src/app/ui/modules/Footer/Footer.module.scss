@@ -1,1 +1,18 @@
 @use '@/app/styles/all-vars' as *;
+
+.footer{
+    @include gap(margin-top);
+    @include gap(margin-bottom, 4);
+    &__container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 1em;
+    }
+    &__signoff{
+        text-align: center;
+        @include text-blocky-small;
+        line-height: unset;
+    }
+}

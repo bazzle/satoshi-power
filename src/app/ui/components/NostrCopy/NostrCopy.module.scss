@@ -1,0 +1,37 @@
+@use '@/app/styles/all-vars' as *;
+
+.nostrCopy {
+	display: flex;
+	align-items: center;
+	gap: .5em;
+
+	&__button {
+		display: flex;
+		align-items: center;
+		gap: .5em;
+		background-color: $color-bg-2;
+		height: 2em;
+		border-radius: 2em;
+		padding: 0 1em;
+
+		&:focus {
+			outline: 2px solid $color-focus;
+		}
+	}
+
+	&__key {
+		@include text-meta-tiny;
+		color: $color-accent--light;
+	}
+
+	&__message {
+		@include text-meta-tiny;
+		color: white;
+	}
+
+	&__icon {
+		color: $color-accent;
+		height: 1em;
+		@include text-tiny;
+	}
+}
