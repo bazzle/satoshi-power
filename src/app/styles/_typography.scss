@@ -1,0 +1,10 @@
+@use './all-vars' as *;
+
+hr {
+	margin-top: $gap;
+	margin-bottom: $gap;
+	height: .5px;
+	background-color: $color-bitcoin;
+	border: 0;
+	width: 80px;
+}

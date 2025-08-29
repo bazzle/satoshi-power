@@ -1,0 +1,123 @@
+@use './all-vars' as *;
+
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 10px;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-synthesis: none;
+	text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent;
+	overflow-y: unset;
+
+	@include break-under(tablet) {
+		overflow-x: hidden;
+	}
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100vh;
+	margin: 0;
+	background-color: $color-bg-1;
+	color: $color-text;
+	font-family: $font-sans;
+	font-size: $font-size-standard;
+	line-height: $line-height-standard;
+	text-align: left;
+	overflow-x: hidden;
+
+	::selection {
+		background-color: $color-accent--light;
+		color: $black;
+	}
+}
+
+* {
+
+	&,
+	&::before,
+	&::after {
+		box-sizing: inherit;
+	}
+
+	font-synthesis: inherit;
+}
+
+address {
+	font-size: inherit;
+	font-style: inherit;
+}
+
+figure {
+	margin: 0;
+}
+
+.touch {
+	cursor: pointer;
+}
+
+::selection {
+	color: $white;
+}
+
+h1 {
+	font-size: 2.6rem;
+}
+
+h2,
+h3,
+h4,
+h5 {
+	font-size: 2.2rem;
+}
+
+a,
+area,
+button,
+[role='button'],
+input:not([type='range']),
+label,
+select,
+summary,
+textarea {
+	touch-action: manipulation;
+}
+
+a {
+	outline: none;
+	color: $color-link;
+	text-decoration: none;
+	transition: all 100ms ease-out;
+
+	&:active {
+		outline: 2px solid $color-accent;
+	}
+
+	&:focus {
+		outline: 2px solid $color-focus;
+	}
+}
+
+button {
+	transition: all 100ms ease-out;
+}
+
+.sr {
+	display: none;
+}
+
+ul li {
+	list-style: none;
+}
+
+svg,
+svg path {
+	fill: currentcolor;
+}

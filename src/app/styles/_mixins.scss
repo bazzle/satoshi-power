@@ -1,0 +1,95 @@
+#wpadminbar {
+	@include break-under(site-width) {
+		display: none;
+	}
+}
+
+@mixin transition($property: all, $speed: 0.2s, $anim: $move-whip) {
+	transition-duration: $speed;
+	transition-property: $property;
+	transition-timing-function: $anim;
+}
+
+// multiple arguments
+@mixin transitions($speed, $anim, $property...) {
+	transition-duration: $speed;
+	transition-property: $property;
+	transition-timing-function: $anim;
+}
+
+
+// aspect ratio mixin
+@mixin aspect-ratio($arglist...) {
+	$map: meta.keywords($arglist);
+	$height: map.get($map, height) or nth-or-null($arglist, 2);
+	$width: map.get($map, width) or nth-or-null($arglist, 1);
+	$ratio: map.get($map, ratio) or if($width and $height, $width/$height, nth-or-null($arglist, 1)) or 1;
+	$padding: 1 / $ratio * 100%;
+
+	&::before {
+		content: '';
+		position: relative;
+		display: block;
+		padding-bottom: $padding;
+	}
+
+	&::after {
+		content: '';
+		display: table;
+	}
+}
+
+// remove default styles in iOS.
+@mixin remove-webkit-defaults {
+	border-radius: 0;
+	appearance: none;
+}
+
+// USAGE: @include hocus {color: red;}
+@mixin hocus {
+
+	&:hover,
+	&:focus {
+		@content;
+	}
+}
+
+// USAGE: @include gap(margin-top,2)
+@mixin gap($prop, $multiplier: 1) {
+	#{$prop}:calc(1rem * #{$multiplier});
+
+	@include break(mobile) {
+		#{$prop}:calc(1.2rem * #{$multiplier});
+	}
+
+	@include break(tablet) {
+		#{$prop}:calc(2.2rem * #{$multiplier});
+	}
+}
+
+@mixin gap-responsive($prop, $multiplier: 1) {
+	#{$prop}:calc(2vw * #{$multiplier});
+}
+
+
+// Button state
+
+@mixin btn-state($textcolor, $bgcolor) {
+	@include transition();
+
+	&:hover {
+		color: $textcolor;
+	}
+
+	&:active {
+		color: $textcolor;
+	}
+}
+
+// align
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

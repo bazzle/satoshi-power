@@ -1,0 +1,66 @@
+$header-height: 147px;
+$header-height-mobile: 82px;
+
+$site-width-narrow: 800px;
+$site-width-wide: 1000px;
+$site-width-wider: 1300px;
+$site-width-narrow-margins: calc(900px + 3rem);
+$site-width-wide-margins: calc(1100px + 3rem);
+
+// Mind the gap
+$gap: 1.5rem;
+$gap-deep: 3.5rem;
+
+$white: #ffffff;
+$black: #000000;
+
+// color options
+$color-bitcoin: #f7931a;
+$color-bitcoin-accessible: #D67600;
+
+// colors
+$color-primary: $color-bitcoin;
+$color-primary--light: #e19539;
+$color-accent: #00E0FF;
+$color-accent--light: #9AF3FF;
+$color-focus: #00E0FF;
+$gradient: linear-gradient(45deg, rgba($color-accent, .1) 0%, rgba($color-primary, .1) 100%);
+
+// Background colors
+$color-bg-1: #000000;
+$color-bg-2: #151515;
+
+// for testing
+$gold: rgb(242, 208, 14);
+$yellow: rgb(255, 255, 0);
+
+// Text colors
+$color-text: #ffffff;
+$color-text-reverse: #000000;
+$color-link: $color-primary;
+
+// line color
+$color-line: #F2F2F2;
+$color-line-dark: #d8d8d8;
+// for dark background
+$color-line-solid: #707070;
+$color-line-off-black: #333333;
+
+// standard border
+$borderline: 2px solid $color-line;
+$borderline-darker: 2px solid $color-line-dark;
+$borderline-solid: 2px solid $color-line-solid;
+
+// fancy transitions
+$move-whip: cubic-bezier(0.8, 0, 0.3, 1);
+$move-snap: cubic-bezier(0.7, -0.5, 0.3, 1.5);
+$move-snap-in: cubic-bezier(0.6, -0.3, 0.7, 0);
+$move-snap-out: cubic-bezier(0.2, 0.9, 0.3, 1.3);
+$fast-to-slow: cubic-bezier(0.11, 0.71, 0.46, 0.91);
+
+// misc
+$border-radius: 3px;
+$color-text-link: $color-accent;
+
+// theme specfic
+$content-offset: 6rem;

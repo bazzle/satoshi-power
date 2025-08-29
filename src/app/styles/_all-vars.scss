@@ -1,0 +1,363 @@
+@use 'sass:map';
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,1000&display=swap');
+
+// Variables ================================================================
+$header-height: 147px;
+$header-height-mobile: 82px;
+
+$site-width-narrow: 800px;
+$site-width-wide: 1000px;
+$site-width-wider: 1300px;
+$site-width-narrow-margins: calc(900px + 3rem);
+$site-width-wide-margins: calc(1100px + 3rem);
+
+// Mind the gap
+$gap: 1.5rem;
+$gap-deep: 3.5rem;
+
+$white: #ffffff;
+$black: #000000;
+
+// color options
+$color-bitcoin: #f7931a;
+$color-bitcoin-accessible: #D67600;
+
+// colors
+$color-primary: $color-bitcoin;
+$color-primary--light: #e19539;
+$color-accent: #00E0FF;
+$color-accent--light: #9AF3FF;
+$color-focus: #00E0FF;
+$gradient: linear-gradient(45deg, rgba($color-accent, .1) 0%, rgba($color-primary, .1) 100%);
+
+// Background colors
+$color-bg-1: #000000;
+$color-bg-2: #151515;
+
+// for testing
+$gold: rgb(242, 208, 14);
+$yellow: rgb(255, 255, 0);
+
+// Text colors
+$color-text: #ffffff;
+$color-text-reverse: #000000;
+$color-link: $color-primary;
+
+// line color
+$color-line: #F2F2F2;
+$color-line-dark: #d8d8d8;
+// for dark background
+$color-line-solid: #707070;
+$color-line-off-black: #333333;
+
+// standard border
+$borderline: 2px solid $color-line;
+$borderline-darker: 2px solid $color-line-dark;
+$borderline-solid: 2px solid $color-line-solid;
+
+// fancy transitions
+$move-whip: cubic-bezier(0.8, 0, 0.3, 1);
+$move-snap: cubic-bezier(0.7, -0.5, 0.3, 1.5);
+$move-snap-in: cubic-bezier(0.6, -0.3, 0.7, 0);
+$move-snap-out: cubic-bezier(0.2, 0.9, 0.3, 1.3);
+$fast-to-slow: cubic-bezier(0.11, 0.71, 0.46, 0.91);
+
+// misc
+$border-radius: 3px;
+$color-text-link: $color-accent;
+
+// theme specfic
+$content-offset: 6rem;
+
+
+// Breakpoints ================================================================
+$breakpoints: (
+	mobile: 22.438em,
+	// 359px
+	mobile-land: 32em,
+	// 512px
+	tablet: 40.063em,
+	// 641px
+	desktop-mini: 50em,
+	// 800px
+	desktop: 55em,
+	// 880px
+	desktop-med: 64.063em,
+	// 1025px
+	mobile-nav: 68.125em,
+	// 1090px
+	desktop-wide: 75em,
+	// 1200px
+	desktop-wider: 83.75em,
+	// 1340px
+	desktop-xl: 88em,
+	// 1408px
+	site-width-margins:$site-width-narrow-margins,
+	site-width-wide-margins:$site-width-wide-margins,
+	site-width: calc($site-width-narrow-margins + 60px)
+);
+$breakpoints--h: (
+	letterbox: 900px
+);
+
+// breakpoint mixins
+@mixin break($breakpoint: medium) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media screen and (min-width: map.get($breakpoints, $breakpoint)) {
+			@content;
+		}
+	}
+}
+
+@mixin break-under($breakpoint: medium) {
+	@if map-has-key($breakpoints, $breakpoint) {
+		@media screen and (max-width: map.get($breakpoints, $breakpoint)) {
+			@content;
+		}
+	}
+}
+
+@mixin break-between($breakpoint-lower, $breakpoint-higher) {
+	@media screen and (min-width: map.get($breakpoints, $breakpoint-lower)) and (max-width: map.get($breakpoints, $breakpoint-higher)) {
+		@content;
+	}
+}
+
+// height 
+@mixin break--h($breakpoint) {
+	@if map-has-key($breakpoints--h, $breakpoint) {
+		@media screen and (max-height: map.get($breakpoints--h, $breakpoint)) and (orientation: landscape) {
+			@content;
+		}
+	}
+}
+
+#wpadminbar {
+	@include break-under(site-width) {
+		display: none;
+	}
+}
+
+@mixin transition($property: all, $speed: 0.2s, $anim: $move-whip) {
+	transition-duration: $speed;
+	transition-property: $property;
+	transition-timing-function: $anim;
+}
+
+// multiple arguments
+@mixin transitions($speed, $anim, $property...) {
+	transition-duration: $speed;
+	transition-property: $property;
+	transition-timing-function: $anim;
+}
+
+
+// aspect ratio mixin
+@mixin aspect-ratio($arglist...) {
+	$map: meta.keywords($arglist);
+	$height: map.get($map, height) or nth-or-null($arglist, 2);
+	$width: map.get($map, width) or nth-or-null($arglist, 1);
+	$ratio: map.get($map, ratio) or if($width and $height, $width/$height, nth-or-null($arglist, 1)) or 1;
+	$padding: 1 / $ratio * 100%;
+
+	&::before {
+		content: '';
+		position: relative;
+		display: block;
+		padding-bottom: $padding;
+	}
+
+	&::after {
+		content: '';
+		display: table;
+	}
+}
+
+// remove default styles in iOS.
+@mixin remove-webkit-defaults {
+	border-radius: 0;
+	appearance: none;
+}
+
+// USAGE: @include hocus {color: red;}
+@mixin hocus {
+
+	&:hover,
+	&:focus {
+		@content;
+	}
+}
+
+// USAGE: @include gap(margin-top,2)
+@mixin gap($prop, $multiplier: 1) {
+	#{$prop}:calc(1rem * #{$multiplier});
+
+	@include break(mobile) {
+		#{$prop}:calc(1.2rem * #{$multiplier});
+	}
+
+	@include break(tablet) {
+		#{$prop}:calc(2.2rem * #{$multiplier});
+	}
+}
+
+@mixin gap-responsive($prop, $multiplier: 1) {
+	#{$prop}:calc(2vw * #{$multiplier});
+}
+
+
+// Button state
+
+@mixin btn-state($textcolor, $bgcolor) {
+	@include transition();
+
+	&:hover {
+		color: $textcolor;
+	}
+
+	&:active {
+		color: $textcolor;
+	}
+}
+
+// align
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+
+// Typography ================================================================
+
+// Typography variables
+
+$font-heading: 'Bebas Neue', sans-serif;
+$font-mono: 'DM Mono', monospace;
+$font-sans: 'DM Sans', sans-serif;
+$font-size-standard: 1.2rem;
+$line-height-standard: 1.6;
+
+// Typography mixins
+
+// Header – Site name and tagline
+
+@mixin text-heading {
+	font-family: $font-heading;
+	font-size: 2.6rem;
+	line-height: 1;
+}
+
+@mixin text-blocky-small {
+	font-family: $font-sans;
+	text-transform: uppercase;
+	font-size: 1.2rem;
+	line-height: 1;
+	font-variation-settings: "wght" 700, 'opsz' 9;
+}
+
+@mixin text-meta {
+	font-family: $font-mono;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+@mixin text-meta-tiny {
+	font-family: $font-mono;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	font-size: 1rem;
+}
+
+@mixin text-tiny {
+	font-family: $font-sans;
+	text-transform: lowercase;
+	font-size: 1rem;
+}
+
+@mixin text-body {
+	font-family: $font-sans;
+	font-size: clamp(1.4rem, 1.8vw, 1.6rem);
+	font-variation-settings: 'wght' 300, 'opsz' 9;
+	line-height: 1.8;
+}
+
+@mixin text-body-strong {
+	font-variation-settings: 'wght' 800, 'opsz' 9;
+}
+
+@mixin text-body-heading {
+	font-variation-settings: "wght" 700;
+	font-family: $font-sans;
+	font-size: clamp(1.6rem, 1.6vw, 2.2rem);
+	line-height: 1.4;
+	color: $color-primary;
+}
+
+// Misc global elements
+
+@mixin text-footer {
+	font-size: 1.4rem;
+	font-family: $font-mono;
+}
+
+
+@mixin paragraphdefaults {
+	color: inherit;
+	line-height: 1.8;
+	@include gap(margin-bottom);
+}
+
+@mixin ullistdefaults {
+	padding: 0;
+	@include text-body;
+	list-style-position: inside;
+	@include gap(margin-bottom);
+
+	li {
+		position: relative;
+		display: block;
+		padding-left: 1.2em;
+		list-style: none;
+		line-height: 1.4;
+
+		&::before {
+			position: absolute;
+			top: 0.5em;
+			left: 0;
+			width: 6px;
+			height: 6px;
+			background-color: $color-accent;
+			content: '';
+		}
+	}
+}
+
+@mixin ollistdefaults {
+	padding: 0;
+	@include text-body;
+	list-style: none;
+	counter-reset: li;
+	list-style-position: inside;
+	@include gap(margin-bottom);
+
+	li {
+		counter-increment: item;
+		position: relative;
+		display: block;
+		padding-left: 1.5em;
+		list-style: none;
+		line-height: 1.4;
+
+		&::before {
+			position: absolute;
+			left: 0;
+			color: $color-accent;
+			content: counter(item) '. ';
+		}
+	}
+}
