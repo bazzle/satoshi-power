@@ -1,8 +1,17 @@
+import styles from './Header.module.scss'
+import LogoLockup from '@/app/ui/components/LogoLockup';
+
 function Header(){
 	return (
-		<header>
-			<p>This is the header</p>
-		</header>
+        <header className={styles.header}>
+            <div className="row">
+                <div className="row-container--wider">
+					<div className={styles.header__container}>
+						<LogoLockup />
+					</div>
+                </div>
+            </div>
+        </header>
 	)
 }
 

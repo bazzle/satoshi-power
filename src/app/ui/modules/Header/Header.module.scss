@@ -1,0 +1,11 @@
+@use '@/app/styles/all-vars' as *;
+
+
+.header{
+  @include gap(margin-top, 4);
+  @include gap(margin-bottom);
+  &__container{
+    display: flex;
+    justify-content: center;
+  }
+}
