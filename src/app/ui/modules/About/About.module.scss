@@ -1,0 +1,36 @@
+@use '@/app/styles/all-vars' as *;
+
+.about{
+	&__inner{
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		p{
+			text-align: center;
+		}
+	}
+	&__intro{
+		font-size: 1.4rem;
+	}
+	&__key{
+		padding-top: .8em;
+		display: flex;
+		align-items: center;
+		gap: .4em;
+		&__skulls{
+			display: flex;
+			gap: .4em;
+			height: 14px;
+		}
+		svg{
+			height: 14px;
+		}
+	}
+	&__divider{
+		font-weight: 100;
+		font-size: 2rem;
+		padding-left: .5em;
+		padding-right: .5em;
+	}
+}
