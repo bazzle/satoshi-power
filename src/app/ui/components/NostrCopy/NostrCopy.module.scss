@@ -1,10 +1,9 @@
 @use '@/app/styles/all-vars' as *;
 
 .nostrCopy {
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	gap: .5em;
-
 	&__button {
 		display: flex;
 		align-items: center;
@@ -13,7 +12,7 @@
 		height: 2em;
 		border-radius: 2em;
 		padding: 0 1em;
-
+		position: relative;
 		&:focus {
 			outline: 2px solid $color-focus;
 		}
@@ -21,17 +20,24 @@
 
 	&__key {
 		@include text-meta-tiny;
-		color: $color-accent--light;
+		color: $color-primary;
 	}
 
 	&__message {
-		@include text-meta-tiny;
-		color: white;
+		position: absolute;
+		display: block;
+		padding: 1em;
+		top: 50%;
+		right: -.8em;
+		transform: translate(100%, -50%);
+		background: black;
 	}
 
-	&__icon {
-		color: $color-accent;
-		height: 1em;
-		@include text-tiny;
+	&__icon{
+		svg{
+			color: white;
+			width: .8em;
+			height: auto;
+		}
 	}
 }
