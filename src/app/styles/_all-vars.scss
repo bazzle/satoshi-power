@@ -106,7 +106,7 @@ $breakpoints--h: (
 
 // breakpoint mixins
 @mixin break($breakpoint: medium) {
-	@if map-has-key($breakpoints, $breakpoint) {
+	@if map.has-key($breakpoints, $breakpoint) {
 		@media screen and (min-width: map.get($breakpoints, $breakpoint)) {
 			@content;
 		}
@@ -114,7 +114,7 @@ $breakpoints--h: (
 }
 
 @mixin break-under($breakpoint: medium) {
-	@if map-has-key($breakpoints, $breakpoint) {
+	@if map.has-key($breakpoints, $breakpoint) {
 		@media screen and (max-width: map.get($breakpoints, $breakpoint)) {
 			@content;
 		}
@@ -129,7 +129,7 @@ $breakpoints--h: (
 
 // height 
 @mixin break--h($breakpoint) {
-	@if map-has-key($breakpoints--h, $breakpoint) {
+	@if map.has-key($breakpoints--h, $breakpoint) {
 		@media screen and (max-height: map.get($breakpoints--h, $breakpoint)) and (orientation: landscape) {
 			@content;
 		}
@@ -163,14 +163,12 @@ $breakpoints--h: (
 	$width: map.get($map, width) or nth-or-null($arglist, 1);
 	$ratio: map.get($map, ratio) or if($width and $height, $width/$height, nth-or-null($arglist, 1)) or 1;
 	$padding: 1 / $ratio * 100%;
-
 	&::before {
 		content: '';
 		position: relative;
 		display: block;
 		padding-bottom: $padding;
 	}
-
 	&::after {
 		content: '';
 		display: table;
@@ -185,7 +183,6 @@ $breakpoints--h: (
 
 // USAGE: @include hocus {color: red;}
 @mixin hocus {
-
 	&:hover,
 	&:focus {
 		@content;
@@ -194,17 +191,16 @@ $breakpoints--h: (
 
 // USAGE: @include gap(margin-top,2)
 @mixin gap($prop, $multiplier: 1) {
-	#{$prop}:calc(1rem * #{$multiplier});
-
+	&{
+		#{$prop}:calc(1rem * #{$multiplier});
+	}
 	@include break(mobile) {
 		#{$prop}:calc(1.2rem * #{$multiplier});
 	}
-
 	@include break(tablet) {
 		#{$prop}:calc(2.2rem * #{$multiplier});
 	}
 }
-
 @mixin gap-responsive($prop, $multiplier: 1) {
 	#{$prop}:calc(2vw * #{$multiplier});
 }
@@ -214,11 +210,9 @@ $breakpoints--h: (
 
 @mixin btn-state($textcolor, $bgcolor) {
 	@include transition();
-
 	&:hover {
 		color: $textcolor;
 	}
-
 	&:active {
 		color: $textcolor;
 	}
@@ -310,17 +304,16 @@ $line-height-standard: 1.6;
 
 
 @mixin paragraphdefaults {
+	@include gap(margin-bottom);
 	color: inherit;
 	line-height: 1.8;
-	@include gap(margin-bottom);
 }
 
 @mixin ullistdefaults {
-	padding: 0;
 	@include text-body;
-	list-style-position: inside;
 	@include gap(margin-bottom);
-
+	padding: 0;
+	list-style-position: inside;
 	li {
 		position: relative;
 		display: block;
@@ -341,13 +334,14 @@ $line-height-standard: 1.6;
 }
 
 @mixin ollistdefaults {
-	padding: 0;
 	@include text-body;
-	list-style: none;
-	counter-reset: li;
-	list-style-position: inside;
 	@include gap(margin-bottom);
-
+	&{
+		padding: 0;
+		list-style: none;
+		counter-reset: li;
+		list-style-position: inside;
+	}
 	li {
 		counter-increment: item;
 		position: relative;
@@ -355,7 +349,6 @@ $line-height-standard: 1.6;
 		padding-left: 1.5em;
 		list-style: none;
 		line-height: 1.4;
-
 		&::before {
 			position: absolute;
 			left: 0;
@@ -370,9 +363,10 @@ $line-height-standard: 1.6;
 		padding-right: $edgepadding;
 		padding-left: $edgepadding;
 	}
-
-	padding-right: $edgepadding-mobile-loose;
-	padding-left: $edgepadding-mobile-loose;
+	&{
+		padding-right: $edgepadding-mobile-loose;
+		padding-left: $edgepadding-mobile-loose;
+	}
 }
 
 @mixin padding-tight {
@@ -380,17 +374,19 @@ $line-height-standard: 1.6;
 		padding-right: $edgepadding;
 		padding-left: $edgepadding;
 	}
-
-	padding-right: $edgepadding-mobile;
-	padding-left: $edgepadding-mobile;
+	&{
+		padding-right: $edgepadding-mobile;
+		padding-left: $edgepadding-mobile;
+	}
 }
 
 .row {
 	@include gap(margin-top);
 	@include gap(margin-bottom);
 	@include padding-loose;
-	width: 100%;
-
+	&{
+		width: 100%;
+	}
 	&--nomargin {
 		margin-top: 0;
 		margin-bottom: 0;
@@ -425,17 +421,14 @@ $line-height-standard: 1.6;
 	max-width: $site-width-narrow;
 	margin-right: auto;
 	margin-left: auto;
-
 	&--wide {
 		@extend .row-container;
 		max-width: $site-width-wide;
 	}
-
 	&--wider {
 		@extend .row-container;
 		max-width: $site-width-wider;
 	}
-
 	&--full {
 		@extend .row-container;
 		max-width: unset;

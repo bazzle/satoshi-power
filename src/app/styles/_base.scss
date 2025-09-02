@@ -1,38 +1,40 @@
 @use './all-vars' as *;
 
 html {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-size: 10px;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	font-synthesis: none;
-	text-size-adjust: 100%;
-	-webkit-tap-highlight-color: transparent;
-	overflow-y: unset;
-
 	@include break-under(tablet) {
 		overflow-x: hidden;
+	}
+	&{
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-size: 10px;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-font-smoothing: antialiased;
+		font-synthesis: none;
+		text-size-adjust: 100%;
+		-webkit-tap-highlight-color: transparent;
+		overflow-y: unset;
 	}
 }
 
 body {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	min-height: 100vh;
-	margin: 0;
-	background-color: $color-bg-1;
-	color: $color-text;
-	font-family: $font-sans;
-	font-size: $font-size-standard;
-	line-height: $line-height-standard;
-	text-align: left;
-	overflow-x: hidden;
-
+	&{
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		min-height: 100vh;
+		margin: 0;
+		background-color: $color-bg-1;
+		color: $color-text;
+		font-family: $font-sans;
+		font-size: $font-size-standard;
+		line-height: $line-height-standard;
+		text-align: left;
+		overflow-x: hidden;
+	}
 	::selection {
 		background-color: $color-accent--light;
 		color: $black;
@@ -40,14 +42,14 @@ body {
 }
 
 * {
-
 	&,
 	&::before,
 	&::after {
 		box-sizing: inherit;
 	}
-
-	font-synthesis: inherit;
+	&{
+		font-synthesis: inherit;
+	}
 }
 
 address {
@@ -95,7 +97,6 @@ a {
 	color: $color-link;
 	text-decoration: none;
 	transition: all 100ms ease-out;
-
 	&:active {
 		outline: 2px solid $color-accent;
 	}
