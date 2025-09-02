@@ -11,6 +11,9 @@ $site-width-wide: 1000px;
 $site-width-wider: 1300px;
 $site-width-narrow-margins: calc(900px + 3rem);
 $site-width-wide-margins: calc(1100px + 3rem);
+$edgepadding: 3rem;
+$edgepadding-mobile: 1rem;
+$edgepadding-mobile-loose: 3rem;
 
 // Mind the gap
 $gap: 1.5rem;
@@ -362,77 +365,79 @@ $line-height-standard: 1.6;
 	}
 }
 
+@mixin padding-loose {
+	@include break(site-width) {
+		padding-right: $edgepadding;
+		padding-left: $edgepadding;
+	}
 
-
-
-
-
-$edgepadding: 3rem;
-$edgepadding-mobile: 1rem;
-$edgepadding-mobile-loose: 3rem;
-
-@mixin padding-loose{
-  padding-right: $edgepadding-mobile-loose;
-  padding-left: $edgepadding-mobile-loose;
-  @include break(site-width){
-    padding-right: $edgepadding;
-    padding-left: $edgepadding;
-  }
+	padding-right: $edgepadding-mobile-loose;
+	padding-left: $edgepadding-mobile-loose;
 }
-@mixin padding-tight{
-  padding-right: $edgepadding-mobile;
-  padding-left: $edgepadding-mobile;
-  @include break(site-width){
-    padding-right: $edgepadding;
-    padding-left: $edgepadding;
-  }
+
+@mixin padding-tight {
+	@include break(site-width) {
+		padding-right: $edgepadding;
+		padding-left: $edgepadding;
+	}
+
+	padding-right: $edgepadding-mobile;
+	padding-left: $edgepadding-mobile;
 }
 
 .row {
-  width: 100%;
-  @include gap(margin-top);
-  @include gap(margin-bottom);
-  @include padding-loose;
-  &--nomargin {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-  &--nomargin-top {
-    margin-top: 0;
-  }
-  &--nomargin-bottom {
-    margin-bottom: 0;
-  }
-  &--no-padding {
-    padding: 0;
-  }
+	@include gap(margin-top);
+	@include gap(margin-bottom);
+	@include padding-loose;
+	width: 100%;
 
-  &--no-padding__left {
-    padding-left: 0;
-  }
+	&--nomargin {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 
-  &--no-padding__right {
-    padding-right: 0;
-  }
-  &--lighter{
-    background-color: $color-bg-2;
-  }
+	&--nomargin-top {
+		margin-top: 0;
+	}
+
+	&--nomargin-bottom {
+		margin-bottom: 0;
+	}
+
+	&--no-padding {
+		padding: 0;
+	}
+
+	&--no-padding__left {
+		padding-left: 0;
+	}
+
+	&--no-padding__right {
+		padding-right: 0;
+	}
+
+	&--lighter {
+		background-color: $color-bg-2;
+	}
 }
 
 .row-container {
-  max-width: $site-width-narrow;
-  margin-right: auto;
-  margin-left: auto;
-  &--wide{
-    @extend .row-container;
-    max-width: $site-width-wide;
-  }
-  &--wider{
-    @extend .row-container;
-    max-width: $site-width-wider;
-  }
-  &--full{
-    @extend .row-container;
-    max-width: unset;
-  }
+	max-width: $site-width-narrow;
+	margin-right: auto;
+	margin-left: auto;
+
+	&--wide {
+		@extend .row-container;
+		max-width: $site-width-wide;
+	}
+
+	&--wider {
+		@extend .row-container;
+		max-width: $site-width-wider;
+	}
+
+	&--full {
+		@extend .row-container;
+		max-width: unset;
+	}
 }

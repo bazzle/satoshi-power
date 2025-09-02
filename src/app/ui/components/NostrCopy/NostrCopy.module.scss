@@ -20,6 +20,7 @@
 
 	&__key {
 		@include text-meta-tiny;
+		text-transform: lowercase;
 		color: $color-primary;
 	}
 
@@ -35,9 +36,9 @@
 
 	&__icon{
 		svg{
-			color: white;
-			width: .8em;
+			width: .7em;
 			height: auto;
+			color: white;
 		}
 	}
 }
