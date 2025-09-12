@@ -1,29 +1,11 @@
-import editData from "./editData";
-
-type NotOutput = {
-	satPrice : number,
-	sell : number,
-	percentage : number,
-	[key: string]: unknown
-}
-
-export type ItemObjType = {
-	btcPrice : number,
-	displayName : string,
-	displayPercentage : number,
-	displayPrice : number,
-	smallUnitKilled : boolean,
-	subUnitName : string,
-	subUnits : number,
-	symbol : string,
-	unitName : string,
-} & Partial<NotOutput>
+import editData from "./EditData";
+import CurrencyItem from "./CurrencyItem";
 
 export function Grid(){
 
 	const dataUrl = "https://blockchain.info/ticker";
 
-	let fetchedData: ItemObjType[];
+	let fetchedData: [];
 	
 	async function DataFetchDisplay(){
 		try {
@@ -33,6 +15,11 @@ export function Grid(){
 			console.error('No data', error);
 		} finally {
 			const currenciesArr = editData(fetchedData);
+			return (
+				currenciesArr.map((item, index) => {
+					return <CurrencyItem key={index} itemObj={item} />;
+				})
+			)
 		}
 	}
 	
