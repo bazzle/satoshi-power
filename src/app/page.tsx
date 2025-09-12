@@ -7,9 +7,15 @@ export default function Home() {
 	return (
 		<>
 			<Header/>
-			<main>
-				<Grid/>
-				<About/>
+			<main className="main">
+				<div className="main__about">
+					<About/>
+				</div>
+				<div className="row row--lighter">
+                	<div className="row-container--wider">
+						<Grid/>
+					</div>
+				</div>
 			</main>
 			<Footer/>
 		</>

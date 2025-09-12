@@ -1,16 +1,5 @@
 @use './all-vars' as *;
 
-.dark {
-	background-color: #333333;
-	color: $white;
-
-	p,
-	li,
-	a {
-		color: $white;
-	}
-}
-
 // Padding
 
 $padding-std: clamp(3rem, 3vw, 4rem);

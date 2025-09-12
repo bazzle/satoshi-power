@@ -1,0 +1,11 @@
+@use '@/app/styles/all-vars' as *;
+
+.main{
+	display: flex;
+	flex-direction: column;
+	&__about{
+		@include break(tablet){
+			order: 1;
+		}
+	}
+}

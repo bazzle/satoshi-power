@@ -1,18 +1,19 @@
-import styles from './CurrencyItem.module.scss';
+import styles from './currencyItem.module.scss';
+import icons from '@/app/ui/misc/Icons';
 
 function CurrencyItem({itemObj}: any){
 
 	const classesArray = [
-		styles.CurrencyItem,
-		itemObj.smallUnitKilled ? styles["CurrencyItem--smallUnitKilled"] : '',
-		itemObj.mainUnitKilled ? styles["CurrencyItem--mainUnitKilled"] : '',
+		styles.currencyItem,
+		itemObj.smallUnitKilled ? styles["currencyItem--subUnitKilled"] : '',
+		itemObj.mainUnitKilled ? styles["currencyItem--mainUnitKilled"] : '',
 	]
 	const classes = classesArray.join(' ');
 
 	const DomPercentageBar = () => {
 		const width = itemObj.percentage > 100 ? 100 : itemObj.percentage;
 		return (
-			<span style={{width: `${width}%`}} className={styles.CurrencyItem__percentageBar}></span>
+			<span style={{width: `${width}%`}} className={styles.currencyItem__percentageBar}></span>
 		)
 	};
 
@@ -20,9 +21,19 @@ function CurrencyItem({itemObj}: any){
 		const name = itemObj.displayName;
 		const itemTextString = itemObj.percentage < 1 ? `${name} <1%` : `${name} ${itemObj.percentage}%`;
 		return (
-			<span className={styles.CurrencyItem__text}>
+			<span className={styles.currencyItem__text}>
 				{itemTextString}
 			</span>
+		)
+	}
+
+	const DomIcons = () => {
+		const Icon = <div className={styles.currencyItem__icon}>{icons.skull}</div>
+		return (
+			<div className={styles.currencyItem__statusContainer}>
+				{ ((itemObj.subUnitKilled) ? Icon : '' )}
+				{ ((itemObj.mainUnitKilled) ? Icon : '' )}
+			</div>
 		)
 	}
 
@@ -31,6 +42,7 @@ function CurrencyItem({itemObj}: any){
 		<li className={classes}>
 			{DomPercentageBar()}
 			{DomTextString()}
+			{DomIcons()}
 		</li>
 	)
 }

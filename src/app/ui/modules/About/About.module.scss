@@ -1,6 +1,7 @@
 @use '@/app/styles/all-vars' as *;
 
 .about{
+	display: block;
 	&__inner{
 		width: 100%;
 		display: flex;

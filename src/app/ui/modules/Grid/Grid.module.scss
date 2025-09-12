@@ -1,0 +1,17 @@
+@use '@/app/styles/all-vars' as *;
+
+.grid{
+	$grid-gap: 2.2rem;
+	padding-top: $grid-gap;
+	padding-bottom: $grid-gap;
+	display:grid;
+	gap: $grid-gap;
+	grid-template-columns: 1fr;
+	grid-auto-rows: auto;
+	@include break(tablet){
+		grid-template-columns: 1fr 1fr;
+	}
+	@include break(desktop){
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+}

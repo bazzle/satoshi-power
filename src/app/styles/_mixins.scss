@@ -1,9 +1,3 @@
-#wpadminbar {
-	@include break-under(site-width) {
-		display: none;
-	}
-}
-
 @mixin transition($property: all, $speed: 0.2s, $anim: $move-whip) {
 	transition-duration: $speed;
 	transition-property: $property;

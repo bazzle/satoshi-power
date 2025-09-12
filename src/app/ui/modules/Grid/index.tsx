@@ -1,5 +1,6 @@
 import editData from "./EditData";
 import CurrencyItem from "./CurrencyItem";
+import styles from "./Grid.module.scss";
 
 export function Grid(){
 
@@ -25,10 +26,8 @@ export function Grid(){
 	
 	
 	return (
-		<div className="grid">
-			<>
-				{DataFetchDisplay()}
-			</>
+		<div className={styles.grid}>
+			{DataFetchDisplay()}
 		</div>
 	)
 }
