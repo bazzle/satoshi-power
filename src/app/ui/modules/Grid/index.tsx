@@ -5,7 +5,7 @@ export function Grid(){
 
 	const dataUrl = "https://blockchain.info/ticker";
 
-	let fetchedData: [];
+	let fetchedData: object;
 	
 	async function DataFetchDisplay(){
 		try {

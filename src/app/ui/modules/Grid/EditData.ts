@@ -17,12 +17,12 @@ function isItemObjNewType(obj: any){
 	)
 }
 
-function editData(fetchedData: ItemObjType[] ){
-	const currenciesArr: ItemObjType[] = [];
+function editData(fetchedData: object){
+	const currenciesArr = [];
 	
 	for (const currencyItem in fetchedData){
 		// Set some variables
-		const itemObj: ItemObjType = fetchedData[currencyItem];
+		const itemObj = fetchedData[currencyItem];
 		const itemCode = itemObj.symbol.toLowerCase();
 		const currencyAddDetails = currencyReference[itemCode];
 
@@ -131,8 +131,6 @@ function editData(fetchedData: ItemObjType[] ){
 
 
 	currenciesArr.sort((a, b) => a.percentage - b.percentage);
-
-	console.log(currenciesArr);
 	
 	return currenciesArr;
 }
