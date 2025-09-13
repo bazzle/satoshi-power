@@ -37,40 +37,11 @@ This is a continuation of [Satoshi-Power-deprecated](https://github.com/bazzle/S
 [blockchain.com exchange rates API](https://www.blockchain.com/explorer/api/exchange_rates_api)
 
 ## Roadmap
+
 Subject to change
+
 ✅ v1.0.0 Initial stable release  
-v2.0.0 Historical data, choose a date in UI
+v2.0.0 Historical data, choose a date in UI  
 v3.0.0 Infographics, line graphs for each currency
 
-
-## Currencies
-
-ARS : Argentine Peso  
-AUD : Australian Dollar  
-BRL : Brazilian Real  
-CAD : Canadian Dollar  
-CHF : Swiss Franc  
-CLP : Chilean Peso  
-CNY : Chinese Yuan  
-CZK : Czech Koruna  
-DKK : Danish Krone  
-EUR : Euro  
-GBP : Great British Pound  
-HKD : Hong Kong Dollar  
-HRK : Croatian Kuna  
-HUF : Hungarian Forint  
-INR : Indian Rupee  
-ISK : Icelandic Króna  
-JPY : Japanese Yen  
-KRW : South Korean Won  
-NGN : Nigerian Naira  
-NZD : New Zealand Dollar  
-PLN : Polish Złoty  
-RON : Romanian Leu  
-RUB : Russian Ruble  
-SEK : Swedish Krona  
-SGD : Singapore Dollar  
-THB : Thai Baht  
-TRY : Turkish Lira  
-TWD : New Taiwan Dollar  
-USD : United States Dollar  
+📜 Licensed under the [MIT License](./LICENSE) – free to use, fork, and modify with attribution.
