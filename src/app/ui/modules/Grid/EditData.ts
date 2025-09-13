@@ -19,7 +19,6 @@ function isItemObjNewType(obj: any){
 
 function editData(fetchedData: object){
 	const currenciesArr = [];
-	console.log(fetchedData)
 	for (const [currencyItem, itemObj] of Object.entries(fetchedData)) {
 		// Set some variables
 		const itemCode = itemObj.symbol.toLowerCase();
