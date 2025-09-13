@@ -19,10 +19,9 @@ function isItemObjNewType(obj: any){
 
 function editData(fetchedData: object){
 	const currenciesArr = [];
-	
-	for (const currencyItem in fetchedData){
+	console.log(fetchedData)
+	for (const [currencyItem, itemObj] of Object.entries(fetchedData)) {
 		// Set some variables
-		const itemObj = fetchedData[currencyItem];
 		const itemCode = itemObj.symbol.toLowerCase();
 		const currencyAddDetails = currencyReference[itemCode];
 
