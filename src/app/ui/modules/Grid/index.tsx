@@ -26,8 +26,8 @@ export function Grid(){
 	
 	
 	return (
-		<div className={styles.grid}>
+		<ul className={styles.grid}>
 			{DataFetchDisplay()}
-		</div>
+		</ul>
 	)
 }
