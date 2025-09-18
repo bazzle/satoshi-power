@@ -230,9 +230,9 @@ $breakpoints--h: (
 
 // Typography variables
 
-$font-heading: 'Bebas Neue', sans-serif;
+$font-heading: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
 $font-mono: monospace;
-$font-sans: 'DM Sans', sans-serif;
+$font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
 $font-size-standard: 1.2rem;
 $line-height-standard: 1.6;
 

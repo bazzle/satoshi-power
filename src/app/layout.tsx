@@ -1,5 +1,21 @@
 import type { Metadata } from "next";
+import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.scss";
+
+const bebasNeue = Bebas_Neue({
+	subsets: ["latin"],
+	display: "swap",
+	weight: "400",
+	variable: "--font-bebas-neue",
+});
+
+const dmSans = DM_Sans({
+	subsets: ["latin"],
+	display: "swap",
+	style: ["normal", "italic"],
+	variable: "--font-dm-sans",
+	weight: ["300", "400", "700", "800"],
+});
 
 export const metadata: Metadata = {
 	title: "Satoshi Power",
@@ -9,15 +25,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children } : Readonly<{ children: React.ReactNode; }>) {
 	return (
 		<html lang="en">
-			<head>
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-				<link
-					rel="stylesheet"
-					href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
-				/>
-			</head>
-			<body>{children}</body>
+			<body className={`${bebasNeue.variable} ${dmSans.variable}`}>
+				{children}
+			</body>
 		</html>
 	);
 }
