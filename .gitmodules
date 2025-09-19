@@ -1,0 +1,4 @@
+[submodule "public/data-snapshots"]
+	path = public/data-snapshots
+	url = https://github.com/bazzle/fiat-to-btc.git
+	branch = main
