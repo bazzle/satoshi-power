@@ -1,3 +1,0 @@
-[submodule "public/historical"]
-	path = public/historical
-	url = git@github.com:bazzle/fiat-to-btc.git
