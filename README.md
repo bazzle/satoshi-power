@@ -40,8 +40,12 @@ This is a continuation of [Satoshi-Power-deprecated](https://github.com/bazzle/S
 
 Subject to change
 
-✅ v1.0.0 Initial stable release  
-v2.0.0 Historical data, choose a date in UI  
-v3.0.0 Infographics, line graphs for each currency
+### ✅ v1.0.0 Initial stable release
 
-📜 Licensed under the [MIT License](./LICENSE) – free to use, fork, and modify with attribution.
+* Show live conversions from exchange rates API
+
+### v2.0.0 Historical data
+
+* Github action to pull in conversion data once weekly and trigger a commit into data submodule repo, then redeploy the app
+* UI range slider/date picker on the homepage. To allow users to see historical data snapshots.
+* Infographics/charts for each currency. Showing devaluation over time against satoshi's.
