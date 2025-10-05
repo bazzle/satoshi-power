@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.scss";
+import { SnapshotsProvider } from "./data/SnapshotsContext";
 
 const bebasNeue = Bebas_Neue({
 	subsets: ["latin"],
@@ -17,16 +17,18 @@ const dmSans = DM_Sans({
 	weight: ["300", "400", "700", "800"],
 });
 
-export const metadata: Metadata = {
+export const metadata = {
 	title: "Satoshi Power",
 	description: "Sats will eat the world",
 };
 
-export default function RootLayout({ children } : Readonly<{ children: React.ReactNode; }>) {
+export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={`${bebasNeue.variable} ${dmSans.variable}`}>
-				{children}
+				<SnapshotsProvider>
+					{children}
+				</SnapshotsProvider>
 			</body>
 		</html>
 	);
