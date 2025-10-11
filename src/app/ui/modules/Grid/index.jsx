@@ -25,7 +25,7 @@ export function Grid(){
 	}, []);
 
 	if (fetchedData === null){
-		return <p>Loading</p>
+		return <p className="flex-center padding">Loading...</p>
 	} else {
 		return (
 			<ul className={styles.grid}>
