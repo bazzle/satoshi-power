@@ -61,3 +61,58 @@ $padding-deep: clamp(3rem, 5vw, 6rem);
 	white-space: nowrap !important;
 	border: 0 !important;
 }
+
+.row {
+	@include gap(margin-top);
+	@include gap(margin-bottom);
+	@include padding-loose;
+	&{
+		width: 100%;
+	}
+	&--nomargin {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
+	&--nomargin-top {
+		margin-top: 0;
+	}
+
+	&--nomargin-bottom {
+		margin-bottom: 0;
+	}
+
+	&--no-padding {
+		padding: 0;
+	}
+
+	&--no-padding__left {
+		padding-left: 0;
+	}
+
+	&--no-padding__right {
+		padding-right: 0;
+	}
+
+	&--lighter {
+		background-color: $color-bg-2;
+	}
+}
+
+.row-container {
+	max-width: $site-width-narrow;
+	margin-right: auto;
+	margin-left: auto;
+	&--wide {
+		@extend .row-container;
+		max-width: $site-width-wide;
+	}
+	&--wider {
+		@extend .row-container;
+		max-width: $site-width-wider;
+	}
+	&--full {
+		@extend .row-container;
+		max-width: unset;
+	}
+}
