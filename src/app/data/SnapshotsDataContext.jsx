@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect  } from "react";
 
-export const SnapshotsContext = createContext();
+export const SnapshotsDataContext = createContext();
 
 export function SnapshotsProvider({ children }) {
 	const dataSource = '/data-snapshots/snapshots.json';
@@ -23,8 +23,8 @@ export function SnapshotsProvider({ children }) {
 	}, []);
 
 	return (
-		<SnapshotsContext.Provider value={{ snapshots }}>
+		<SnapshotsDataContext.Provider value={{ snapshots }}>
 			{children}
-		</SnapshotsContext.Provider>
+		</SnapshotsDataContext.Provider>
 	);
 }

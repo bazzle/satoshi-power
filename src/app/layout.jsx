@@ -1,6 +1,6 @@
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.scss";
-import { SnapshotsProvider } from "./data/SnapshotsContext";
+import { SnapshotsProvider } from "./data/SnapshotsDataContext";
 
 const bebasNeue = Bebas_Neue({
 	subsets: ["latin"],
