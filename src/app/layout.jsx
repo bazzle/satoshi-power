@@ -1,6 +1,7 @@
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.scss";
 import { SnapshotsProvider } from "./data/SnapshotsDataContext";
+import { LiveDataProvider } from "./data/LiveDataContext";
 
 const bebasNeue = Bebas_Neue({
 	subsets: ["latin"],
@@ -27,7 +28,9 @@ export default function RootLayout({ children }) {
 		<html lang="en">
 			<body className={`${bebasNeue.variable} ${dmSans.variable}`}>
 				<SnapshotsProvider>
+				<LiveDataProvider>
 					{children}
+				</LiveDataProvider>
 				</SnapshotsProvider>
 			</body>
 		</html>
