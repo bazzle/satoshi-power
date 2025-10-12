@@ -438,15 +438,13 @@ $line-height-standard: 1.6;
 
 // USAGE: @include gap(margin-top,2)
 @mixin gap($prop, $multiplier: 1) {
-	#{$prop}:calc(1rem * #{$multiplier});
-
 	@include break(mobile) {
 		#{$prop}:calc(1.2rem * #{$multiplier});
 	}
-
 	@include break(tablet) {
 		#{$prop}:calc(2.2rem * #{$multiplier});
 	}
+	#{$prop}:calc(1rem * #{$multiplier});
 }
 
 @mixin gap-responsive($prop, $multiplier: 1) {
