@@ -1,6 +1,7 @@
 @use '@/app/styles/all-vars' as *;
 
 .grid{
+	min-height: 465px;
 	$grid-gap: 2.2rem;
 	padding-top: $grid-gap;
 	padding-bottom: $grid-gap;
@@ -14,4 +15,10 @@
 	@include break(desktop){
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
+}
+
+.loader{
+	min-height: 465px;
+	display: flex;
+	align-items: center;
 }
