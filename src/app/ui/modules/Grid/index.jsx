@@ -4,18 +4,17 @@ import styles from "./Grid.module.scss";
 import { LiveDataContext}  from "@/app/data/LiveDataContext";
 import { SnapshotsDataContext } from "@/app/data/SnapshotsDataContext";
 import { useContext } from "react";
+import Loading from "@/app/ui/components/Loading";
 
 export function Grid(){
 
 	const {liveData} = useContext(LiveDataContext);
 	const {snapshots} = useContext(SnapshotsDataContext);
 
-	console.log(snapshots);
-
 	if (liveData === null || snapshots === undefined){
 		return (
 			<div className={styles.loader}>
-				<p className="flex-center padding">Loading...</p>
+				<Loading/>
 			</div>
 		)
 	} else {

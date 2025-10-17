@@ -1,0 +1,7 @@
+.loading{
+	animation: spin 1s ease-out infinite;
+}
+
+@keyframes spin {
+	to { transform: rotate(360deg); }
+}
