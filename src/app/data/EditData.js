@@ -138,7 +138,7 @@ function editData(fetchedData){
 
 	// Sort array by percentage
 	currenciesArr.sort((a, b) => a.percentage - b.percentage);
-	console.log(currenciesArr);
+
 	return currenciesArr;
 }
 
