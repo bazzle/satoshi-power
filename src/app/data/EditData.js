@@ -1,5 +1,6 @@
 import currencyReference from "@/app/data/currencies";
 import Utilities from "@/app/ui/misc/Utilities";
+import slugify from "slugify";
 
 function checkCurrencyRefObject(obj){
 	// Check all data values are present and the correct type before this goes out
@@ -36,7 +37,10 @@ function editData(fetchedData){
 
 		// Add new data to the object, from the currency list
 		const currencyName = currencyRefObj.name;
-		const currencyNameSlug = currencyName.toLowerCase().replace(/\s+/g, '-');
+		const currencyNameSlug = slugify(currencyName, {
+			lower: true,
+			strict: true
+		})
 		const newData = {
 			'unitName' : currencyName,
 			'unitNameSlug' : currencyNameSlug,
@@ -134,7 +138,7 @@ function editData(fetchedData){
 
 	// Sort array by percentage
 	currenciesArr.sort((a, b) => a.percentage - b.percentage);
-	
+	console.log(currenciesArr);
 	return currenciesArr;
 }
 
