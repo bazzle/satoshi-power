@@ -40,10 +40,11 @@ function CurrencyItem({itemObj}){
 		)
 	}
 
+	const currencyPagePath = `/currency/${itemObj.unitNameSlug}`
 	
 	return (
 		<li className={classes}>
-			<Link href="/currency/naira">
+			<Link href={currencyPagePath}>
 				{DomPercentageBar()}
 				{DomTextString()}
 				{DomIcons()}

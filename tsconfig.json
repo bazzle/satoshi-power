@@ -24,6 +24,6 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/ui/modules/Grid/index.jsx", "src/app/ui/modules/Grid/CurrencyItem/index.jsx", "src/app/data/EditData.js"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/ui/modules/Grid/index.jsx", "src/app/ui/modules/Grid/CurrencyItem/index.jsx", "src/app/data/EditData.js", "src/app/currency/[slug]/page.jsx"],
 	"exclude": ["node_modules"]
 }
