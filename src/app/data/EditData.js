@@ -14,7 +14,8 @@ function checkCurrencyRefObject(obj){
 		typeof obj.percentage === "number" &&
 		typeof obj.subUnitKilled === "boolean" &&
 		typeof obj.mainUnitKilled === "boolean" &&
-		typeof obj.displayName === "string"
+		typeof obj.displayName === "string",
+		typeof obj.unitNameSlug === "string"
 	)
 }
 
