@@ -21,9 +21,9 @@ export function LiveDataProvider({children}){
 		}
 		dataFetch();
 	}, []);
-	useEffect(() => {
-		console.log(liveData);
-	}, [liveData]);
+	// useEffect(() => {
+	// 	console.log(liveData);
+	// }, [liveData]);
 	return (
 		<LiveDataContext.Provider value={{ liveData }}>
 			{children}
