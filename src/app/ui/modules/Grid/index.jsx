@@ -8,7 +8,7 @@ import Loading from "@/app/ui/components/Loading";
 export function Grid(){
 
 	const {liveData} = useContext(LiveDataContext);
-	const liveDataArr = Object.values(liveData);
+	const liveDataArr = liveData ? Object.values(liveData) : [];
 	liveDataArr.sort((a, b) => a.percentage - b.percentage);
 
 	const gridOutput = () => (
