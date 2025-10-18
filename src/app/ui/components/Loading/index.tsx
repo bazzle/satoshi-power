@@ -5,7 +5,9 @@ function Loading(){
 	const {sat} = Icons
 	return(
 		<div className={styles.loading}>
-			{sat}
+			<div className={styles.loading__icon}>
+				{sat}
+			</div>
 		</div>
 	)
 }
