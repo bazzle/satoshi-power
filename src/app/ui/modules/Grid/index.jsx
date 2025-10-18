@@ -2,30 +2,33 @@
 import CurrencyItem from "./CurrencyItem";
 import styles from "./Grid.module.scss";
 import { LiveDataContext}  from "@/app/data/LiveDataContext";
-import { SnapshotsDataContext } from "@/app/data/SnapshotsDataContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Loading from "@/app/ui/components/Loading";
 
 export function Grid(){
 
 	const {liveData} = useContext(LiveDataContext);
-	const {snapshots} = useContext(SnapshotsDataContext);
+	const liveDataArr = Object.values(liveData);
+	liveDataArr.sort((a, b) => a.percentage - b.percentage);
 
-	if (liveData === null || snapshots === undefined){
-		return (
-			<div className={styles.loader}>
-				<Loading/>
-			</div>
-		)
-	} else {
-		return (
-			<ul className={styles.grid}>
-				{
-					liveData.map((item, index) => {
-						return <CurrencyItem key={index} itemObj={item} />;
-					})
-				}
-			</ul>
-		)
-	}
+	const gridOutput = () => (
+		<ul className={styles.grid__grid}>
+			{
+				liveDataArr.map((item, index) => {
+					return <CurrencyItem key={index} itemObj={item} />;
+				})
+			}
+		</ul>
+	)
+	const loadingOutput = () => (
+		<div className={styles.grid__loader}>
+			<Loading/>
+		</div>
+	)
+
+	return (
+		<div className={styles.grid__container}>
+			{ liveData === null ? loadingOutput() : gridOutput() }
+		</div>
+	)
 }
