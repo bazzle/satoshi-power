@@ -16,7 +16,8 @@ function checkCurrencyRefObject(obj){
 		typeof obj.subUnitKilled === "boolean" &&
 		typeof obj.mainUnitKilled === "boolean" &&
 		typeof obj.displayName === "string",
-		typeof obj.unitNameSlug === "string"
+		typeof obj.unitNameSlug === "string",
+		typeof obj.displayNameSlug === "string"
 	)
 }
 
@@ -126,7 +127,14 @@ function editDataObj(fetchedData){
 		}
 		itemObj.displayName = displayName
 
-		// Add to new object -------------------------------------------------
+		// Set the display name slug --------------------------------------------
+
+		itemObj.displayNameSlug = slugify(displayName, {
+			lower: true,
+			strict: true
+		})
+
+		// Add to new object ----------------------------------------------------
 
 		if (checkCurrencyRefObject(itemObj)){
 			currenciesObj[key] = itemObj;
