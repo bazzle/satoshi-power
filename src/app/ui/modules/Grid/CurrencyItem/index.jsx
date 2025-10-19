@@ -40,7 +40,7 @@ function CurrencyItem({itemObj}){
 		)
 	}
 
-	const currencyPagePath = `/currency/${itemObj.unitNameSlug}`
+	const currencyPagePath = `/currency/${itemObj.displayNameSlug}`
 	
 	return (
 		<li className={classes}>
