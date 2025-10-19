@@ -7,17 +7,17 @@ $grid-gap: 2.2rem;
 		padding-bottom: $grid-gap;
 	}
 	&__grid{
+		$grid-gap: 2.2rem;
+		display:grid;
+		gap: $grid-gap;
+		grid-template-columns: 1fr;
+		grid-auto-rows: auto;
 		@include break(tablet){
 			grid-template-columns: 1fr 1fr;
 		}
 		@include break(desktop){
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 		}
-		$grid-gap: 2.2rem;
-		display:grid;
-		gap: $grid-gap;
-		grid-template-columns: 1fr;
-		grid-auto-rows: auto;
 	}
 	&__loader{
 		height: 100%;
