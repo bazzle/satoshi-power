@@ -14,9 +14,9 @@ export async function generateStaticParams() {
 	return dataArr.map((item) => ({ slug: item.displayNameSlug }));
 }
 
-function Page({ params }) {
+async function Page({ params }) {
 	try {
-		const { slug } = params;
+		const { slug } = await params;
 
 		return (
 			<>

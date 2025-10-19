@@ -1,5 +1,6 @@
 import styles from './Header.module.scss'
 import LogoLockup from '@/app/ui/components/LogoLockup';
+import Link from 'next/link';
 
 function Header(){
 	return (
@@ -7,7 +8,9 @@ function Header(){
             <div className="row">
                 <div className="row-container--wider">
 					<div className={styles.header__container}>
-						<LogoLockup />
+						<Link href="/">
+							<LogoLockup />
+						</Link>
 					</div>
                 </div>
             </div>
