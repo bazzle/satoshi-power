@@ -1,6 +1,5 @@
 import currencyReference from "@/app/data/currencies";
 import Utilities from "@/app/ui/misc/Utilities";
-import slugify from "slugify";
 
 function checkCurrencyRefObject(obj){
 	// Check all data values are present and the correct type before this goes out
@@ -15,9 +14,11 @@ function checkCurrencyRefObject(obj){
 		typeof obj.percentage === "number" &&
 		typeof obj.subUnitKilled === "boolean" &&
 		typeof obj.mainUnitKilled === "boolean" &&
-		typeof obj.displayName === "string",
-		typeof obj.unitNameSlug === "string",
-		typeof obj.displayNameSlug === "string"
+		typeof obj.displayName === "string" &&
+		typeof obj.unitNameSlug === "string" &&
+		typeof obj.displayNameSlug === "string" &&
+		typeof obj.currencyCode === "string" &&
+		typeof obj.currencyCodeSlug === "string"
 	)
 }
 
@@ -38,11 +39,10 @@ function editDataObj(fetchedData){
 
 		// Add new data to the object, from the currency list
 		const currencyName = currencyRefObj.name;
-		const currencyNameSlug = slugify(currencyName, {
-			lower: true,
-			strict: true
-		})
+		const currencyNameSlug = Utilities.slugify(currencyName);
 		const newData = {
+			'currencyCode' : key,
+			'currencyCodeSlug' : Utilities.slugify(key),
 			'unitName' : currencyName,
 			'unitNameSlug' : currencyNameSlug,
 			'symbol' : currencyRefObj.symbol,
@@ -129,10 +129,7 @@ function editDataObj(fetchedData){
 
 		// Set the display name slug --------------------------------------------
 
-		itemObj.displayNameSlug = slugify(displayName, {
-			lower: true,
-			strict: true
-		})
+		itemObj.displayNameSlug = Utilities.slugify(displayName);
 
 		// Add to new object ----------------------------------------------------
 
