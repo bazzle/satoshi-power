@@ -1,0 +1,19 @@
+@use '@/app/styles/all-vars' as *;
+
+.currencyPage{
+	&__loading{
+		height: 100%;
+		min-height: 465px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	&__inner{
+		height: 100%;
+		min-height: 465px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
