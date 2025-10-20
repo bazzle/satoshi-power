@@ -2,6 +2,7 @@ import Header from "@/app/ui/modules/Header";
 import Footer from "@/app/ui/modules/Footer";
 import About from "@/app/ui/modules/About";
 import getDataPromise from "@/app/data/getData";
+import CurrencyPage from "@/app/ui/modules/CurrencyPage";
 
 
 
@@ -11,13 +12,12 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
 	const data = await getDataPromise();
 	const dataArr = Object.values(data);
-	return dataArr.map((item) => ({ slug: item.displayNameSlug }));
+	return dataArr.map((item) => ({ slug: item.currencyCodeSlug }));
 }
 
 async function Page({ params }) {
 	try {
 		const { slug } = await params;
-
 		return (
 			<>
 				<Header/>
@@ -25,7 +25,7 @@ async function Page({ params }) {
 					<div className="main__about">
 						<About/>
 					</div>
-					<p>{slug}</p>
+					<CurrencyPage slug={slug} />
 				</main>
 				<Footer/>
 			</>
