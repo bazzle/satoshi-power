@@ -1,7 +1,7 @@
 'use client'
 import CurrencyItem from "./CurrencyItem";
 import styles from "./Grid.module.scss";
-import { LiveDataContext}  from "@/app/data/LiveDataContext";
+import { LiveDataContext } from "@/app/data/LiveDataContext";
 import { useContext, useEffect } from "react";
 import Loading from "@/app/ui/components/Loading";
 
