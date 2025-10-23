@@ -25,7 +25,7 @@
     }
 	&__statusContainer{
 		position: absolute;
-		top: 50%;
+		top: calc(50% + 2px);
 		left: 1rem;
 		transform: translateY(-50%);
 		display: flex;
