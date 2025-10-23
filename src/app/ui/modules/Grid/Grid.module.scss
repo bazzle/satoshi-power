@@ -12,10 +12,10 @@ $grid-gap: 2.2rem;
 		gap: $grid-gap;
 		grid-template-columns: 1fr;
 		grid-auto-rows: auto;
-		@include break(tablet){
+		@include break(desktop){
 			grid-template-columns: 1fr 1fr;
 		}
-		@include break(desktop){
+		@include break(desktop-med){
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 		}
 	}
