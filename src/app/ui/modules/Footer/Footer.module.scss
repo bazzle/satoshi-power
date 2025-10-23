@@ -9,6 +9,9 @@
         align-items: center;
         flex-direction: column;
         gap: 1em;
+		a{
+			@include text-link;
+		}
     }
     &__signoff{
         text-align: center;

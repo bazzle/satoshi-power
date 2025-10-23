@@ -43,7 +43,7 @@ $yellow: rgb(255, 255, 0);
 // Text colors
 $color-text: #ffffff;
 $color-text-reverse: #000000;
-$color-link: $color-primary;
+$color-link: $white;
 
 // line color
 $color-line: #F2F2F2;
@@ -66,7 +66,7 @@ $fast-to-slow: cubic-bezier(0.11, 0.71, 0.46, 0.91);
 
 // misc
 $border-radius: 3px;
-$color-text-link: $color-accent;
+$color-text-link: $white;
 
 // theme specfic
 $content-offset: 6rem;
@@ -474,4 +474,12 @@ $line-height-standard: 1.6;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+@mixin text-link{
+	color: $color-text-link;
+	border-bottom: .5px solid $color-text-link;
+	&:hover{
+		border-bottom: 0;
+	}
 }
