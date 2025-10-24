@@ -54,5 +54,3 @@ Subject to change
 ### 🔜 Phase 3 – Historical data and chart
 
 - Chart showing the fiat historical price action, using the sat as denominator
-
-* Show live conversions from exchange rates API
