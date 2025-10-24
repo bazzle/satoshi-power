@@ -40,12 +40,19 @@ This is a continuation of [Satoshi-Power-deprecated](https://github.com/bazzle/S
 
 Subject to change
 
-### ✅ v1.0.0 Initial stable release
+### ✅ Phase 1 – Live data
+
+- Live exchange rates fetch
+- UI for satoshi/fiat index showing percentage proportion in price
+- Start collecting data from API on a schedule to later show historical price action
+
+### 🔜 Phase 2 – Dedicated currency page and exchange tool
+
+- Dedicated page for each fiat currency showing the 1 sat denominated price
+- Exchange tool.
+
+### 🔜 Phase 3 – Historical data and chart
+
+- Chart showing the fiat historical price action, using the sat as denominator
 
 * Show live conversions from exchange rates API
-
-### v2.0.0 Historical data
-
-* Github action to pull in conversion data once weekly and trigger a commit into data submodule repo, then redeploy the app
-* UI range slider/date picker on the homepage. To allow users to see historical data snapshots.
-* Infographics/charts for each currency. Showing devaluation over time against satoshi's.
