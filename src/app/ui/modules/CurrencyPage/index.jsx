@@ -3,6 +3,7 @@ import styles from "./CurrencyPage.module.scss"
 import { useContext, useEffect, useState } from "react";
 import { LiveDataContext } from "@/app/data/LiveDataContext";
 import Loading from "@/app/ui/components/Loading";
+import Converter from "@/app/ui/modules/CurrencyPage/Converter";
 
 function CurrencyPage({slug}){
 	const {liveData} = useContext(LiveDataContext);
@@ -22,6 +23,7 @@ function CurrencyPage({slug}){
 	const successOutput = () => (
 		<div className={styles.currencyPage__inner}>
 			<h1>{currencyObj.displayName}</h1>
+			<Converter convCurrency={currencyObj} />
 		</div>
 	)
 	
