@@ -1,6 +1,9 @@
 'use client';
 import { useEffect, useState } from "react";
 import styles from "./Converter.module.scss";
+import { NumberInput } from '@ark-ui/react/number-input'
+import { RadioGroup } from '@ark-ui/react/radio-group'
+
 
 function Converter({convCurrency}){
 	const [mode, setMode] = useState('sats');
@@ -8,9 +11,11 @@ function Converter({convCurrency}){
 	const [outputNumber, setOutputNumber] = useState();
 	const [outputString, setOutputString] = useState('');
 
+	// console.log(NumberInput)
+
 	// Run on load and when input number changes
 	useEffect(()=>{
-		console.log(convCurrency);
+		console.log(mode);
 		let rawNum
 		let outputValue
 		let outputString
@@ -33,40 +38,43 @@ function Converter({convCurrency}){
 		setOutputString(outputString);
 	},[inputNumber, mode])
 
-	const handleNumberChange = (input)=>{
-		const val = input.target.value;
-		setInputNumber(val === "" ? "" : Number(val));
-	}
+	const unitChoices = ['Sats',convCurrency.displayName];
 
 	return(
 		<div className={styles.converter}>
 			<form className={styles.converter__form}>
 				<div className={styles.converter__inputNumber}>
-					<label htmlFor="inputNumber"></label>
-					<input id="inputNumber" type="number" min="0" value={inputNumber} onChange={(e)=> handleNumberChange(e)} />
+					<NumberInput.Root
+						min={0}
+						defaultValue={1}
+						onValueChange={(num) => setInputNumber(num.valueAsNumber)}
+					>
+						<NumberInput.Label>Input number</NumberInput.Label>
+						<NumberInput.Input />
+						<NumberInput.Control>
+							<NumberInput.IncrementTrigger>▲</NumberInput.IncrementTrigger>
+							<NumberInput.DecrementTrigger>▼</NumberInput.DecrementTrigger>
+						</NumberInput.Control>
+					</NumberInput.Root>
+
 				</div>
 				<div className={styles.converter__inputRadio}>
-					<span>
-						<input
-							type="radio"
-							name="conversion"
-							id="satoshis"
-							value="satoshis"
-							defaultChecked
-							onChange={()=>setMode('sats')}
-						/>
-						<label htmlFor="satoshis">Satoshi's</label>
-					</span>
-					<span>
-						<input
-							type="radio"
-							name="conversion"
-							id="fiatCurrency"
-							value="fiatCurrency"
-							onChange={()=>setMode('fiat')}
-						/>
-						<label htmlFor="fiatCurrency">{convCurrency.displayName}</label>
-					</span>
+
+				<RadioGroup.Root
+					onValueChange={(mode) => mode.value === "Sats" ? setMode('sats') : setMode('fiat') }
+					defaultValue="Sats"
+				>
+					<RadioGroup.Label>Unit</RadioGroup.Label>
+					<RadioGroup.Indicator />
+					{unitChoices.map((unitChoice) => (
+						<RadioGroup.Item key={unitChoice} value={unitChoice}>
+							<RadioGroup.ItemText>{unitChoice}</RadioGroup.ItemText>
+							<RadioGroup.ItemControl />
+							<RadioGroup.ItemHiddenInput />
+						</RadioGroup.Item>
+					))}
+				</RadioGroup.Root>
+
 				</div>
 			</form>
 			<div className={styles.converter__output}>
