@@ -179,14 +179,6 @@ $breakpoints--h: (
 	appearance: none;
 }
 
-// USAGE: @include hocus {color: red;}
-@mixin hocus {
-	&:hover,
-	&:focus {
-		@content;
-	}
-}
-
 // USAGE: @include gap(margin-top,2)
 @mixin gap($prop, $multiplier: 1) {
 	&{
@@ -481,5 +473,32 @@ $line-height-standard: 1.6;
 	border-bottom: .5px solid $color-text-link;
 	&:hover{
 		border-bottom: 0;
+	}
+}
+
+@mixin sr-only{
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+
+// Accessibility ================================================================
+
+@mixin focus{
+	outline: 2px solid $color-focus;
+}
+
+// USAGE: @include hocus {color: red;}
+@mixin hocus {
+	&:hover,
+	&:focus {
+		@content;
 	}
 }

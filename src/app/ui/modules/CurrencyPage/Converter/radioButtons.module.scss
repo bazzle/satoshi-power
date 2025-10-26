@@ -1,0 +1,64 @@
+@use '@/app/styles/all-vars' as *;
+
+.converter__form {
+	/* RADIO ROOT */
+	[data-scope='radio-group']{
+		&[data-part='label'] {
+			@include sr-only;
+		}
+		&[data-part='root'] {
+			position: relative;
+			display: flex;
+			align-items: center;
+			gap: 16px;
+		}
+		/* RADIO ITEM */
+		&[data-part='item'] {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			position: relative;
+			z-index: 2;
+			cursor: pointer;
+			user-select: none;
+
+			&[data-disabled] {
+			cursor: not-allowed;
+			opacity: 0.5;
+			}
+		}
+		/* OUTER CIRCLE */
+		&[data-part='item-control'] {
+			height: 22px;
+			width: 22px;
+			border-radius: 50%;
+			border: 2px solid $color-primary;
+			background: transparent;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			transition: border-color 0.15s ease, background 0.15s ease;
+			&[data-focus] {
+				@include focus;
+			}
+			/* INNER DOT */
+			&::after {
+				content: '';
+				width: 10px;
+				height: 10px;
+				background: $color-primary;
+				border-radius: 50%;
+				transform: scale(0);
+				transition: transform 0.15s ease-out;
+			}
+			&[data-state='checked']::after {
+				transform: scale(1);
+			}
+		}
+		/* Ark’s root indicator – unused visually */
+		&[data-part='indicator'] {
+			display: none;
+		}
+	}
+}

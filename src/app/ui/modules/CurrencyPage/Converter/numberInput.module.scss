@@ -1,0 +1,86 @@
+@use '@/app/styles/all-vars' as *;
+
+.converter__form {
+	[data-scope='number-input']{
+		&[data-part='label'] {
+			@include sr-only;
+		}
+		/* Outer box */
+		&[data-part='root'] {
+			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border: 2px solid $color-primary;
+			border-radius: 4px;
+			padding-right: 66px;
+			/* space for arrows */
+			box-sizing: border-box;
+			transition: border-color .15s ease;
+		}
+
+		/* The numeric input */
+		&[data-part='input'] {
+			width: 100%;
+			height: 100%;
+			background: transparent;
+			border: 0;
+			outline: none;
+			font-size: 1.8rem;
+			caret-color: $color-primary;
+			padding: 1em;
+			&:focus-visible{
+				@include focus;
+			}
+			/* Just in case a native number input slips in */
+			&::-webkit-outer-spin-button,
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+
+			&[type='number'] {
+				-moz-appearance: textfield;
+			}
+		}
+
+		/* Right-side control column */
+		&[data-part='control'] {
+			&:focus-visible{
+			@include focus;
+		}
+			position: absolute;
+			right: 14px;
+			top: 50%;
+			transform: translateY(-50%);
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		/* ▲ / ▼ buttons */
+		&[data-part='increment-trigger'],
+		&[data-part='decrement-trigger'] {
+			width: 30px;
+			height: 24px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: transparent;
+			border: 0;
+			border-radius: 3px;
+			color: #F7931A;
+			font-size: 18px;
+			line-height: 1;
+			cursor: pointer;
+			transition: background .12s ease, transform .05s ease;
+			&:focus-visible{
+				@include focus;
+			}
+			&:active {
+				transform: translateY(1px);
+			}
+		}
+	}
+
+}
