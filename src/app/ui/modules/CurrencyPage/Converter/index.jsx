@@ -16,29 +16,42 @@ function Converter({convCurrency}){
 		console.log(convCurrency);
 		let OutputRawNum
 		let outputValue
+		let	outputLocalValue
 		let outputString
 		let currencyString = convCurrency.displayName
 		let satPrice
-		if(convCurrency.satPriceSubUnit && convCurrency.subUnitKilled){
+		if(convCurrency.noSubUnit){
+			satPrice = convCurrency.satPrice
+		} else if (convCurrency.subUnitKilled){
 			satPrice = convCurrency.satPrice
 		} else {
 			satPrice = convCurrency.satPriceSubUnit
 		}
+
+		const checkNum = (n) => Number.isNaN(n) ? 0 : n;
+
 		const satoshiLabelString = (num) => {
+			num = checkNum(num)
 			const label = num === 1 ? 'Satoshi' : "Satoshi's"
 			return `${num.toLocaleString()} ${label} `;
 		}
+		const localiseCurrencyOutput = (price) => {
+			return new Intl.NumberFormat(convCurrency.locale).format(price);
+		}
+
 		if(mode === 'sats'){
 			OutputRawNum = inputNumber * satPrice;
 			outputValue = Number(Number(OutputRawNum).toFixed(2));
+			outputValue = checkNum(outputValue);
+			outputLocalValue = localiseCurrencyOutput(outputValue);
 			outputString = (
-				<p>{satoshiLabelString(inputNumber)} = {currencyString} {outputValue}</p>
+				<p>{satoshiLabelString(inputNumber)} = {outputValue} {currencyString}</p>
 			)
 		} else if(mode === 'fiat') {
 			OutputRawNum = inputNumber / satPrice;
 			outputValue = Number(Number(OutputRawNum).toFixed(2));
 			outputString = (
-				<p>{inputNumber} {currencyString} = {satoshiLabelString(outputValue)}</p>
+				<p>{checkNum(inputNumber)} {currencyString} = {satoshiLabelString(outputValue)}</p>
 			)
 		}
 		setInputNumberFormDisplay(inputNumber);
