@@ -13,21 +13,27 @@ function Converter({convCurrency}){
 
 	// Run on load and when input number changes
 	useEffect(()=>{
-		let rawNum
+		console.log(convCurrency);
+		let OutputRawNum
 		let outputValue
 		let outputString
 		let currencyString = convCurrency.displayName
+		const satPrice = convCurrency.satPriceSubUnit ? convCurrency.satPriceSubUnit : convCurrency.satPrice
+		const satLabelString = () => {
+			const label = inputNumber === 1 ? 'Satoshi' : "Satoshi's"
+			return `${inputNumber.toLocaleString()} ${label} `;
+		}
 		if(mode === 'sats'){
-			rawNum = inputNumber * convCurrency.satPrice;
-			outputValue = Number(Number(rawNum).toFixed(2));
+			OutputRawNum = inputNumber * satPrice;
+			outputValue = Number(Number(OutputRawNum).toFixed(2));
 			outputString = (
-				<p>{inputNumber.toLocaleString()} Satoshi's = {currencyString} {outputValue}</p>
+				<p>{satLabelString()} = {currencyString} {outputValue}</p>
 			)
 		} else if(mode === 'fiat') {
-			rawNum = inputNumber / convCurrency.satPrice;
-			outputValue = Number(Number(rawNum).toFixed(2));
+			OutputRawNum = inputNumber / satPrice;
+			outputValue = Number(Number(OutputRawNum).toFixed(2));
 			outputString = (
-				<p>{inputNumber} {currencyString} = {inputNumber.toLocaleString()} Satoshi's</p>
+				<p>{inputNumber} {currencyString} = {satLabelString()}</p>
 			)
 		}
 		setInputNumberFormDisplay(inputNumber);
@@ -40,7 +46,7 @@ function Converter({convCurrency}){
 		<div className={styles.converter}>
 			<form className={styles.converter__form}>
 				<NumberInput.Root
-					min={0}
+					min={1}
 					step={1}
 					value={inputNumberFormDisplay}
 					onValueChange={(num) => setInputNumber(num.valueAsNumber)}
