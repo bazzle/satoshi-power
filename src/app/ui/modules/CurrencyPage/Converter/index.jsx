@@ -24,21 +24,21 @@ function Converter({convCurrency}){
 		} else {
 			satPrice = convCurrency.satPriceSubUnit
 		}
-		const satLabelString = () => {
-			const label = inputNumber === 1 ? 'Satoshi' : "Satoshi's"
-			return `${inputNumber.toLocaleString()} ${label} `;
+		const satoshiLabelString = (num) => {
+			const label = num === 1 ? 'Satoshi' : "Satoshi's"
+			return `${num.toLocaleString()} ${label} `;
 		}
 		if(mode === 'sats'){
 			OutputRawNum = inputNumber * satPrice;
 			outputValue = Number(Number(OutputRawNum).toFixed(2));
 			outputString = (
-				<p>{satLabelString()} = {currencyString} {outputValue}</p>
+				<p>{satoshiLabelString(inputNumber)} = {currencyString} {outputValue}</p>
 			)
 		} else if(mode === 'fiat') {
 			OutputRawNum = inputNumber / satPrice;
 			outputValue = Number(Number(OutputRawNum).toFixed(2));
 			outputString = (
-				<p>{inputNumber} {currencyString} = {satLabelString()}</p>
+				<p>{inputNumber} {currencyString} = {satoshiLabelString(outputValue)}</p>
 			)
 		}
 		setInputNumberFormDisplay(inputNumber);
