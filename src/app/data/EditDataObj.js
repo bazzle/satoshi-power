@@ -108,7 +108,7 @@ function editDataObj(fetchedData){
 
 		if(!noSubUnit){
 			if(itemObj.subUnitKilled){
-				itemObj.percentage = Math.floor(itemObj.percentage / 100);
+				itemObj.percentage = Math.round(itemObj.percentage / 100);
 			}
 			if(itemObj.subUnitKilled && itemObj.percentage > 100){
 				itemObj.mainUnitKilled = true
