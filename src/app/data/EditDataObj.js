@@ -1,5 +1,5 @@
-import currencyReference from "@/app/data/currencies";
 import Utilities from "@/app/ui/misc/Utilities";
+import currenciesRef from './currenciesReference.json'
 
 function checkCurrencyRefObject(obj){
 	// Check all data values are present and the correct type before this goes out
@@ -29,7 +29,7 @@ function editDataObj(fetchedData){
 		// Get the itemcode format
 		const itemCode = key.toLowerCase();
 		// Find the matching currency object from the reflist
-		const currencyRefObj = currencyReference[itemCode];
+		const currencyRefObj = currenciesRef[itemCode];
 
 		// If there is no match, then skip it
 		if (currencyRefObj === undefined){
