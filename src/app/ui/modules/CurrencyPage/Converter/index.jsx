@@ -18,7 +18,12 @@ function Converter({convCurrency}){
 		let outputValue
 		let outputString
 		let currencyString = convCurrency.displayName
-		const satPrice = convCurrency.satPriceSubUnit ? convCurrency.satPriceSubUnit : convCurrency.satPrice
+		let satPrice
+		if(convCurrency.satPriceSubUnit && convCurrency.subUnitKilled){
+			satPrice = convCurrency.satPrice
+		} else {
+			satPrice = convCurrency.satPriceSubUnit
+		}
 		const satLabelString = () => {
 			const label = inputNumber === 1 ? 'Satoshi' : "Satoshi's"
 			return `${inputNumber.toLocaleString()} ${label} `;
