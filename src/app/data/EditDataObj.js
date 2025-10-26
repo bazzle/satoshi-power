@@ -19,7 +19,9 @@ function checkCurrencyRefObject(obj){
 		typeof obj.unitNameSlug === "string" &&
 		typeof obj.displayNameSlug === "string" &&
 		typeof obj.currencyCode === "string" &&
-		typeof obj.currencyCodeSlug === "string"
+		typeof obj.currencyCodeSlug === "string" &&
+		typeof obj.currencyLocale === "string" &&
+		typeof obj.noSubUnit === "boolean"
 	)
 }
 
@@ -49,7 +51,8 @@ function editDataObj(fetchedData){
 			'symbol' : currencyRefObj.symbol,
 			'subUnitName' : currencyRefObj.subunit,
 			'subUnits' : currencyRefObj.subunit_to_unit,
-			'btcPrice' : itemObj.sell ? Math.round(itemObj.sell) : 0
+			'btcPrice' : itemObj.sell ? Math.round(itemObj.sell) : 0,
+			'currencyLocale' : currencyRefObj.locale
 		}
 		Object.assign(itemObj, newData);
 		// Tidy up the object by deleting some keys we don't need
@@ -61,6 +64,11 @@ function editDataObj(fetchedData){
 		itemObj.satPrice = itemObj.btcPrice / 100000000
 		// check for if theres no sub unit
 		const noSubUnit = (itemObj.subUnits === 1 || itemObj.subUnitName === null || itemObj.subUnitName === "");
+		if((itemObj.subUnits === 1 || itemObj.subUnitName === null || itemObj.subUnitName === "")){
+			itemObj.noSubUnit = true;
+		} else {
+			itemObj.noSubUnit = false;
+		}
 		// Calculate price of a single sat in sub units
 		if(noSubUnit === false && itemObj.subUnits === 100){
 			itemObj.satPriceSubUnit = itemObj.satPrice * 100
@@ -143,7 +151,8 @@ function editDataObj(fetchedData){
 		if (checkCurrencyRefObject(itemObj)){
 			currenciesObj[key] = itemObj;
 		} else {
-			console.log('incorrect type');
+			console.log('Missing data');
+			continue;
 		}
 
 	}
