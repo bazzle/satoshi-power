@@ -294,14 +294,14 @@ $line-height-standard: 1.6;
 
 
 @mixin paragraphdefaults {
-	@include gap(margin-bottom);
+	margin-bottom: $gap;
 	color: inherit;
 	line-height: 1.8;
 }
 
 @mixin ullistdefaults {
 	@include text-body;
-	@include gap(margin-bottom);
+	margin-bottom: $gap;
 	padding: 0;
 	list-style-position: inside;
 	li {
@@ -325,7 +325,7 @@ $line-height-standard: 1.6;
 
 @mixin ollistdefaults {
 	@include text-body;
-	@include gap(margin-bottom);
+	margin-bottom: $gap;
 	&{
 		padding: 0;
 		list-style: none;

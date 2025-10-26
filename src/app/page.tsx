@@ -8,8 +8,10 @@ export default function Home() {
 		<>
 			<Header/>
 			<main className="main">
-				<div className="main__about">
-					<About/>
+				<div className="row main__about">
+					<div className="row-container">
+						<About/>
+					</div>
 				</div>
 				<div className="row row--lighter">
                 	<div className="row-container--wider">

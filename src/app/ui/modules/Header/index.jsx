@@ -6,7 +6,7 @@ function Header(){
 	return (
         <header className={styles.header}>
             <div className="row">
-                <div className="row-container--wider">
+                <div className="row-container">
 					<div className={styles.header__container}>
 						<Link href="/">
 							<LogoLockup />
