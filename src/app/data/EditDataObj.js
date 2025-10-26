@@ -10,6 +10,7 @@ function checkCurrencyRefObject(obj){
 		typeof obj.subUnits === "number" &&
 		typeof obj.btcPrice === "number" &&
 		typeof obj.satPrice === "number" &&
+		typeof obj.satPriceSubUnit === "string" || "null" &&
 		typeof obj.displayPrice === "number" &&
 		typeof obj.percentage === "number" &&
 		typeof obj.subUnitKilled === "boolean" &&
@@ -60,6 +61,12 @@ function editDataObj(fetchedData){
 		itemObj.satPrice = itemObj.btcPrice / 100000000
 		// check for if theres no sub unit
 		const noSubUnit = (itemObj.subUnits === 1 || itemObj.subUnitName === null || itemObj.subUnitName === "");
+		// Calculate price of a single sat in sub units
+		if(noSubUnit === false && itemObj.subUnits === 100){
+			itemObj.satPriceSubUnit = itemObj.satPrice * 100
+		} else {
+			itemObj.satPriceSubUnit = null
+		}
 
 		// Mutate the subunit name so its correct -------------------------------
 
