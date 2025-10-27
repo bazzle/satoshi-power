@@ -2,33 +2,32 @@
 
 .converter__form {
 	[data-scope='number-input']{
+		font-size: $font-size-m;
 		&[data-part='label'] {
 			@include sr-only;
 		}
 		/* Outer box */
 		&[data-part='root'] {
+			flex-grow: 0;
 			position: relative;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			border: 2px solid $color-primary;
-			border-radius: 4px;
-			padding-right: 66px;
-			/* space for arrows */
+			border: 1px solid $color-primary;
+			border-radius: 1px;
 			box-sizing: border-box;
-			transition: border-color .15s ease;
 		}
 
 		/* The numeric input */
 		&[data-part='input'] {
-			width: 100%;
-			height: 100%;
 			background: transparent;
 			border: 0;
 			outline: none;
-			font-size: 1.8rem;
 			caret-color: $color-primary;
-			padding: 1em;
+			padding: 0 .6em;
+			height: 100%;
+			width: 10ch;
+
 			&:focus-visible{
 				@include focus;
 			}
@@ -38,7 +37,6 @@
 				-webkit-appearance: none;
 				margin: 0;
 			}
-
 			&[type='number'] {
 				-moz-appearance: textfield;
 			}
@@ -47,38 +45,42 @@
 		/* Right-side control column */
 		&[data-part='control'] {
 			&:focus-visible{
-			@include focus;
-		}
-			position: absolute;
-			right: 14px;
-			top: 50%;
-			transform: translateY(-50%);
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-		}
-
-		/* ▲ / ▼ buttons */
-		&[data-part='increment-trigger'],
-		&[data-part='decrement-trigger'] {
-			width: 30px;
-			height: 24px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background: transparent;
-			border: 0;
-			border-radius: 3px;
-			color: #F7931A;
-			font-size: 18px;
-			line-height: 1;
-			cursor: pointer;
-			transition: background .12s ease, transform .05s ease;
-			&:focus-visible{
 				@include focus;
 			}
-			&:active {
-				transform: translateY(1px);
+			border-left: .5px solid $color-primary;
+			top: 0;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 0;
+			width: 42px;
+		}
+		@mixin arrowButtonDefaults{
+			height: 50%;
+			width: 100%;
+			svg{
+				width: 12px;
+				height: auto;
+				cursor: pointer;
+				color: $color-primary;
+				position: relative;
+				top: -2px;
+			}
+			&:hover{
+				svg{
+					color: $white;
+				}
+			}
+		}
+		&[data-part='increment-trigger'] {
+			@include arrowButtonDefaults;
+			border-bottom: .5px solid $color-primary;
+		}
+		&[data-part='decrement-trigger'] {
+			@include arrowButtonDefaults;
+			svg{
+				transform: rotate(180deg);
 			}
 		}
 	}

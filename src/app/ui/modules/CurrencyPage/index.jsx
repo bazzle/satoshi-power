@@ -15,23 +15,19 @@ function CurrencyPage({slug}){
 	}, [liveData, slug]);
 
 	const loadingOutput = () => (
-		<div className={styles.currencyPage__loading}>
+		<div className={styles.currencyPage__inner}>
 			<Loading/>
 		</div>
 	)
 
 	const successOutput = () => (
 		<div className={styles.currencyPage__inner}>
-			<h1>{currencyObj.displayName}</h1>
+			<h1 className={styles.currencyPage__title}>{currencyObj.displayName}</h1>
 			<Converter convCurrency={currencyObj} />
 		</div>
 	)
 	
-	return (
-		<div className={styles.currencyPage}>
-			{currencyObj ? successOutput() : loadingOutput()}
-		</div>
-	)
+	return currencyObj ? successOutput() : loadingOutput()
 }
 
 export default CurrencyPage;

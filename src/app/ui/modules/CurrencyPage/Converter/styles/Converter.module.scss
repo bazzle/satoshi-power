@@ -1,0 +1,18 @@
+@use '@/app/styles/all-vars' as *;
+@use './radioButtons.module.scss' as radioButtons;
+@use './numberInput.module.scss' as numberInput;
+
+.converter{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: calc($gap *3);
+	&__form{
+		display: flex;
+		gap: calc($gap *2);
+		flex-direction: row;
+	}
+	&__output{
+		font-size: $font-size-l;
+	}
+}

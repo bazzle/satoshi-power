@@ -1,8 +1,9 @@
 'use client';
 import { useEffect, useState } from "react";
-import styles from "./Converter.module.scss";
+import styles from "./styles/Converter.module.scss";
 import { NumberInput } from '@ark-ui/react/number-input'
 import { RadioGroup } from '@ark-ui/react/radio-group'
+import Icons from '@/app/ui/misc/Icons'
 
 
 function Converter({convCurrency}){
@@ -62,6 +63,7 @@ function Converter({convCurrency}){
 
 	return(
 		<div className={styles.converter}>
+			
 			<form className={styles.converter__form}>
 				<NumberInput.Root
 					min={1}
@@ -72,8 +74,12 @@ function Converter({convCurrency}){
 					<NumberInput.Label htmlFor="inputNum">Input number</NumberInput.Label>
 					<NumberInput.Input id="inputNum" />
 					<NumberInput.Control>
-						<NumberInput.IncrementTrigger>▲</NumberInput.IncrementTrigger>
-						<NumberInput.DecrementTrigger>▼</NumberInput.DecrementTrigger>
+						<NumberInput.IncrementTrigger>
+							{Icons.arrow}
+						</NumberInput.IncrementTrigger>
+						<NumberInput.DecrementTrigger>
+							{Icons.arrow}
+						</NumberInput.DecrementTrigger>
 					</NumberInput.Control>
 				</NumberInput.Root>
 
@@ -91,11 +97,12 @@ function Converter({convCurrency}){
 						</RadioGroup.Item>
 					))}
 				</RadioGroup.Root>
-				
 			</form>
+
 			<div className={styles.converter__output}>
 				{outputString}
 			</div>
+
 		</div>
 	)
 }

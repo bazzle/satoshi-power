@@ -10,7 +10,13 @@ const Icons = {
 		<rect y="11.6074" width="31.1961" height="6.52941" fill="white"/>
 		<rect y="20.3135" width="31.1961" height="6.52941" fill="white"/>
 		<rect y="29.0195" width="31.1961" height="6.52941" fill="white"/>
+	</svg>,
+	arrow:
+	<svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M9.10498 0L18.21 12.5482H-2.09808e-05L9.10498 0Z" fill="currentColor"/>
 	</svg>
+
+
 }
 
 export default Icons

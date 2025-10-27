@@ -13,7 +13,7 @@ export default function Home() {
 						<About/>
 					</div>
 				</div>
-				<div className="row row--lighter">
+				<div className="row row--lightest main__content">
                 	<div className="row-container--wider">
 						<Grid/>
 					</div>

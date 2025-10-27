@@ -1,8 +1,8 @@
 @use '@/app/styles/all-vars' as *;
 
 .converter__form {
-	/* RADIO ROOT */
 	[data-scope='radio-group']{
+		font-size: $font-size-m;
 		&[data-part='label'] {
 			@include sr-only;
 		}

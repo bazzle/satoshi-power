@@ -97,9 +97,13 @@ $padding-deep: clamp(3rem, 5vw, 6rem);
 	&--lighter {
 		background-color: $color-bg-2;
 	}
+	&--lightest {
+		background-color: $color-bg-3;
+	}
 }
 
 .row-container {
+	width: 100vw;
 	max-width: $site-width-narrow;
 	margin-right: auto;
 	margin-left: auto;

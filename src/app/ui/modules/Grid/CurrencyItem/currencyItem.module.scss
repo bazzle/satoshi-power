@@ -15,7 +15,7 @@
 		height: 100%;
     }
     &__text{
-        @include text-heading;
+        @include text-heading-display;
         color: white;
         text-align: right;
         display: block;
