@@ -8,4 +8,8 @@
 			order: 1;
 		}
 	}
+	&__content{
+		min-height: 465px;
+		display: flex;
+	}
 }

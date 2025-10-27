@@ -25,7 +25,11 @@ async function Page({ params }) {
 					<div className="main__about">
 						<About/>
 					</div>
-					<CurrencyPage slug={slug} />
+					<div className="row row--lighter main__content">
+                		<div className="row-container">
+							<CurrencyPage slug={slug} />
+						</div>
+					</div>
 				</main>
 				<Footer/>
 			</>

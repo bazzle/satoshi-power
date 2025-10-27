@@ -3,6 +3,7 @@ import styles from "./CurrencyPage.module.scss"
 import { useContext, useEffect, useState } from "react";
 import { LiveDataContext } from "@/app/data/LiveDataContext";
 import Loading from "@/app/ui/components/Loading";
+import Converter from "@/app/ui/modules/CurrencyPage/Converter";
 
 function CurrencyPage({slug}){
 	const {liveData} = useContext(LiveDataContext);
@@ -14,22 +15,19 @@ function CurrencyPage({slug}){
 	}, [liveData, slug]);
 
 	const loadingOutput = () => (
-		<div className={styles.currencyPage__loading}>
+		<div className={styles.currencyPage__inner}>
 			<Loading/>
 		</div>
 	)
 
 	const successOutput = () => (
 		<div className={styles.currencyPage__inner}>
-			<h1>{currencyObj.displayName}</h1>
+			<h1 className={styles.currencyPage__title}>{currencyObj.displayName}</h1>
+			<Converter convCurrency={currencyObj} />
 		</div>
 	)
 	
-	return (
-		<div className={styles.currencyPage}>
-			{currencyObj ? successOutput() : loadingOutput()}
-		</div>
-	)
+	return currencyObj ? successOutput() : loadingOutput()
 }
 
 export default CurrencyPage;

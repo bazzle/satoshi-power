@@ -1,5 +1,10 @@
 .loading{
+	display: block;
 	position: relative;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	&__icon{
 		animation: spin 1s ease-out infinite;
 	}

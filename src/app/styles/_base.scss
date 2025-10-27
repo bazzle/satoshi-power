@@ -92,7 +92,7 @@ textarea {
 	touch-action: manipulation;
 }
 
-a {
+a, button, input {
 	outline: none;
 	color: $color-link;
 	text-decoration: none;
@@ -101,7 +101,7 @@ a {
 		outline: 2px solid $color-accent;
 	}
 
-	&:focus {
+	&:focus-visible{
 		outline: 2px solid $color-focus;
 	}
 }

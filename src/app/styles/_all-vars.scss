@@ -34,7 +34,8 @@ $gradient: linear-gradient(45deg, rgba($color-accent, .1) 0%, rgba($color-primar
 
 // Background colors
 $color-bg-1: #000000;
-$color-bg-2: #151515;
+$color-bg-2: #080808;
+$color-bg-3: #151515;
 
 // for testing
 $gold: rgb(242, 208, 14);
@@ -179,14 +180,6 @@ $breakpoints--h: (
 	appearance: none;
 }
 
-// USAGE: @include hocus {color: red;}
-@mixin hocus {
-	&:hover,
-	&:focus {
-		@content;
-	}
-}
-
 // USAGE: @include gap(margin-top,2)
 @mixin gap($prop, $multiplier: 1) {
 	&{
@@ -230,19 +223,32 @@ $breakpoints--h: (
 
 // Typography variables
 
-$font-heading: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
+$font-heading-display: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
 $font-mono: monospace;
 $font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
-$font-size-standard: 1.2rem;
+$font-size-s: clamp(1.2rem, 1.4vw, 1.6rem);
+$font-size-m: clamp(1.6rem, 1.8vw, 2rem);
+$font-size-l: clamp(2rem, 2.2vw, 2.4rem);
+$font-size-xl: clamp(2.4rem, 2.6vw, 2.8rem);
+$font-size-xxl: clamp(2.8rem, 3vw, 3.2rem);
+$font-size-standard: $font-size-s;
+
 $line-height-standard: 1.6;
 
 // Typography mixins
 
 // Header – Site name and tagline
 
+@mixin text-heading-display {
+	font-family: $font-heading-display;
+	font-size: 2.8rem;
+	line-height: 1;
+}
+
 @mixin text-heading {
-	font-family: $font-heading;
-	font-size: 2.6rem;
+	font-family: $font-sans;
+	font-size: $font-size-xl;
+	font-weight: 500;
 	line-height: 1;
 }
 
@@ -276,7 +282,7 @@ $line-height-standard: 1.6;
 
 @mixin text-body {
 	font-family: $font-sans;
-	font-size: clamp(1.4rem, 1.8vw, 1.6rem);
+	font-size: $font-size-standard;
 	font-variation-settings: 'wght' 300, 'opsz' 9;
 	line-height: 1.8;
 }
@@ -302,14 +308,14 @@ $line-height-standard: 1.6;
 
 
 @mixin paragraphdefaults {
-	@include gap(margin-bottom);
+	margin-bottom: $gap;
 	color: inherit;
 	line-height: 1.8;
 }
 
 @mixin ullistdefaults {
 	@include text-body;
-	@include gap(margin-bottom);
+	margin-bottom: $gap;
 	padding: 0;
 	list-style-position: inside;
 	li {
@@ -333,7 +339,7 @@ $line-height-standard: 1.6;
 
 @mixin ollistdefaults {
 	@include text-body;
-	@include gap(margin-bottom);
+	margin-bottom: $gap;
 	&{
 		padding: 0;
 		list-style: none;
@@ -436,23 +442,6 @@ $line-height-standard: 1.6;
 	}
 }
 
-// USAGE: @include gap(margin-top,2)
-@mixin gap($prop, $multiplier: 1) {
-	& {
-		#{$prop}:calc(1rem * #{$multiplier});
-	}
-	@include break(mobile) {
-		#{$prop}:calc(1.2rem * #{$multiplier});
-	}
-	@include break(tablet) {
-		#{$prop}:calc(2.2rem * #{$multiplier});
-	}
-}
-
-@mixin gap-responsive($prop, $multiplier: 1) {
-	#{$prop}:calc(2vw * #{$multiplier});
-}
-
 
 // Button state
 
@@ -481,5 +470,32 @@ $line-height-standard: 1.6;
 	border-bottom: .5px solid $color-text-link;
 	&:hover{
 		border-bottom: 0;
+	}
+}
+
+@mixin sr-only{
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+
+// Accessibility ================================================================
+
+@mixin focus{
+	outline: 2px solid $color-focus;
+}
+
+// USAGE: @include hocus {color: red;}
+@mixin hocus {
+	&:hover,
+	&:focus {
+		@content;
 	}
 }

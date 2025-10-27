@@ -7,7 +7,7 @@
 		justify-content: center;
 	}
 	&{
-		@include gap(margin-top, 4);
-		@include gap(margin-bottom);
+		margin-top: calc($gap*4);
+		margin-bottom: calc($gap*3);
 	}
 }

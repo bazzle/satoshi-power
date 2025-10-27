@@ -8,3 +8,10 @@ hr {
 	border: 0;
 	width: 80px;
 }
+
+h1{
+	&:not([class]){
+		@include text-heading;
+		color: $white;
+	}
+}
