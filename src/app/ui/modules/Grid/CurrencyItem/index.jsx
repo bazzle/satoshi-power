@@ -44,11 +44,10 @@ function CurrencyItem({itemObj}){
 	
 	return (
 		<li className={classes}>
-			<Link href={currencyPagePath}>
-				{DomPercentageBar()}
-				{DomTextString()}
-				{DomIcons()}
-			</Link>
+			<Link className={styles.currencyItem__link} href={currencyPagePath}></Link>
+			{DomPercentageBar()}
+			{DomTextString()}
+			{DomIcons()}
 		</li>
 	)
 }
