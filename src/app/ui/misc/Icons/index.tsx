@@ -14,9 +14,11 @@ const Icons = {
 	arrow:
 	<svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path d="M9.10498 0L18.21 12.5482H-2.09808e-05L9.10498 0Z" fill="currentColor"/>
+	</svg>,
+	backArrow:
+	<svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M9.80002 5.82399H2.01602L5.89402 9.43599L5.01202 10.332L1.76132e-05 5.54399V4.77399L5.01202 -6.19888e-06L5.89402 0.895994L1.98802 4.53599H9.80002V5.82399Z" fill="white"/>
 	</svg>
-
-
 }
 
 export default Icons

@@ -5,6 +5,8 @@ import { LiveDataContext } from "@/app/data/LiveDataContext";
 import Loading from "@/app/ui/components/Loading";
 import Converter from "@/app/ui/modules/CurrencyPage/Converter";
 import Skulls from "@/app/ui/components/Skulls";
+import Link from "next/link";
+import Icons from "@/app/ui/misc/Icons";
 
 function CurrencyPage({slug}){
 	const {liveData} = useContext(LiveDataContext);
@@ -20,7 +22,6 @@ function CurrencyPage({slug}){
 			<Loading/>
 		</div>
 	)
-
 	const successOutput = () => (
 		<div className={styles.currencyPage__inner}>
 			<h1 className={styles.currencyPage__title}>
@@ -31,6 +32,7 @@ function CurrencyPage({slug}){
 				/>
 			</h1>
 			<Converter convCurrency={currencyObj} />
+			<Link className={styles.currencyPage__backLink} href="/">{Icons.backArrow} Return to index</Link>
 		</div>
 	)
 	

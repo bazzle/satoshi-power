@@ -14,7 +14,7 @@ function Converter({convCurrency}){
 
 	// Run on load and when input number changes
 	useEffect(()=>{
-		console.log(convCurrency);
+		// console.log(convCurrency);
 		let OutputRawNum
 		let outputValue
 		let	outputLocalValue
