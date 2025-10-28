@@ -103,7 +103,7 @@ $padding-deep: clamp(3rem, 5vw, 6rem);
 }
 
 .row-container {
-	width: 100vw;
+	width: 100%;
 	max-width: $site-width-narrow;
 	margin-right: auto;
 	margin-left: auto;

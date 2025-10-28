@@ -15,7 +15,16 @@
 		padding-top: .8em;
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		gap: .4em;
+		flex-wrap: wrap;
+		&__group{
+			display: flex;
+			align-items: center;
+			gap: .4em;
+			justify-content: center;
+			text-align: center;
+		}
 		&__skulls{
 			display: flex;
 			gap: .4em;

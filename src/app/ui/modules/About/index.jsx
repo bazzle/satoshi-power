@@ -11,16 +11,20 @@ function About(){
 						Comparing the price of a satoshi against fiat shitcoins
 					</p>
 					<p className={styles.about__key}>
-						<span className={styles.about__key__skulls}>
-							{Icons.skull}
+						<span className={styles.about__key__group}>
+							<span className={styles.about__key__skulls}>
+								{Icons.skull}
+							</span>
+							<span>= Sub-unit already dead</span>
 						</span>
-						<span>= Sub-unit already dead</span>
 						<span className={styles.about__divider}>/</span>
-						<span className={styles.about__key__skulls}>
-							{Icons.skull}
-							{Icons.skull}
+						<span className={styles.about__key__group}>
+							<span className={styles.about__key__skulls}>
+								{Icons.skull}
+								{Icons.skull}
+							</span>
+							<span>= Sub-unit and main unit dead</span>
 						</span>
-						<span>= Sub-unit and main unit dead</span>
 					</p>
 					<hr/>
 				</div>

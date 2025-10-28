@@ -11,8 +11,11 @@
 		display: flex;
 		gap: calc($gap *2);
 		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 	&__output{
 		font-size: $font-size-l;
+		text-align: center;
 	}
 }
