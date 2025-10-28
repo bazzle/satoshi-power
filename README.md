@@ -46,7 +46,7 @@ Subject to change
 - UI for satoshi/fiat index showing percentage proportion in price
 - Start collecting data from API on a schedule to later show historical price action
 
-### 🔜 Phase 2 – Dedicated currency page and exchange tool
+### ✅ Phase 2 – Dedicated currency page and exchange tool
 
 - Dedicated page for each fiat currency showing the 1 sat denominated price
 - Exchange tool.
@@ -54,3 +54,12 @@ Subject to change
 ### 🔜 Phase 3 – Historical data and chart
 
 - Chart showing the fiat historical price action, using the sat as denominator
+
+### 🔜 Phase 4 – Accessibility and SEO review
+
+- Full accessibility audit and remediations
+- SEO audit and optimisations, potentially text content for keywords
+
+### 🔜 Phase 5 – Full historical data
+
+- Pull in historical price data (~5 years) possibly mempool.space
