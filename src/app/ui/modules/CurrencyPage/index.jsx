@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { LiveDataContext } from "@/app/data/LiveDataContext";
 import Loading from "@/app/ui/components/Loading";
 import Converter from "@/app/ui/modules/CurrencyPage/Converter";
+import Skulls from "@/app/ui/components/Skulls";
 
 function CurrencyPage({slug}){
 	const {liveData} = useContext(LiveDataContext);
@@ -22,7 +23,13 @@ function CurrencyPage({slug}){
 
 	const successOutput = () => (
 		<div className={styles.currencyPage__inner}>
-			<h1 className={styles.currencyPage__title}>{currencyObj.displayName}</h1>
+			<h1 className={styles.currencyPage__title}>
+				{currencyObj.displayName}
+				<Skulls
+					subUnitKilled={currencyObj.subUnitKilled}
+					mainUnitKilled={currencyObj.mainUnitKilled}
+				/>
+			</h1>
 			<Converter convCurrency={currencyObj} />
 		</div>
 	)

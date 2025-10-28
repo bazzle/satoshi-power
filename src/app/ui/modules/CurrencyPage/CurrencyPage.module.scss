@@ -14,6 +14,8 @@
 	}
 	&__title{
 		font-size: $font-size-xl;
+		display: flex;
+		gap: .5em;
 	}
 }
 

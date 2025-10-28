@@ -3,6 +3,7 @@
 import styles from './currencyItem.module.scss';
 import icons from '@/app/ui/misc/Icons';
 import Link from 'next/link';
+import Skulls from '@/app/ui/components/Skulls';
 
 function CurrencyItem({itemObj}){
 
@@ -30,16 +31,6 @@ function CurrencyItem({itemObj}){
 		)
 	}
 
-	const DomIcons = () => {
-		const Icon = <div className={styles.currencyItem__icon}>{icons.skull}</div>
-		return (
-			<div className={styles.currencyItem__statusContainer}>
-				{ ((itemObj.subUnitKilled) ? Icon : '' )}
-				{ ((itemObj.mainUnitKilled) ? Icon : '' )}
-			</div>
-		)
-	}
-
 	const currencyPagePath = `/currency/${itemObj.currencyCodeSlug}`
 	
 	return (
@@ -47,7 +38,13 @@ function CurrencyItem({itemObj}){
 			<Link className={styles.currencyItem__link} href={currencyPagePath}></Link>
 			{DomPercentageBar()}
 			{DomTextString()}
-			{DomIcons()}
+			<div className={styles.currencyItem__statusContainer}>
+				<Skulls
+					subUnitKilled={itemObj.subUnitKilled}
+					mainUnitKilled={itemObj.mainUnitKilled}
+					orangeBg
+				/>
+			</div>
 		</li>
 	)
 }

@@ -1,0 +1,14 @@
+@use '@/app/styles/all-vars' as *;
+
+.skulls{
+	display: flex;
+	justify-content: center;
+	gap: .5rem;
+	.skullIcon{
+		display: flex;
+		align-items: center;
+		&____black{
+			color: black;
+		}
+	}
+}
