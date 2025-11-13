@@ -64,7 +64,7 @@ function editDataObj(fetchedData){
 		itemObj.satPrice = itemObj.btcPrice / 100000000
 		// check for if theres no sub unit
 		const noSubUnit = (itemObj.subUnits === 1 || itemObj.subUnitName === null || itemObj.subUnitName === "");
-		if((itemObj.subUnits === 1 || itemObj.subUnitName === null || itemObj.subUnitName === "")){
+		if(noSubUnit){
 			itemObj.noSubUnit = true;
 		} else {
 			itemObj.noSubUnit = false;

@@ -14,7 +14,7 @@ function Converter({convCurrency}){
 
 	// Run on load and when input number changes
 	useEffect(()=>{
-		// console.log(convCurrency);
+		console.log(convCurrency);
 		let OutputRawNum
 		let outputValue
 		let	outputLocalValue
@@ -42,11 +42,13 @@ function Converter({convCurrency}){
 
 		if(mode === 'sats'){
 			OutputRawNum = inputNumber * satPrice;
-			outputValue = Number(Number(OutputRawNum).toFixed(2));
+			outputValue = Number(Number(OutputRawNum).toFixed(0));
 			outputValue = checkNum(outputValue);
 			outputLocalValue = localiseCurrencyOutput(outputValue);
+			const mainUnitValue = (Math.floor(outputValue) / 100).toFixed(2);
+			const showMainUnit = (!convCurrency.mainUnitKilled) && convCurrency.subUnits === 100 && mainUnitValue > 1
 			outputString = (
-				<p>{satoshiLabelString(inputNumber)} = {outputValue} {currencyString}</p>
+				<p>{satoshiLabelString(inputNumber)} = {outputValue} {currencyString} {showMainUnit && `/ ${convCurrency.symbol}${mainUnitValue}`}</p>
 			)
 		} else if(mode === 'fiat') {
 			OutputRawNum = inputNumber / satPrice;
