@@ -9,12 +9,12 @@ import Icons from '@/app/ui/misc/Icons'
 function Converter({convCurrency}){
 	const [mode, setMode] = useState('sats');
 	const [inputNumber, setInputNumber] = useState(1);
-	const [inputNumberFormDisplay, setInputNumberFormDisplay] = useState();
+	const [inputNumberFormDisplay, setInputNumberFormDisplay] = useState(1);
 	const [outputString, setOutputString] = useState('');
+	// console.log(convCurrency)
 
 	// Run on load and when input number changes
 	useEffect(()=>{
-		// console.log(convCurrency);
 		let OutputRawNum
 		let outputValue
 		let outputString
@@ -31,41 +31,59 @@ function Converter({convCurrency}){
 		const checkNum = (n) => Number.isNaN(n) ? 0 : n;
 
 		const satoshiLabelString = (num) => {
-			num = checkNum(num)
 			const label = num === 1 ? 'Satoshi' : "Satoshi's"
-			return `${num.toLocaleString()} ${label} `;
+			num = num > 10 ? Math.round(num) : num
+			return `${num} ${label}`
 		}
 		const localiseCurrencyOutput = (price) => {
 			return new Intl.NumberFormat(convCurrency.locale).format(price);
 		}
 
 		if(mode === 'sats'){
-			outputValue = checkNum(inputNumber * satPrice);
-			const subUnit = outputValue;
-			const mainUnit = outputValue / 100;
-			console.log(subUnit);
-			console.log(mainUnit);
 
-			const includeMainUnit = (!convCurrency.mainUnitKilled) && convCurrency.subUnits === 100
-			let subUnitDisplay
-			let showMainUnit
-			let mainUnitDisplay
-			if (includeMainUnit){
-				showMainUnit = subUnit > 100
-				subUnitDisplay = showMainUnit ? subUnit.toFixed(0) : subUnit.toFixed(1)
-				mainUnitDisplay = (Math.floor(subUnit) / 100).toFixed(2);
+			outputValue = checkNum(inputNumber * satPrice);
+
+			let unitDisplay
+			if (convCurrency.noSubUnit) {
+				// If there is no sub unit (like Won)
+				unitDisplay = outputValue.toFixed(2)
+				outputString = (
+					<p>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</p>
+				)
+			} else if (convCurrency.mainUnitKilled && convCurrency.subUnitKilled) {
+				// If subunit is dead and the main unit also dead (like Naira), then don't show extra unit
+				unitDisplay = outputValue.toFixed(2)
+				outputString = (
+					<p>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</p>
+				)
+			} else if (convCurrency.subUnitKilled) {
+				// If subunit is dead and the main unit is the counted unit (like Koruna), then don't show extra unit
+				unitDisplay = outputValue.toFixed(2)
+				outputString = (
+					<p>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</p>
+				)
+			} else if (!convCurrency.subUnitKilled) {
+				// If subunit is still alive, show main unit when over 1
+				const mainUnit = outputValue / 100;
+				const showMainUnit = outputValue > 100
+				const subUnitDisplay = showMainUnit ? outputValue.toFixed(0) : outputValue.toFixed(1)
+				const mainUnitDisplay = (Math.floor(outputValue) / 100).toFixed(2);
+				outputString = (
+					<p>{satoshiLabelString(inputNumber)} = {subUnitDisplay} {currencyString} {showMainUnit && `/ ${convCurrency.symbol}${mainUnitDisplay} ${convCurrency.currencyCode}`}</p>
+				)
 			} else {
-				subUnitDisplay = outputValue.toFixed(2)
+				unitDisplay = outputValue.toFixed(2)
+				outputString = (
+					<p>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</p>
+				)
 			}
-			outputString = (
-				<p>{satoshiLabelString(inputNumber)} = {subUnitDisplay} {currencyString} {showMainUnit && `/ ${convCurrency.symbol}${mainUnitDisplay}`}</p>
-			)
 
 		} else if(mode === 'fiat') {
-			OutputRawNum = inputNumber / satPrice;
-			outputValue = Number(Number(OutputRawNum).toFixed(2));
+
+			outputValue = checkNum(inputNumber / satPrice);
+			const outputDisplay = outputValue.toFixed(2);
 			outputString = (
-				<p>{checkNum(inputNumber)} {currencyString} = {satoshiLabelString(outputValue)}</p>
+				<p>{inputNumber} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
 			)
 		}
 		setInputNumberFormDisplay(inputNumber);
@@ -83,6 +101,10 @@ function Converter({convCurrency}){
 		setInputNumber(1);
 	}
 
+	const handleValueChange = (num) => {
+		setInputNumber(num.valueAsNumber);
+	}
+
 	return(
 		<div className={styles.converter}>
 			
@@ -91,7 +113,7 @@ function Converter({convCurrency}){
 					min={1}
 					step={1}
 					value={inputNumberFormDisplay}
-					onValueChange={(num) => setInputNumber(num.valueAsNumber)}
+					onValueChange={handleValueChange}
 				>
 					<NumberInput.Label htmlFor="inputNum">Input number</NumberInput.Label>
 					<NumberInput.Input id="inputNum" />
