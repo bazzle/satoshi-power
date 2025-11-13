@@ -14,10 +14,9 @@ function Converter({convCurrency}){
 
 	// Run on load and when input number changes
 	useEffect(()=>{
-		console.log(convCurrency);
+		// console.log(convCurrency);
 		let OutputRawNum
 		let outputValue
-		let	outputLocalValue
 		let outputString
 		let currencyString = convCurrency.displayName
 		let satPrice
@@ -41,15 +40,27 @@ function Converter({convCurrency}){
 		}
 
 		if(mode === 'sats'){
-			OutputRawNum = inputNumber * satPrice;
-			outputValue = Number(Number(OutputRawNum).toFixed(0));
-			outputValue = checkNum(outputValue);
-			outputLocalValue = localiseCurrencyOutput(outputValue);
-			const mainUnitValue = (Math.floor(outputValue) / 100).toFixed(2);
-			const showMainUnit = (!convCurrency.mainUnitKilled) && convCurrency.subUnits === 100 && mainUnitValue > 1
+			outputValue = checkNum(inputNumber * satPrice);
+			const subUnit = outputValue;
+			const mainUnit = outputValue / 100;
+			console.log(subUnit);
+			console.log(mainUnit);
+
+			const includeMainUnit = (!convCurrency.mainUnitKilled) && convCurrency.subUnits === 100
+			let subUnitDisplay
+			let showMainUnit
+			let mainUnitDisplay
+			if (includeMainUnit){
+				showMainUnit = subUnit > 100
+				subUnitDisplay = showMainUnit ? subUnit.toFixed(0) : subUnit.toFixed(1)
+				mainUnitDisplay = (Math.floor(subUnit) / 100).toFixed(2);
+			} else {
+				subUnitDisplay = outputValue.toFixed(2)
+			}
 			outputString = (
-				<p>{satoshiLabelString(inputNumber)} = {outputValue} {currencyString} {showMainUnit && `/ ${convCurrency.symbol}${mainUnitValue}`}</p>
+				<p>{satoshiLabelString(inputNumber)} = {subUnitDisplay} {currencyString} {showMainUnit && `/ ${convCurrency.symbol}${mainUnitDisplay}`}</p>
 			)
+
 		} else if(mode === 'fiat') {
 			OutputRawNum = inputNumber / satPrice;
 			outputValue = Number(Number(OutputRawNum).toFixed(2));
@@ -62,6 +73,15 @@ function Converter({convCurrency}){
 	},[inputNumber, mode])
 
 	const unitChoices = ['Sats',convCurrency.displayName];
+
+	const handleModeChange = (mode) => {
+		if(mode.value === "Sats"){
+			setMode('sats')
+		} else {
+			setMode('fiat')
+		}
+		setInputNumber(1);
+	}
 
 	return(
 		<div className={styles.converter}>
@@ -86,7 +106,7 @@ function Converter({convCurrency}){
 				</NumberInput.Root>
 
 				<RadioGroup.Root
-					onValueChange={(mode) => mode.value === "Sats" ? setMode('sats') : setMode('fiat') }
+					onValueChange={handleModeChange}
 					defaultValue="Sats"
 				>
 					<RadioGroup.Label htmlFor="inputRadio">Unit</RadioGroup.Label>
