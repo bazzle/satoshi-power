@@ -6,7 +6,8 @@
 		"dev": "next dev --turbopack",
 		"build": "next build --turbopack",
 		"start": "next start",
-		"lint": "eslint"
+		"lint": "eslint",
+		"debug": "NODE_OPTIONS='--inspect' next dev --turbopack"
 	},
 	"dependencies": {
 		"@ark-ui/react": "^5.26.2",
