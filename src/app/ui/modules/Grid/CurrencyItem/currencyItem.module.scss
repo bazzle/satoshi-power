@@ -4,7 +4,6 @@
     border: 2px solid $color-primary;
     position: relative;
 	cursor: default;
-	padding: .3rem;
 	list-style-type: none;
 	&__percentageBar{
 		border: 2px solid black;
@@ -14,28 +13,37 @@
         background-color: $color-bitcoin-accessible;
 		height: 100%;
     }
+	&__inner{
+		position: relative;
+		top: 2px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: .2em .6em;
+		width: 100%;
+		height: calc(100% - 4px);
+	}
     &__text{
         @include text-heading-display;
         color: white;
         text-align: right;
         display: block;
-        padding: .15em .25em .05em;
         z-index: 1;
         position: relative;
+		display: flex;
+		height: 100%;
+		top: 0;
+		align-items: center;
+		padding-top:.1em;
+		line-height: 1;
     }
 	&__statusContainer{
-		position: absolute;
-		top: calc(50% + 2px);
-		left: 1rem;
-		transform: translateY(-50%);
 		display: flex;
-		justify-content: center;
+		flex-direction: row;
+		align-items: center;
 		z-index: 1;
 		gap: .5rem;
-	}
-	.icon{
-		display: flex;
-		align-items: center;
+		height: 100%;
 	}
 	
 	&:focus-visible{

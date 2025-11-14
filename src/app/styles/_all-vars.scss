@@ -242,14 +242,12 @@ $line-height-standard: 1.6;
 @mixin text-heading-display {
 	font-family: $font-heading-display;
 	font-size: 2.8rem;
-	line-height: 1;
 }
 
 @mixin text-heading {
 	font-family: $font-sans;
 	font-size: $font-size-xl;
 	font-weight: 500;
-	line-height: 1;
 }
 
 @mixin text-blocky-small {

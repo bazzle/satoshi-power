@@ -29,18 +29,23 @@ function CurrencyItem({itemObj}){
 		)
 	}
 
+	const status = () => {
+		return (
+			<div className={styles.currencyItem__statusContainer}>
+				{itemObj.mainUnitKilled ? <Skulls howMany={itemObj.score} orangeBg /> : <Skulls howMany={itemObj.score} />}
+			</div>
+		)
+	}
+
 	const currencyPagePath = `/currency/${itemObj.currencyCodeSlug}`
 	
 	return (
 		<li className={classes}>
 			<Link className={styles.currencyItem__link} href={currencyPagePath}></Link>
 			{DomPercentageBar()}
-			{DomTextString()}
-			<div className={styles.currencyItem__statusContainer}>
-				{
-					itemObj.mainUnitKilled ? <Skulls howMany={itemObj.score} orangeBg /> : <Skulls howMany={itemObj.score} />
-				}
-				
+			<div className={styles.currencyItem__inner}>
+				{status()}
+				{DomTextString()}
 			</div>
 		</li>
 	)

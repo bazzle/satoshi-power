@@ -4,10 +4,14 @@
 	display: flex;
 	justify-content: center;
 	gap: .5rem;
-	.skullIcon{
+	@mixin skullDefaults{
 		display: flex;
 		align-items: center;
+	}
+	.skullIcon{
+		@include skullDefaults;
 		&____black{
+			@include skullDefaults;
 			color: black;
 		}
 	}
