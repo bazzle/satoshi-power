@@ -11,7 +11,7 @@ function Converter({convCurrency}){
 	const [inputNumber, setInputNumber] = useState(1);
 	const [inputNumberFormDisplay, setInputNumberFormDisplay] = useState(1);
 	const [outputString, setOutputString] = useState('');
-	// console.log(convCurrency)
+	console.log(convCurrency)
 
 	// Run on load and when input number changes
 	useEffect(()=>{

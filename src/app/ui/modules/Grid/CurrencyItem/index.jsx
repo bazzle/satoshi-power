@@ -1,7 +1,5 @@
 'use client';
-
 import styles from './currencyItem.module.scss';
-import icons from '@/app/ui/misc/Icons';
 import Link from 'next/link';
 import Skulls from '@/app/ui/components/Skulls';
 
@@ -39,11 +37,10 @@ function CurrencyItem({itemObj}){
 			{DomPercentageBar()}
 			{DomTextString()}
 			<div className={styles.currencyItem__statusContainer}>
-				<Skulls
-					subUnitKilled={itemObj.subUnitKilled}
-					mainUnitKilled={itemObj.mainUnitKilled}
-					orangeBg
-				/>
+				{
+					itemObj.mainUnitKilled ? <Skulls howMany={itemObj.score} orangeBg /> : <Skulls howMany={itemObj.score} />
+				}
+				
 			</div>
 		</li>
 	)

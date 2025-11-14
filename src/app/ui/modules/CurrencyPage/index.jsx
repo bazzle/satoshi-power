@@ -26,10 +26,7 @@ function CurrencyPage({slug}){
 		<div className={styles.currencyPage__inner}>
 			<h1 className={styles.currencyPage__title}>
 				{currencyObj.displayName}
-				<Skulls
-					subUnitKilled={currencyObj.subUnitKilled}
-					mainUnitKilled={currencyObj.mainUnitKilled}
-				/>
+				<Skulls howMany={currencyObj.score}/>
 			</h1>
 			<Converter convCurrency={currencyObj} />
 			<Link className={styles.currencyPage__backLink} href="/">{Icons.backArrow} Return to index</Link>

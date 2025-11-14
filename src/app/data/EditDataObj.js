@@ -146,6 +146,15 @@ function editDataObj(fetchedData){
 
 		itemObj.displayNameSlug = Utilities.slugify(displayName);
 
+		// Set the scores (to dictate how many skulls) --------------------------
+		{
+			let score = 0
+			if (itemObj.subUnitKilled) score = 1
+			if (itemObj.mainUnitKilled) score = 2
+			itemObj.score = score
+		}
+		
+
 		// Add to new object ----------------------------------------------------
 
 		if (checkCurrencyRefObject(itemObj)){
