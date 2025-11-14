@@ -11,7 +11,7 @@ function Converter({convCurrency}){
 	const [inputNumber, setInputNumber] = useState(1);
 	const [inputNumberFormDisplay, setInputNumberFormDisplay] = useState(1);
 	const [outputString, setOutputString] = useState('');
-	console.log(convCurrency)
+	// console.log(convCurrency)
 
 	// Run on load and when input number changes
 	useEffect(()=>{
@@ -102,7 +102,7 @@ function Converter({convCurrency}){
 	}
 
 	const handleValueChange = (num) => {
-		setInputNumber(num.valueAsNumber);
+		setInputNumber(num);
 	}
 
 	return(
@@ -112,18 +112,19 @@ function Converter({convCurrency}){
 				<NumberInput.Root
 					min={1}
 					step={1}
-					value={inputNumberFormDisplay}
-					onValueChange={handleValueChange}
+					defaultValue={1}
+					value={inputNumber}
+					onValueChange={(details) => handleValueChange(details.value)}
 				>
-					<NumberInput.Label htmlFor="inputNum">Input number</NumberInput.Label>
-					<NumberInput.Input id="inputNum" />
-					<NumberInput.Control>
-						<NumberInput.IncrementTrigger>
-							{Icons.arrow}
-						</NumberInput.IncrementTrigger>
-						<NumberInput.DecrementTrigger>
-							{Icons.arrow}
-						</NumberInput.DecrementTrigger>
+					<NumberInput.Label>Input number</NumberInput.Label>
+					<NumberInput.Input/>
+						<NumberInput.Control>
+							<NumberInput.IncrementTrigger>
+								{Icons.arrow}
+							</NumberInput.IncrementTrigger>
+							<NumberInput.DecrementTrigger>
+								{Icons.arrow}
+							</NumberInput.DecrementTrigger>
 					</NumberInput.Control>
 				</NumberInput.Root>
 
