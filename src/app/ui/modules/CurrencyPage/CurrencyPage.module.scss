@@ -20,5 +20,9 @@
 	&__backLink{
 		@include text-link;
 	}
+	&__price{
+		text-align: center;
+	}
+
 }
 

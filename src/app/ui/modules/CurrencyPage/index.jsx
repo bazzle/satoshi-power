@@ -11,6 +11,7 @@ import Icons from "@/app/ui/misc/Icons";
 function CurrencyPage({slug}){
 	const {liveData} = useContext(LiveDataContext);
 	const [currencyObj, setCurrencyObj] = useState(null);
+
 	useEffect(() => {
 		if (!liveData) return;
 		const code = slug.toUpperCase();
@@ -22,17 +23,22 @@ function CurrencyPage({slug}){
 			<Loading/>
 		</div>
 	)
-	const successOutput = () => (
-		<div className={styles.currencyPage__inner}>
-			<h1 className={styles.currencyPage__title}>
-				{currencyObj.displayName}
-				<Skulls howMany={currencyObj.score}/>
-			</h1>
-			<Converter convCurrency={currencyObj} />
-			
-			<Link className={styles.currencyPage__backLink} href="/">{Icons.backArrow} Return to index</Link>
-		</div>
-	)
+	
+	const successOutput = () => {
+		const btcPrice = new Intl.NumberFormat(currencyObj.currencyLocale).format(currencyObj.btcPrice);
+		return (
+			<div className={styles.currencyPage__inner}>
+				<h1 className={styles.currencyPage__title}>
+					{currencyObj.displayName}
+					<Skulls howMany={currencyObj.score}/>
+				</h1>
+				<Converter convCurrency={currencyObj} />
+				<p className={styles.CurrencyPage__price}>1 BTC = {currencyObj.symbol}{btcPrice}</p>
+				
+				<Link className={styles.currencyPage__backLink} href="/">{Icons.backArrow} Return to index</Link>
+			</div>
+		)
+	}
 	
 	return currencyObj ? successOutput() : loadingOutput()
 }
