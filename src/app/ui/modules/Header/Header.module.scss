@@ -6,7 +6,7 @@
 		display: flex;
 		justify-content: center;
 	}
-	&{
+	@include break(tablet){
 		margin-top: calc($gap*4);
 		margin-bottom: calc($gap*3);
 	}

@@ -22,7 +22,7 @@ async function Page({ params }) {
 			<>
 				<Header/>
 				<main className="main">
-					<div className="main__about">
+					<div className="row main__about">
 						<About/>
 					</div>
 					<div className="row row--lighter main__content">
