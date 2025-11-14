@@ -144,9 +144,9 @@ function Converter({convCurrency}){
 				</RadioGroup.Root>
 			</form>
 
-			<div className={styles.converter__output}>
+			<output className={styles.converter__output}>
 				{outputString}
-			</div>
+			</output>
 
 		</div>
 	)

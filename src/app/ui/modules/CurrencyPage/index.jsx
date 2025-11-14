@@ -29,6 +29,7 @@ function CurrencyPage({slug}){
 				<Skulls howMany={currencyObj.score}/>
 			</h1>
 			<Converter convCurrency={currencyObj} />
+			
 			<Link className={styles.currencyPage__backLink} href="/">{Icons.backArrow} Return to index</Link>
 		</div>
 	)
