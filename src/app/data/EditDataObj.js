@@ -149,8 +149,8 @@ function editDataObj(fetchedData){
 		// Set the scores (to dictate how many skulls) --------------------------
 		{
 			let score = 0
-			if (itemObj.subUnitKilled) score = 1
-			if (itemObj.mainUnitKilled) score = 2
+			if (itemObj.subUnitKilled || itemObj.mainUnitKilled) score = 1
+			if (itemObj.subUnitKilled && itemObj.mainUnitKilled) score = 2
 			itemObj.score = score
 		}
 		
