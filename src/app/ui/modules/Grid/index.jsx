@@ -15,7 +15,7 @@ export function Grid(){
 		<ul className={styles.grid__grid}>
 			{
 				liveDataArr.map((item, index) => {
-					return <CurrencyItem key={index} itemObj={item} />;
+					return <CurrencyItem key={item.currencyCodeSlug} itemObj={item} />;
 				})
 			}
 		</ul>

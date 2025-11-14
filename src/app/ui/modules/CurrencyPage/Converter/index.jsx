@@ -112,7 +112,6 @@ function Converter({convCurrency}){
 				<NumberInput.Root
 					min={1}
 					step={1}
-					defaultValue={1}
 					value={inputNumber}
 					onValueChange={(details) => handleValueChange(details.value)}
 				>
@@ -132,10 +131,10 @@ function Converter({convCurrency}){
 					onValueChange={handleModeChange}
 					defaultValue="Sats"
 				>
-					<RadioGroup.Label htmlFor="inputRadio">Unit</RadioGroup.Label>
+					<RadioGroup.Label>Unit</RadioGroup.Label>
 					<RadioGroup.Indicator />
 					{unitChoices.map((unitChoice) => (
-						<RadioGroup.Item id="inputRadio" key={unitChoice} value={unitChoice}>
+						<RadioGroup.Item key={unitChoice} value={unitChoice}>
 							<RadioGroup.ItemText>{unitChoice}</RadioGroup.ItemText>
 							<RadioGroup.ItemControl />
 							<RadioGroup.ItemHiddenInput />
