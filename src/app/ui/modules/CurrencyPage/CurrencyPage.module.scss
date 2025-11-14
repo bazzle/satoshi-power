@@ -8,8 +8,8 @@
 		flex-direction: column;
 		align-items: center;
 		gap: calc($gap *3);
-		padding-top: calc($gap *3);
-		padding-bottom: calc($gap *3);
+		padding-top: calc($gap);
+		padding-bottom: calc($gap);
 
 	}
 	&__title{

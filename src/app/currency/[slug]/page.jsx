@@ -22,13 +22,13 @@ async function Page({ params }) {
 			<>
 				<Header/>
 				<main className="main">
-					<div className="row main__about">
-						<About/>
-					</div>
-					<div className="row row--lighter main__content">
+					<div className="row main__content">
                 		<div className="row-container">
 							<CurrencyPage slug={slug} />
 						</div>
+					</div>
+					<div className="row main__about">
+						<About/>
 					</div>
 				</main>
 				<Footer/>

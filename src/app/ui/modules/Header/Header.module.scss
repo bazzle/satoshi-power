@@ -1,13 +1,26 @@
 @use '@/app/styles/all-vars' as *;
 
+@mixin headerDefaults{
+	border-bottom: 1px solid $color-line-off-black;
+	padding-top: $gap;
+	padding-bottom: $gap;
+}
 
 .header {
+	@include headerDefaults;
+	@include break(tablet){
+		padding-top: calc($gap*2);
+		padding-bottom: calc($gap*2);
+	}
+	&____homepage{
+		@include headerDefaults;
+		@include break(tablet){
+			padding-top: calc($gap*2);
+			padding-bottom: calc($gap*2);
+		}
+	}
 	&__container {
 		display: flex;
 		justify-content: center;
-	}
-	@include break(tablet){
-		margin-top: calc($gap*4);
-		margin-bottom: calc($gap*3);
 	}
 }

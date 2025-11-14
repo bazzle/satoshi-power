@@ -8,6 +8,10 @@
     &__logo{
         margin-right: 2rem;
     }
+	&__text{
+		display: flex;
+		flex-direction: column;
+	}
     &__sitename{
         @include text-heading-display;
 		line-height: 1;
