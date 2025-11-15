@@ -7,15 +7,14 @@ import Icons from '@/app/ui/misc/Icons'
 
 
 function Converter({convCurrency}){
+	const defaultSentence = 'Input number above!'
 	const [mode, setMode] = useState('sats');
-	const [inputNumber, setInputNumber] = useState(1);
-	const [inputNumberFormDisplay, setInputNumberFormDisplay] = useState(1);
-	const [outputString, setOutputString] = useState('');
+	const [inputNumber, setInputNumber] = useState();
+	const [outputSentence, setOutputSentence] = useState(defaultSentence);
 	// console.log(convCurrency)
 
 	// Run on load and when input number changes
 	useEffect(()=>{
-		let OutputRawNum
 		let outputValue
 		let outputString
 		let currencyString = convCurrency.displayName
@@ -31,7 +30,7 @@ function Converter({convCurrency}){
 		const checkNum = (n) => Number.isNaN(n) ? 0 : n;
 
 		const satoshiLabelString = (num) => {
-			const label = num === 1 ? 'Satoshi' : "Satoshi's"
+			const label = num === '1' ? 'Satoshi' : "Satoshi's"
 			num = num > 10 ? Math.round(num) : num
 			return `${num} ${label}`
 		}
@@ -86,8 +85,13 @@ function Converter({convCurrency}){
 				<p>{inputNumber} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
 			)
 		}
-		setInputNumberFormDisplay(inputNumber);
-		setOutputString(outputString);
+
+		if (inputNumber === 0 || inputNumber === undefined){
+			setOutputSentence(defaultSentence);
+		} else {
+			setOutputSentence(outputString);
+		}
+
 	},[inputNumber, mode])
 
 	const unitChoices = ['Sats',convCurrency.displayName];
@@ -98,7 +102,7 @@ function Converter({convCurrency}){
 		} else {
 			setMode('fiat')
 		}
-		setInputNumber(1);
+		setInputNumber(0);
 	}
 
 	const handleValueChange = (num) => {
@@ -116,7 +120,7 @@ function Converter({convCurrency}){
 					onValueChange={(details) => handleValueChange(details.value)}
 				>
 					<NumberInput.Label>Input number</NumberInput.Label>
-					<NumberInput.Input/>
+					<NumberInput.Input placeholder="1"/>
 						<NumberInput.Control>
 							<NumberInput.IncrementTrigger>
 								{Icons.arrow}
@@ -144,7 +148,7 @@ function Converter({convCurrency}){
 			</form>
 
 			<output className={styles.converter__output}>
-				{outputString}
+				{outputSentence}
 			</output>
 
 		</div>
