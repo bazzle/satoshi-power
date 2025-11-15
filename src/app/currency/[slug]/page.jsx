@@ -22,7 +22,7 @@ async function Page({ params }) {
 			<>
 				<Header/>
 				<main className="main">
-					<div className="row main__content">
+					<div className="row row--nomargin-top main__content">
                 		<div className="row-container">
 							<CurrencyPage slug={slug} />
 						</div>

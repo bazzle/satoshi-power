@@ -6,7 +6,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: calc($gap *3);
+	gap: calc($gap *2);
 	&__form{
 		display: flex;
 		gap: calc($gap *2);

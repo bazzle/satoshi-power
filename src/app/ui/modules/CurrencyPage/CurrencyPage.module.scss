@@ -7,10 +7,9 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: calc($gap *3);
-		padding-top: calc($gap);
-		padding-bottom: calc($gap);
-
+		gap: calc($gap *2);
+		padding-top: calc($gap *2);
+		padding-bottom: calc($gap *2);
 	}
 	&__title{
 		font-size: $font-size-xl;
