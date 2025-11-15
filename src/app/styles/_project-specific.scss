@@ -11,5 +11,7 @@
 	&__content{
 		min-height: 465px;
 		display: flex;
+		border-top: 1px solid $color-line-off-black;
+		border-bottom: 1px solid $color-line-off-black;
 	}
 }

@@ -1,8 +1,8 @@
 @use './all-vars' as *;
 
 hr {
-	margin-top: $gap;
-	margin-bottom: $gap;
+	margin-top: $gap*2;
+	margin-bottom: $gap*2;
 	height: .5px;
 	background-color: $color-bitcoin;
 	border: 0;

@@ -1,8 +1,7 @@
 @use '@/app/styles/all-vars' as *;
 
 .footer{
-	margin-top: $gap;
-	margin-bottom: calc($gap*2);
+	padding-bottom: $gap;
     &__container{
         display: flex;
         justify-content: center;

@@ -8,12 +8,12 @@ export default function Home() {
 		<>
 			<Header location="homepage" />
 			<main className="main">
-				<div className="row main__content">
-                	<div className="row-container--wider">
+				<div className="row row--nomargin-top main__content">
+                	<div className="row-container row-container--wider">
 						<Grid/>
 					</div>
 				</div>
-				<div className="row main__about">
+				<div className="row row--nomargin-bottom main__about">
 					<div className="row-container">
 						<About/>
 					</div>
