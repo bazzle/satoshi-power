@@ -7,7 +7,7 @@ import Icons from '@/app/ui/misc/Icons'
 
 
 function Converter({convCurrency}){
-	const defaultSentence = 'Input number above!'
+	const defaultSentence = 'Input number above for conversion'
 	const [mode, setMode] = useState('sats');
 	const [inputNumber, setInputNumber] = useState();
 	const [outputSentence, setOutputSentence] = useState(defaultSentence);
