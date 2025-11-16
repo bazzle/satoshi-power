@@ -43,136 +43,105 @@ function editDataObj(fetchedData){
 			continue;
 		}
 
-		// Add new data to the object, from the currency list
+		// Base data from currency list / API -----------------------------------
 		const currencyName = currencyRefObj.name;
 		const currencyNameSlug = Utilities.slugify(currencyName);
+		const btcPrice = itemObj.sell ? Math.round(itemObj.sell) : 0;
+		const subUnits = currencyRefObj.subunit_to_unit;
+		const subUnitNameRaw = currencyRefObj.subunit;
+
+		// Derived values -------------------------------------------------------
+		const satPrice = btcPrice / 100000000;
+		const noSubUnit = (subUnits === 1 || subUnitNameRaw === null || subUnitNameRaw === "");
+
+		const satPriceSubUnit = (!noSubUnit && subUnits === 100) ? satPrice * 100 : null;
+
+		let subUnitNameMutated;
+		if (noSubUnit){
+			subUnitNameMutated = null;
+		} else {
+			let subUnitNamePrefix = Utilities.removeLastWord(currencyName);
+			if (subUnitNamePrefix === "") subUnitNamePrefix = currencyName;
+			if (subUnitNamePrefix.includes('Renminbi')) {
+				subUnitNamePrefix = subUnitNamePrefix.replace('Renminbi', '');
+			}
+			subUnitNameMutated = `${subUnitNamePrefix} ${subUnitNameRaw}`;
+		}
+
+		const displayPrice = noSubUnit ? satPrice : satPrice * subUnits;
+
+		let percentage = Utilities.getPercentage(displayPrice);
+
+		let subUnitKilled = false;
+		let mainUnitKilled = false;
+
+		if (noSubUnit){
+			subUnitKilled = false;
+			mainUnitKilled = percentage > 100;
+		} else {
+			subUnitKilled = percentage > 100;
+		}
+
+		let subUnitNameSingular = null;
+		if (!noSubUnit){
+			if (subUnitKilled){
+				percentage = Math.round(percentage / 100);
+			}
+			if (subUnitKilled && percentage > 100){
+				mainUnitKilled = true;
+			} else {
+				mainUnitKilled = false;
+			}
+			subUnitNameSingular = subUnitNameMutated.trim().split(" ").pop();
+		}
+
+		let displayName;
+		if (noSubUnit){
+			displayName = currencyName;
+		} else if (subUnitKilled){
+			displayName = currencyName;
+		} else {
+			displayName = subUnitNameMutated;
+		}
+
+		const demonym = displayName.trim().split(" ").slice(0, -1).join(" ");
+		const unitNameSingular = currencyName.trim().split(" ").pop();
+		const displayNameSlug = Utilities.slugify(displayName);
+
+		let score = 0;
+		if (subUnitKilled || mainUnitKilled) score = 1;
+		if (subUnitKilled && mainUnitKilled) score = 2;
+
+		// Final newData object -------------------------------------------------
 		const newData = {
 			'currencyCode' : key,
 			'currencyCodeSlug' : Utilities.slugify(key),
 			'unitName' : currencyName,
 			'unitNameSlug' : currencyNameSlug,
 			'symbol' : currencyRefObj.symbol,
-			'subUnitName' : currencyRefObj.subunit,
-			'subUnits' : currencyRefObj.subunit_to_unit,
-			'btcPrice' : itemObj.sell ? Math.round(itemObj.sell) : 0,
-			'currencyLocale' : currencyRefObj.locale
+			'subUnitName' : subUnitNameMutated,
+			'subUnits' : subUnits,
+			'btcPrice' : btcPrice,
+			'currencyLocale' : currencyRefObj.locale,
+			'satPrice' : satPrice,
+			'noSubUnit' : noSubUnit,
+			'satPriceSubUnit' : satPriceSubUnit,
+			'displayPrice' : displayPrice,
+			'percentage' : percentage,
+			'subUnitKilled' : subUnitKilled,
+			'mainUnitKilled' : mainUnitKilled,
+			'subUnitNameSingular' : subUnitNameSingular,
+			'displayName' : displayName,
+			'demonym' : demonym,
+			'unitNameSingular' : unitNameSingular,
+			'displayNameSlug' : displayNameSlug,
+			'score' : score
 		}
-		Object.assign(itemObj, newData);
-		// Tidy up the object by deleting some keys we don't need
-		delete itemObj['15m'];
-		delete itemObj['buy'];
-		delete itemObj['last'];
-		delete itemObj['sell'];
-		// Calculate price of a single sat
-		itemObj.satPrice = itemObj.btcPrice / 100000000
-		// check for if theres no sub unit
-		const noSubUnit = (itemObj.subUnits === 1 || itemObj.subUnitName === null || itemObj.subUnitName === "");
-		if(noSubUnit){
-			itemObj.noSubUnit = true;
-		} else {
-			itemObj.noSubUnit = false;
-		}
-		// Calculate price of a single sat in sub units
-		if(noSubUnit === false && itemObj.subUnits === 100){
-			itemObj.satPriceSubUnit = itemObj.satPrice * 100
-		} else {
-			itemObj.satPriceSubUnit = null
-		}
-
-		// Mutate the subunit name so its correct -------------------------------
-
-		if(noSubUnit){
-			itemObj.subUnitName = null
-		} else {
-			const subUnitName = itemObj.subUnitName
-			let subUnitNamePrefix = Utilities.removeLastWord(itemObj.unitName)
-			// a couple of edge cases ---------
-			if (subUnitNamePrefix === "") subUnitNamePrefix = itemObj.unitName;
-			if(subUnitNamePrefix.includes('Renminbi')) subUnitNamePrefix = subUnitNamePrefix.replace('Renminbi', '');
-			itemObj.subUnitName = `${subUnitNamePrefix} ${subUnitName}`;
-		}
-
-		// Set the display price and percentage ---------------------------------
-		if(noSubUnit){
-			itemObj.displayPrice = itemObj.satPrice
-		} else {
-			itemObj.displayPrice = itemObj.satPrice * itemObj.subUnits
-		}
-		itemObj.percentage = Utilities.getPercentage(itemObj.displayPrice)
-
-		// Set the status -------------------------------------------------------
-		
-		if(noSubUnit){
-			itemObj.subUnitKilled = false
-			if (itemObj.percentage > 100){
-				itemObj.mainUnitKilled = true
-			} else {
-				itemObj.mainUnitKilled = false
-			}
-		} else {
-			if (itemObj.percentage > 100){
-				itemObj.subUnitKilled = true
-			} else {
-				itemObj.subUnitKilled = false
-			}
-		}
-
-		// Check for currencies with mainunit killed -----------------------------
-
-		if(!noSubUnit){
-			if(itemObj.subUnitKilled){
-				itemObj.percentage = Math.round(itemObj.percentage / 100);
-			}
-			if(itemObj.subUnitKilled && itemObj.percentage > 100){
-				itemObj.mainUnitKilled = true
-			} else {
-				itemObj.mainUnitKilled = false
-			}
-			itemObj.subUnitNameSingular = itemObj.subUnitName.trim().split(" ").pop();
-		}
-
-
-		// Set the display name -------------------------------------------------
-
-		let displayName
-		// If the currency has no subunit, show main unit
-		if(noSubUnit){
-			displayName = itemObj.unitName
-		} else {
-			// If the percentage is over 100, display main unit, otherwise subunit
-			if(itemObj.subUnitKilled){
-				displayName = itemObj.unitName;
-			} else {
-				displayName = itemObj.subUnitName;
-			}
-		}
-		itemObj.displayName = displayName
-
-		// Set the country demonym ----------------------------------------------
-
-		itemObj.demonym = itemObj.displayName.trim().split(" ").slice(0, -1).join(" ");
-
-		// Set the singular currency name ---------------------------------------
-
-		itemObj.unitNameSingular = itemObj.unitName.trim().split(" ").pop();
-
-		// Set the display name slug --------------------------------------------
-
-		itemObj.displayNameSlug = Utilities.slugify(displayName);
-
-		// Set the scores (to dictate how many skulls) --------------------------
-		{
-			let score = 0
-			if (itemObj.subUnitKilled || itemObj.mainUnitKilled) score = 1
-			if (itemObj.subUnitKilled && itemObj.mainUnitKilled) score = 2
-			itemObj.score = score
-		}
-		
 
 		// Add to new object ----------------------------------------------------
 
-		if (checkCurrencyRefObject(itemObj)){
-			currenciesObj[key] = itemObj;
+		if (checkCurrencyRefObject(newData)){
+			currenciesObj[key] = newData;
 		} else {
 			console.log('Missing data');
 			continue;
