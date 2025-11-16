@@ -33,7 +33,9 @@ function CurrencyPage({slug}){
 					<Skulls howMany={currencyObj.score}/>
 				</h1>
 				<Converter convCurrency={currencyObj} />
-				<p className={styles.currencyPage__price}>1 BTC = {currencyObj.symbol}{btcPrice}</p>
+				<div className={styles.currencyPage__price}>
+					<p>1 BTC = {currencyObj.symbol}{btcPrice}</p>
+				</div>
 				
 				<Link className={styles.currencyPage__backLink} href="/">{Icons.backArrow} Return to index</Link>
 			</div>

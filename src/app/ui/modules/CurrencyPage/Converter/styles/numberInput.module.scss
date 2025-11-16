@@ -1,37 +1,35 @@
 @use '@/app/styles/all-vars' as *;
 
 .converter__form {
-	[data-scope='number-input']{
-		font-size: $font-size-m;
-		&[data-part='label'] {
+	[data-scope='number-input'][data-part='root']{
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid $color-primary;
+		border-radius: 1px;
+		box-sizing: border-box;
+		[data-part='label'] {
 			@include sr-only;
 		}
-		/* Outer box */
-		&[data-part='root'] {
-			flex-grow: 0;
-			position: relative;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border: 1px solid $color-primary;
-			border-radius: 1px;
-			box-sizing: border-box;
-		}
-
 		/* The numeric input */
-		&[data-part='input'] {
+		[data-part='input'] {
 			background: transparent;
 			border: 0;
 			outline: none;
 			caret-color: $color-primary;
 			padding: 0 .6em;
-			height: 100%;
-			width: 10ch;
+			height: auto;
+			width: 100%;
+			font-size: $font-size-xl;
+			@include break(tablet){
+				font-size: $font-size-m;
+			}
+			padding: 1em;
 
 			&:focus-visible{
 				@include focus;
 			}
-			/* Just in case a native number input slips in */
 			&::-webkit-outer-spin-button,
 			&::-webkit-inner-spin-button {
 				-webkit-appearance: none;
@@ -41,48 +39,46 @@
 				-moz-appearance: textfield;
 			}
 		}
-
-		/* Right-side control column */
-		&[data-part='control'] {
-			&:focus-visible{
-				@include focus;
-			}
-			border-left: .5px solid $color-primary;
+		[data-part='control'] {
+			border-left: 1px solid $color-primary;
 			top: 0;
-			height: 100%;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			gap: 0;
-			width: 42px;
-		}
-		@mixin arrowButtonDefaults{
-			height: 50%;
-			width: 100%;
-			svg{
-				width: 12px;
-				height: auto;
-				cursor: pointer;
-				color: $color-primary;
-				position: relative;
-				top: -2px;
+			height: 100%;
+			flex-grow: 0;
+			aspect-ratio: 1/1;
+			&:focus-visible{
+				@include focus;
 			}
-			&:hover{
+			@mixin arrowButtonDefaults{
+				height: 50%;
+				width: 100%;
 				svg{
-					color: $white;
+					width: 12px;
+					height: auto;
+					cursor: pointer;
+					color: $color-primary;
+					position: relative;
+					top: -2px;
+				}
+				&:hover{
+					svg{
+						color: $white;
+					}
+				}
+			}
+			[data-part='increment-trigger'] {
+				@include arrowButtonDefaults;
+				border-bottom: 1px solid $color-primary;
+			}
+			[data-part='decrement-trigger'] {
+				@include arrowButtonDefaults;
+				svg{
+					transform: rotate(180deg);
 				}
 			}
 		}
-		&[data-part='increment-trigger'] {
-			@include arrowButtonDefaults;
-			border-bottom: .5px solid $color-primary;
-		}
-		&[data-part='decrement-trigger'] {
-			@include arrowButtonDefaults;
-			svg{
-				transform: rotate(180deg);
-			}
-		}
 	}
-
 }
