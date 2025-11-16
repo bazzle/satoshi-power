@@ -297,6 +297,15 @@ $line-height-standard: 1.6;
 	color: $color-primary;
 }
 
+@mixin divider {
+	display: block;
+	font-weight: 100;
+	font-size: 2rem;
+	padding-left: .5em;
+	padding-right: .5em;
+	color: $color-primary;
+}
+
 // Misc global elements
 
 @mixin text-footer {

@@ -6,7 +6,9 @@ function checkCurrencyRefObject(obj){
 	return (
 		typeof obj.symbol === "string" &&
 		typeof obj.unitName === "string" &&
+		typeof obj.unitNameSingular === "string" &&
 		(typeof obj.subUnitName === "string" || "null") &&
+		(typeof obj.subUnitNameSingular === "string" || "null") &&
 		typeof obj.subUnits === "number" &&
 		typeof obj.btcPrice === "number" &&
 		typeof obj.satPrice === "number" &&
@@ -16,6 +18,7 @@ function checkCurrencyRefObject(obj){
 		typeof obj.subUnitKilled === "boolean" &&
 		typeof obj.mainUnitKilled === "boolean" &&
 		typeof obj.displayName === "string" &&
+		typeof obj.demonym === "string" &&
 		typeof obj.unitNameSlug === "string" &&
 		typeof obj.displayNameSlug === "string" &&
 		typeof obj.currencyCode === "string" &&
@@ -78,7 +81,9 @@ function editDataObj(fetchedData){
 
 		// Mutate the subunit name so its correct -------------------------------
 
-		if(!noSubUnit){
+		if(noSubUnit){
+			itemObj.subUnitName = null
+		} else {
 			const subUnitName = itemObj.subUnitName
 			let subUnitNamePrefix = Utilities.removeLastWord(itemObj.unitName)
 			// a couple of edge cases ---------
@@ -123,6 +128,7 @@ function editDataObj(fetchedData){
 			} else {
 				itemObj.mainUnitKilled = false
 			}
+			itemObj.subUnitNameSingular = itemObj.subUnitName.trim().split(" ").pop();
 		}
 
 
@@ -141,6 +147,14 @@ function editDataObj(fetchedData){
 			}
 		}
 		itemObj.displayName = displayName
+
+		// Set the country demonym ----------------------------------------------
+
+		itemObj.demonym = itemObj.displayName.trim().split(" ").slice(0, -1).join(" ");
+
+		// Set the singular currency name ---------------------------------------
+
+		itemObj.unitNameSingular = itemObj.unitName.trim().split(" ").pop();
 
 		// Set the display name slug --------------------------------------------
 

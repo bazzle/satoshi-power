@@ -37,11 +37,7 @@
 	&__divider{
 		display: none;
 		@include break(tablet){
-			display: block;
-			font-weight: 100;
-			font-size: 2rem;
-			padding-left: .5em;
-			padding-right: .5em;
+			@include divider;
 		}
 	}
 }

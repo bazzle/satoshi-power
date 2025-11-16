@@ -26,17 +26,35 @@ function CurrencyPage({slug}){
 	
 	const successOutput = () => {
 		const btcPrice = new Intl.NumberFormat(currencyObj.currencyLocale).format(currencyObj.btcPrice);
+		console.log(currencyObj)
+		const titleSuffix = !currencyObj.noSubUnit ? ` / ${currencyObj.unitNameSingular}`: '';
+		const title = currencyObj.unitName + titleSuffix
+		let conversionSubUnit;
+		if (currencyObj.noSubUnit){
+			conversionSubUnit = null
+		} else {
+			conversionSubUnit = (
+				<>
+				<span>Sats to a {currencyObj.subUnitNameSingular} = {432}</span>
+				<span className={styles.currencyPage__stats__divider}>—</span>
+				</>
+			)
+		}
 		return (
 			<div className={styles.currencyPage__inner}>
 				<h1 className={styles.currencyPage__title}>
-					{currencyObj.displayName}
+					{title}
 					<Skulls howMany={currencyObj.score}/>
 				</h1>
-				<Converter convCurrency={currencyObj} />
-				<div className={styles.currencyPage__price}>
-					<p>1 BTC = {currencyObj.symbol}{btcPrice}</p>
+				<p className={styles.currencyPage__stats}>
+					<span>1 BTC = {currencyObj.symbol}{btcPrice}</span>
+					<span className={styles.currencyPage__stats__divider}>—</span>
+					{conversionSubUnit && conversionSubUnit}
+					<span>Sats to a {currencyObj.unitNameSingular} = 200</span>
+				</p>
+				<div className={styles.currencyPage__converter}>
+					<Converter convCurrency={currencyObj} />
 				</div>
-				
 				<Link className={styles.currencyPage__backLink} href="/">{Icons.backArrow} Return to index</Link>
 			</div>
 		)
