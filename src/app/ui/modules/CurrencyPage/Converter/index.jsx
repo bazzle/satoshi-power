@@ -41,39 +41,38 @@ function Converter({convCurrency}){
 		if(mode === 'sats'){
 
 			outputValue = checkNum(inputNumber * satPrice);
+			const pretextString = `${satoshiLabelString(inputNumber)}`;
+			const unitDisplay = outputValue.toFixed(2);
 
-			let unitDisplay
 			if (convCurrency.noSubUnit) {
 				// If there is no sub unit (like Won)
-				unitDisplay = outputValue.toFixed(2)
 				outputString = (
-					<p>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</p>
+					<>{pretextString} = {unitDisplay} {currencyString}</>
 				)
 			} else if (convCurrency.mainUnitKilled && convCurrency.subUnitKilled) {
 				// If subunit is dead and the main unit also dead (like Naira), then don't show extra unit
-				unitDisplay = outputValue.toFixed(2)
 				outputString = (
-					<p>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</p>
+					<>{pretextString} = {unitDisplay} {currencyString}</>
 				)
 			} else if (convCurrency.subUnitKilled) {
 				// If subunit is dead and the main unit is the counted unit (like Koruna), then don't show extra unit
-				unitDisplay = outputValue.toFixed(2)
 				outputString = (
-					<p>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</p>
+					<>{pretextString} = {unitDisplay} {currencyString}</>
 				)
 			} else if (!convCurrency.subUnitKilled) {
 				// If subunit is still alive, show main unit when over 1
-				const mainUnit = outputValue / 100;
+				const mainUnit = outputValue / 100
 				const showMainUnit = outputValue > 100
 				const subUnitDisplay = showMainUnit ? outputValue.toFixed(0) : outputValue.toFixed(1)
 				const mainUnitDisplay = (Math.floor(outputValue) / 100).toFixed(2);
+				const mainUnitString = `${convCurrency.symbol}${mainUnitDisplay} ${convCurrency.currencyCode}`
+				const subUnitString = `${subUnitDisplay} ${currencyString}`
 				outputString = (
-					<p>{satoshiLabelString(inputNumber)} = {subUnitDisplay} {currencyString} {showMainUnit && `/ ${convCurrency.symbol}${mainUnitDisplay} ${convCurrency.currencyCode}`}</p>
+					<>{pretextString} = { showMainUnit ? mainUnitString : subUnitString }</>
 				)
 			} else {
-				unitDisplay = outputValue.toFixed(2)
 				outputString = (
-					<p>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</p>
+					<>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</>
 				)
 			}
 
