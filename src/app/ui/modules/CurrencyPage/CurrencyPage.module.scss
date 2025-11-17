@@ -18,7 +18,12 @@
 		text-align: center;
 	}
 	&__backLink{
-		@include text-link;
+		display: flex;
+		gap: .5em;
+		align-items: center;
+		&__link{
+			@include text-link;
+		}
 	}
 	&__converter{
 		flex-grow: 1;

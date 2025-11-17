@@ -44,7 +44,10 @@ function CurrencyPage({slug}){
 				<div className={styles.currencyPage__converter}>
 					<Converter convCurrency={currencyObj} />
 				</div>
-				<Link className={styles.currencyPage__backLink} href="/">{Icons.backArrow} Return to index</Link>
+				<div className={styles.currencyPage__backLink}>
+					{Icons.backArrow}
+					<Link className={styles.currencyPage__backLink__link} href="/">Return to index</Link>
+				</div>
 			</div>
 		)
 	}
