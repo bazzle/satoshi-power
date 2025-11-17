@@ -11,7 +11,6 @@ function Converter({convCurrency}){
 	const [mode, setMode] = useState('sats');
 	const [inputNumber, setInputNumber] = useState();
 	const [outputSentence, setOutputSentence] = useState(defaultSentence);
-	// console.log(convCurrency)
 
 	// Run on load and when input number changes
 	useEffect(()=>{

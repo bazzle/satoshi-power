@@ -57,6 +57,8 @@ function editDataObj(fetchedData){
 
 		const satsPerUnit = 1 / satPrice
 		const satsPerSubUnit = satsPerUnit / 100
+		const unitsPerSat = 1 / satsPerUnit
+		const subUnitsPerSat = noSubUnit ? null : 1 / satsPerSubUnit
 
 		let subUnitNameMutated;
 		if (noSubUnit){
@@ -128,6 +130,8 @@ function editDataObj(fetchedData){
 			'satPrice' : satPrice,
 			'satsPerUnit' : satsPerUnit,
 			'satsPerSubUnit' : satsPerSubUnit,
+			'unitsPerSat' : unitsPerSat,
+			'subUnitsPerSat' : subUnitsPerSat,
 			'noSubUnit' : noSubUnit,
 			'displayPrice' : displayPrice,
 			'percentage' : percentage,

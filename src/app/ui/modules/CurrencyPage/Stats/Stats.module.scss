@@ -11,16 +11,19 @@
 	@include break(mobile){
 		flex-direction: row;
 	}
-	&__conversion{
+	> span{
 		display: flex;
 		align-items: center;
-		gap: .5em;
-		&::before{
+		&::after{
 			@include break(mobile){
 				@include divider;
-				padding-right: 0;
 				content: '—';
 				display: inline-block;
+			}
+		}
+		&:last-of-type{
+			&::after{
+				display: none;
 			}
 		}
 	}
