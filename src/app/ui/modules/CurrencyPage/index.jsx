@@ -26,7 +26,7 @@ function CurrencyPage({slug}){
 	
 	const successOutput = () => {
 		const btcPrice = new Intl.NumberFormat(currencyObj.currencyLocale).format(currencyObj.btcPrice);
-		console.log(currencyObj)
+		// console.log(currencyObj)
 		let titlePrefix = ''
 		let titleSuffix = ''
 		let conversionSubUnitSpan;
@@ -42,14 +42,14 @@ function CurrencyPage({slug}){
 			titleSuffix = ` / ${currencyObj.unitNameSingular}`;
 			conversionSubUnitSpan = (
 				<span className={styles.currencyPage__stats__conversion}>
-					<span>Sats to a {currencyObj.subUnitNameSingular} :</span>
+					<span>Sats to a {currencyObj.subUnitNameSingular}:</span>
 					{conversionOutput(currencyObj.satsPerSubUnit)}
 				</span>
 			)
 		}
 		conversionMainUnitSpan = (
 			<span className={styles.currencyPage__stats__conversion}>
-				<span>Sats to a {currencyObj.unitNameSingular} :</span>
+				<span>Sats to a {currencyObj.unitNameSingular}:</span>
 				{conversionOutput(currencyObj.satsPerUnit)}
 			</span>
 		)
