@@ -1,0 +1,27 @@
+@use '@/app/styles/all-vars' as *;
+
+.stats{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: $font-size-s;
+	text-align: center;
+	justify-content: center;
+	@include break(mobile){
+		flex-direction: row;
+	}
+	&__conversion{
+		display: flex;
+		align-items: center;
+		gap: .5em;
+		&::before{
+			@include break(mobile){
+				@include divider;
+				padding-right: 0;
+				content: '—';
+				display: inline-block;
+			}
+		}
+	}
+}
