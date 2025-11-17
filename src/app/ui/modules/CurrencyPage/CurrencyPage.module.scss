@@ -15,7 +15,7 @@
 		font-size: $font-size-xl;
 		display: flex;
 		gap: .5em;
-
+		text-align: center;
 	}
 	&__backLink{
 		@include text-link;
