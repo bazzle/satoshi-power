@@ -11,7 +11,7 @@ function Skulls({howMany, orangeBg}){
 		classNameString = styles.skullIcon;
 	}
 
-	const skullIcon = <div className={classNameString}>{icons.skull}</div>
+	const skullIcon = <span className={classNameString}>{icons.skull}</span>
 
 	const skullsOutput = () => {
 		if (howMany === 1){
@@ -26,9 +26,9 @@ function Skulls({howMany, orangeBg}){
 	}
 
 	return (
-		<div className={styles.skulls}>
+		<span className={styles.skulls}>
 			{skullsOutput()}
-		</div>
+		</span>
 	)
 }
 

@@ -24,7 +24,7 @@ function Converter({convCurrency}){
 		} else if (convCurrency.subUnitKilled){
 			satPrice = convCurrency.satPrice
 		} else {
-			satPrice = convCurrency.satPriceSubUnit
+			satPrice = convCurrency.satsPerSubUnit
 		}
 
 		const checkNum = (n) => Number.isNaN(n) ? 0 : n;

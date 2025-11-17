@@ -15,6 +15,7 @@
 		font-size: $font-size-xl;
 		display: flex;
 		gap: .5em;
+
 	}
 	&__backLink{
 		@include text-link;
@@ -30,10 +31,17 @@
 		@include break(mobile){
 			flex-direction: row;
 		}
-		&__divider{
-			display: none;
-			@include break(mobile){
-				@include divider;
+		&__conversion{
+			display: flex;
+			align-items: center;
+			gap: .5em;
+			&::before{
+				@include break(mobile){
+					@include divider;
+					padding-right: 0;
+					content: '—';
+					display: inline-block;
+				}
 			}
 		}
 	}

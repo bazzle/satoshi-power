@@ -27,30 +27,41 @@ function CurrencyPage({slug}){
 	const successOutput = () => {
 		const btcPrice = new Intl.NumberFormat(currencyObj.currencyLocale).format(currencyObj.btcPrice);
 		console.log(currencyObj)
-		const titleSuffix = !currencyObj.noSubUnit ? ` / ${currencyObj.unitNameSingular}`: '';
-		const title = currencyObj.unitName + titleSuffix
-		let conversionSubUnit;
+		let titlePrefix = ''
+		let titleSuffix = ''
+		let conversionSubUnitSpan;
+		let conversionMainUnitSpan;
+		const conversionOutput = (num) => {
+			return num < 1 ? <Skulls howMany={1}/> : <span>{num.toFixed(0)}</span>;
+		}
 		if (currencyObj.noSubUnit){
-			conversionSubUnit = null
+			conversionSubUnitSpan = null
+			titlePrefix = currencyObj.unitName;
 		} else {
-			conversionSubUnit = (
-				<>
-				<span>Sats to a {currencyObj.subUnitNameSingular} = {432}</span>
-				<span className={styles.currencyPage__stats__divider}>—</span>
-				</>
+			titlePrefix = currencyObj.subUnitName;
+			titleSuffix = ` / ${currencyObj.unitNameSingular}`;
+			conversionSubUnitSpan = (
+				<span className={styles.currencyPage__stats__conversion}>
+					<span>Sats to a {currencyObj.subUnitNameSingular} :</span>
+					{conversionOutput(currencyObj.satsPerSubUnit)}
+				</span>
 			)
 		}
+		conversionMainUnitSpan = (
+			<span className={styles.currencyPage__stats__conversion}>
+				<span>Sats to a {currencyObj.unitNameSingular} :</span>
+				{conversionOutput(currencyObj.satsPerUnit)}
+			</span>
+		)
 		return (
 			<div className={styles.currencyPage__inner}>
 				<h1 className={styles.currencyPage__title}>
-					{title}
-					<Skulls howMany={currencyObj.score}/>
+					{titlePrefix + titleSuffix}
 				</h1>
 				<p className={styles.currencyPage__stats}>
 					<span>1 BTC = {currencyObj.symbol}{btcPrice}</span>
-					<span className={styles.currencyPage__stats__divider}>—</span>
-					{conversionSubUnit && conversionSubUnit}
-					<span>Sats to a {currencyObj.unitNameSingular} = 200</span>
+					{conversionSubUnitSpan && conversionSubUnitSpan}
+					{conversionMainUnitSpan && conversionMainUnitSpan}
 				</p>
 				<div className={styles.currencyPage__converter}>
 					<Converter convCurrency={currencyObj} />

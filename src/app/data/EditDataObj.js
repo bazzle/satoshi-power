@@ -12,7 +12,8 @@ function checkCurrencyRefObject(obj){
 		typeof obj.subUnits === "number" &&
 		typeof obj.btcPrice === "number" &&
 		typeof obj.satPrice === "number" &&
-		typeof obj.satPriceSubUnit === "string" || "null" &&
+		typeof obj.satsPerUnit === "number" &&
+		typeof obj.satsPerSubUnit === "number" || "null" &&
 		typeof obj.displayPrice === "number" &&
 		typeof obj.percentage === "number" &&
 		typeof obj.subUnitKilled === "boolean" &&
@@ -54,7 +55,8 @@ function editDataObj(fetchedData){
 		const satPrice = btcPrice / 100000000;
 		const noSubUnit = (subUnits === 1 || subUnitNameRaw === null || subUnitNameRaw === "");
 
-		const satPriceSubUnit = (!noSubUnit && subUnits === 100) ? satPrice * 100 : null;
+		const satsPerUnit = 1 / satPrice
+		const satsPerSubUnit = satsPerUnit / 100
 
 		let subUnitNameMutated;
 		if (noSubUnit){
@@ -124,8 +126,9 @@ function editDataObj(fetchedData){
 			'btcPrice' : btcPrice,
 			'currencyLocale' : currencyRefObj.locale,
 			'satPrice' : satPrice,
+			'satsPerUnit' : satsPerUnit,
+			'satsPerSubUnit' : satsPerSubUnit,
 			'noSubUnit' : noSubUnit,
-			'satPriceSubUnit' : satPriceSubUnit,
 			'displayPrice' : displayPrice,
 			'percentage' : percentage,
 			'subUnitKilled' : subUnitKilled,
