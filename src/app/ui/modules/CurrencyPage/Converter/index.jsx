@@ -70,7 +70,7 @@ function Converter({convCurrency}){
 			outputValue = checkNum(inputNumber / satPrice);
 			const outputDisplay = outputValue.toFixed(2);
 			outputString = (
-				<p>{inputNumber} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
+				<p>{localiseNumber(inputNumber)} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
 			)
 		}
 
