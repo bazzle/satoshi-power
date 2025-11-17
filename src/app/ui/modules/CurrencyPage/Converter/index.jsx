@@ -11,6 +11,9 @@ function Converter({convCurrency}){
 	const [mode, setMode] = useState('sats');
 	const [inputNumber, setInputNumber] = useState();
 	const [outputSentence, setOutputSentence] = useState(defaultSentence);
+	const localiseNumber = (num) => {
+		return new Intl.NumberFormat(convCurrency.locale).format(num);
+	}
 
 	// Run on load and when input number changes
 	useEffect(()=>{
@@ -33,13 +36,11 @@ function Converter({convCurrency}){
 			num = num > 10 ? Math.round(num) : num
 			return `${num} ${label}`
 		}
-		const localiseCurrencyOutput = (price) => {
-			return new Intl.NumberFormat(convCurrency.locale).format(price);
-		}
 
 		if(mode === 'sats'){
 
-			outputValue = checkNum(inputNumber * satPrice);
+			outputValue = checkNum(inputNumber / satPrice);
+			console.log(outputValue)
 			const pretextString = `${satoshiLabelString(inputNumber)}`;
 			const unitDisplay = outputValue.toFixed(2);
 
@@ -77,7 +78,7 @@ function Converter({convCurrency}){
 
 		} else if(mode === 'fiat') {
 
-			outputValue = checkNum(inputNumber / satPrice);
+			outputValue = checkNum(inputNumber * satPrice);
 			const outputDisplay = outputValue.toFixed(2);
 			outputString = (
 				<p>{inputNumber} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
