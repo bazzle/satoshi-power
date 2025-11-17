@@ -34,6 +34,7 @@ function CurrencyPage({slug}){
 			<div className={styles.currencyPage__inner}>
 				<h1 className={styles.currencyPage__title}>
 					{titlePrefix + titleSuffix}
+					<Skulls howMany={currencyObj.score}/>
 				</h1>
 				<Stats currencyObj={currencyObj} />
 				<div className={styles.currencyPage__converter}>
