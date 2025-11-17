@@ -34,15 +34,15 @@ function Converter({convCurrency}){
 		const satoshiLabelString = (num) => {
 			const label = num === '1' ? 'Satoshi' : "Satoshi's"
 			num = num > 10 ? Math.round(num) : num
+			num = localiseNumber(num);
 			return `${num} ${label}`
 		}
 
 		if(mode === 'sats'){
 
 			outputValue = checkNum(inputNumber / satPrice);
-			console.log(outputValue)
 			const pretextString = `${satoshiLabelString(inputNumber)}`;
-			const unitDisplay = outputValue.toFixed(2);
+			const unitDisplay = localiseNumber(outputValue.toFixed(2));
 
 			if (convCurrency.noSubUnit) {
 				// If there is no sub unit (like Won)
@@ -61,12 +61,11 @@ function Converter({convCurrency}){
 				)
 			} else if (!convCurrency.subUnitKilled) {
 				// If subunit is still alive, show main unit when over 1
-				const mainUnit = outputValue / 100
 				const showMainUnit = outputValue > 100
 				const subUnitDisplay = showMainUnit ? outputValue.toFixed(0) : outputValue.toFixed(1)
 				const mainUnitDisplay = (Math.floor(outputValue) / 100).toFixed(2);
-				const mainUnitString = `${convCurrency.symbol}${mainUnitDisplay} ${convCurrency.currencyCode}`
-				const subUnitString = `${subUnitDisplay} ${currencyString}`
+				const mainUnitString = `${convCurrency.symbol}${localiseNumber(mainUnitDisplay)} ${convCurrency.currencyCode}`
+				const subUnitString = `${localiseNumber(subUnitDisplay)} ${currencyString}`
 				outputString = (
 					<>{pretextString} = { showMainUnit ? mainUnitString : subUnitString }</>
 				)
@@ -79,13 +78,18 @@ function Converter({convCurrency}){
 		} else if(mode === 'fiat') {
 
 			outputValue = checkNum(inputNumber * satPrice);
-			const outputDisplay = outputValue.toFixed(2);
+			const outputDisplay = localiseNumber(outputValue.toFixed(2));
 			outputString = (
 				<p>{inputNumber} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
 			)
 		}
 
-		if (inputNumber === 0 || inputNumber === undefined || inputNumber === null ){
+		if (
+			inputNumber === '0' ||
+			inputNumber === '' ||
+			inputNumber === undefined ||
+			inputNumber === null
+		){
 			setOutputSentence(defaultSentence);
 		} else {
 			setOutputSentence(outputString);
