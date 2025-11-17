@@ -85,7 +85,7 @@ function Converter({convCurrency}){
 			)
 		}
 
-		if (inputNumber === 0 || inputNumber === undefined){
+		if (inputNumber === 0 || inputNumber === undefined || inputNumber === null ){
 			setOutputSentence(defaultSentence);
 		} else {
 			setOutputSentence(outputString);
@@ -101,7 +101,7 @@ function Converter({convCurrency}){
 		} else {
 			setMode('fiat')
 		}
-		setInputNumber(1);
+		setInputNumber(null);
 	}
 
 	const handleValueChange = (num) => {
