@@ -19,7 +19,7 @@ function CurrencyPage({slug}){
 		setCurrencyObj(liveData[code]);
 	}, [liveData, slug]);
 
-	// console.log(currencyObj)
+	console.log(currencyObj)
 
 	const loadingOutput = () => (
 		<div className={styles.currencyPage__inner}>

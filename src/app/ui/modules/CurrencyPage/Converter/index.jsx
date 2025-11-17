@@ -20,14 +20,10 @@ function Converter({convCurrency}){
 		let outputValue
 		let outputString
 		let currencyString = convCurrency.displayName
-		let satPrice
-		if(convCurrency.noSubUnit){
-			satPrice = convCurrency.satPrice
-		} else if (convCurrency.subUnitKilled){
-			satPrice = convCurrency.satPrice
-		} else {
-			satPrice = convCurrency.satsPerSubUnit
-		}
+		let currencyStringMain = convCurrency.unitName
+		let satPrice = convCurrency.satPrice
+		let satPriceSubUnit = convCurrency.satPriceSubUnit
+		let symbol = convCurrency.symbol
 
 		const checkNum = (n) => Number.isNaN(n) ? 0 : n;
 
@@ -39,46 +35,40 @@ function Converter({convCurrency}){
 		}
 
 		if(mode === 'sats'){
-
-			outputValue = checkNum(inputNumber / satPrice);
+			// sat price is the listed BTC price / 100m.
+			// The price of one sat in the main unit of currency.
 			const pretextString = `${satoshiLabelString(inputNumber)}`;
-			const unitDisplay = localiseNumber(outputValue.toFixed(2));
 
-			if (convCurrency.noSubUnit) {
-				// If there is no sub unit (like Won)
-				outputString = (
-					<>{pretextString} = {unitDisplay} {currencyString}</>
-				)
-			} else if (convCurrency.mainUnitKilled && convCurrency.subUnitKilled) {
-				// If subunit is dead and the main unit also dead (like Naira), then don't show extra unit
-				outputString = (
-					<>{pretextString} = {unitDisplay} {currencyString}</>
-				)
-			} else if (convCurrency.subUnitKilled) {
-				// If subunit is dead and the main unit is the counted unit (like Koruna), then don't show extra unit
-				outputString = (
-					<>{pretextString} = {unitDisplay} {currencyString}</>
-				)
-			} else if (!convCurrency.subUnitKilled) {
-				// If subunit is still alive, show main unit when over 1
-				const showMainUnit = outputValue > 100
-				const subUnitDisplay = showMainUnit ? outputValue.toFixed(0) : outputValue.toFixed(1)
-				const mainUnitDisplay = (Math.floor(outputValue) / 100).toFixed(2);
-				const mainUnitString = `${convCurrency.symbol}${localiseNumber(mainUnitDisplay)} ${convCurrency.currencyCode}`
-				const subUnitString = `${localiseNumber(subUnitDisplay)} ${currencyString}`
-				outputString = (
-					<>{pretextString} = { showMainUnit ? mainUnitString : subUnitString }</>
-				)
+			if (!convCurrency.noSubUnit) {
+				// show main unit when over 1
+				const outputValueSubUnit = checkNum(inputNumber * satPriceSubUnit);
+				outputValue = checkNum(inputNumber * satPrice);
+				const showMainUnit = outputValueSubUnit > 100
+				const unitDisplaySubUnit = localiseNumber(outputValueSubUnit.toFixed(2));
+				const unitDisplay = localiseNumber(outputValue.toFixed(2));
+
+				if (showMainUnit) {
+					outputString = (
+						<>{pretextString} = {symbol}{unitDisplay}</>
+					)
+				} else {
+					outputString = (
+						<>{pretextString} = {unitDisplaySubUnit} {currencyString}</>
+					)
+				}
 			} else {
+				outputValue = checkNum(inputNumber * satPrice);
+				const unitDisplay = localiseNumber(outputValue.toFixed(2));
 				outputString = (
-					<>{satoshiLabelString(inputNumber)} = {unitDisplay} {currencyString}</>
+					<>{pretextString} = {unitDisplay} {currencyString}</>
 				)
 			}
 
+
 		} else if(mode === 'fiat') {
 
-			outputValue = checkNum(inputNumber * satPrice);
-			const outputDisplay = localiseNumber(outputValue.toFixed(2));
+			outputValue = checkNum(inputNumber / satPrice);
+			const outputDisplay = outputValue.toFixed(2);
 			outputString = (
 				<p>{inputNumber} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
 			)
