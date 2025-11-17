@@ -29,7 +29,7 @@ function CurrencyPage({slug}){
 	
 	const successOutput = () => {
 
-		const titlePrefix = currencyObj.noSubUnit ? currencyObj.demonym : `${currencyObj.subUnitName} /`;
+		const titlePrefix = currencyObj.noSubUnit || currencyObj.subUnitKilled ? currencyObj.demonym : `${currencyObj.subUnitName} /`;
 		const titleSuffix = currencyObj.unitNameSingular;
 
 		return (
