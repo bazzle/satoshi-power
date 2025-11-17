@@ -22,11 +22,10 @@
 			height: auto;
 			width: 100%;
 			font-size: $font-size-xl;
+			padding: 1em;
 			@include break(tablet){
 				font-size: $font-size-m;
 			}
-			padding: 1em;
-
 			&:focus-visible{
 				@include focus;
 			}
