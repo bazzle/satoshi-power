@@ -101,7 +101,7 @@ function Converter({convCurrency}){
 		} else {
 			setMode('fiat')
 		}
-		setInputNumber(0);
+		setInputNumber(1);
 	}
 
 	const handleValueChange = (num) => {
