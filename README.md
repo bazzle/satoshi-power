@@ -51,14 +51,14 @@ Subject to change
 - Dedicated page for each fiat currency showing the 1 sat denominated price
 - Exchange tool.
 
-### 🔜 Phase 3 – Historical data and chart
-
-- Chart showing the fiat historical price action, using the sat as denominator
-
-### 🔜 Phase 4 – Accessibility and SEO review
+### 🔜 Phase 3 – Accessibility and SEO review
 
 - Full accessibility audit and remediations
 - SEO audit and optimisations, potentially text content for keywords
+
+### 🔜 Phase 4 – Historical data and charts
+
+- Chart showing the fiat historical price action, using the sat as denominator
 
 ### 🔜 Phase 5 – Full historical data
 
