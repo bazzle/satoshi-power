@@ -128,14 +128,6 @@ function Converter({convCurrency}){
 				>
 					<NumberInput.Label>Input number</NumberInput.Label>
 					<NumberInput.Input placeholder="1"/>
-					<NumberInput.Control>
-						<NumberInput.IncrementTrigger>
-							{Icons.arrow}
-						</NumberInput.IncrementTrigger>
-						<NumberInput.DecrementTrigger>
-							{Icons.arrow}
-						</NumberInput.DecrementTrigger>
-					</NumberInput.Control>
 				</NumberInput.Root>
 
 				<RadioGroup.Root
