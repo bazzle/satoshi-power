@@ -36,8 +36,6 @@ function Converter({convCurrency}){
 		let satPriceSubUnit = convCurrency.satPriceSubUnit
 		let symbol = convCurrency.symbol
 
-		// console.log(inputNumber)
-
 		const checkNum = (n) => Number.isNaN(n) ? 0 : n;
 
 		const satoshiLabelString = (num) => {
@@ -115,7 +113,6 @@ function Converter({convCurrency}){
 	}
 
 	const handleValueChange = (num) => {
-		console.log(toNumber(num))
 		setInputNumber(toNumber(num));
 		setInputDisplayNumber(num);
 	}
