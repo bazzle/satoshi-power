@@ -10,7 +10,6 @@ function Converter({convCurrency}){
 	const defaultSentence = 'Input number above for conversion'
 	const [mode, setMode] = useState('sats');
 	const [inputNumber, setInputNumber] = useState();
-	const [inputDisplayNumber, setInputDisplayNumber] = useState();
 	const [outputSentence, setOutputSentence] = useState(defaultSentence);
 	const localiseNumber = (num) => {
 		return new Intl.NumberFormat(convCurrency.locale).format(num);
@@ -97,7 +96,7 @@ function Converter({convCurrency}){
 			setOutputSentence(outputString);
 		}
 
-	},[inputNumber, inputDisplayNumber, mode])
+	},[inputNumber, mode])
 
 	const satString = 'Satoshi'
 
@@ -114,7 +113,6 @@ function Converter({convCurrency}){
 
 	const handleValueChange = (num) => {
 		setInputNumber(toNumber(num));
-		setInputDisplayNumber(num);
 	}
 
 	return(
@@ -124,7 +122,7 @@ function Converter({convCurrency}){
 				<NumberInput.Root
 					min={1}
 					step={1}
-					value={inputDisplayNumber}
+					value={inputNumber}
 					locale="en-US"
 					onValueChange={(details) => handleValueChange(details.value)}
 				>
@@ -150,6 +148,7 @@ function Converter({convCurrency}){
 						<RadioGroup.Item key={unitChoice} value={unitChoice}>
 							<RadioGroup.ItemText>{unitChoice}</RadioGroup.ItemText>
 							<RadioGroup.ItemControl />
+							<RadioGroup.ItemHiddenInput />
 						</RadioGroup.Item>
 					))}
 				</RadioGroup.Root>
