@@ -14,6 +14,7 @@ function Converter({convCurrency}){
 	const localiseNumber = (num) => {
 		return new Intl.NumberFormat(convCurrency.locale).format(num);
 	}
+	// console.log(convCurrency)
 
 	// Run on load and when input number changes
 	useEffect(()=>{
@@ -87,7 +88,9 @@ function Converter({convCurrency}){
 
 	},[inputNumber, mode])
 
-	const unitChoices = ['Sats',convCurrency.displayName];
+	const satString = 'Satoshi'
+
+	const unitChoices = [satString,convCurrency.subUnitNameSingular];
 
 	const handleModeChange = (mode) => {
 		if(mode.value === "Sats"){
@@ -126,7 +129,7 @@ function Converter({convCurrency}){
 
 				<RadioGroup.Root
 					onValueChange={handleModeChange}
-					defaultValue="Sats"
+					defaultValue={unitChoices[0]}
 				>
 					<RadioGroup.Label>Unit</RadioGroup.Label>
 					<RadioGroup.Indicator />
@@ -134,7 +137,6 @@ function Converter({convCurrency}){
 						<RadioGroup.Item key={unitChoice} value={unitChoice}>
 							<RadioGroup.ItemText>{unitChoice}</RadioGroup.ItemText>
 							<RadioGroup.ItemControl />
-							<RadioGroup.ItemHiddenInput />
 						</RadioGroup.Item>
 					))}
 				</RadioGroup.Root>
