@@ -10,10 +10,20 @@ function Converter({convCurrency}){
 	const defaultSentence = 'Input number above for conversion'
 	const [mode, setMode] = useState('sats');
 	const [inputNumber, setInputNumber] = useState();
+	const [inputDisplayNumber, setInputDisplayNumber] = useState();
 	const [outputSentence, setOutputSentence] = useState(defaultSentence);
 	const localiseNumber = (num) => {
 		return new Intl.NumberFormat(convCurrency.locale).format(num);
 	}
+	const toNumber = (s) => {
+	if (!s) return null;
+	const cleaned = String(s).replace(/[^\d.,-]/g, '');
+	// Replace all commas that are NOT at the end (i.e. thousands)
+	const normalized = cleaned.replace(/,(\d{3})/g, '$1').replace(/,$/, '.');
+	const num = parseFloat(normalized);
+	return isNaN(num) ? null : num;
+	};
+
 	// console.log(convCurrency)
 
 	// Run on load and when input number changes
@@ -25,6 +35,8 @@ function Converter({convCurrency}){
 		let satPrice = convCurrency.satPrice
 		let satPriceSubUnit = convCurrency.satPriceSubUnit
 		let symbol = convCurrency.symbol
+
+		// console.log(inputNumber)
 
 		const checkNum = (n) => Number.isNaN(n) ? 0 : n;
 
@@ -80,13 +92,14 @@ function Converter({convCurrency}){
 			inputNumber === '' ||
 			inputNumber === undefined ||
 			inputNumber === null
-		){
+		)
+		{
 			setOutputSentence(defaultSentence);
 		} else {
 			setOutputSentence(outputString);
 		}
 
-	},[inputNumber, mode])
+	},[inputNumber, inputDisplayNumber, mode])
 
 	const satString = 'Satoshi'
 
@@ -102,7 +115,9 @@ function Converter({convCurrency}){
 	}
 
 	const handleValueChange = (num) => {
-		setInputNumber(num);
+		console.log(toNumber(num))
+		setInputNumber(toNumber(num));
+		setInputDisplayNumber(num);
 	}
 
 	return(
@@ -112,7 +127,8 @@ function Converter({convCurrency}){
 				<NumberInput.Root
 					min={1}
 					step={1}
-					value={inputNumber}
+					value={inputDisplayNumber}
+					locale="en-US"
 					onValueChange={(details) => handleValueChange(details.value)}
 				>
 					<NumberInput.Label>Input number</NumberInput.Label>
