@@ -2,29 +2,31 @@
 
 ## About
 
+### Overview
+
 Compares the price of a single satoshi with that of the smallest units of each fiat currency. Displays these comparisons in easy to interpret infographics.
 
-## Getting Started
+[Live site](https://satoshi-power.com/)
+
+This is follows from [Satoshi-Power-deprecated](https://github.com/bazzle/Satoshi-Power-deprecated) built in next.js
+
+### Stack
+
+- Next.js
+- Blockchain.com Exchange Rates API
+- Hosted on Netlify
+
+### API's used
+
+[blockchain.com exchange rates API](https://www.blockchain.com/explorer/api/exchange_rates_api)
+
+### Getting Started
 
 ```bash
 git clone https://github.com/bazzle/satoshi-power-v2.git
 yarn install
 yarn dev
 ```
-
-[Live site](https://satoshi-power.com/)
-
-This is follows from [Satoshi-Power-deprecated](https://github.com/bazzle/Satoshi-Power-deprecated) built in next.js
-
-## Stack
-
-- Next.js
-- Blockchain.com Exchange Rates API
-- Hosted on Netlify
-
-## API's used
-
-[blockchain.com exchange rates API](https://www.blockchain.com/explorer/api/exchange_rates_api)
 
 ## Roadmap
 
