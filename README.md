@@ -30,7 +30,7 @@ yarn dev
 
 ## Roadmap
 
-### ✅ Phase 1 – Satoshi to smallest unit conversion
+### Phase 1 ✅ – Satoshi to smallest unit conversion
 
 #### Data
 
