@@ -30,26 +30,21 @@ yarn dev
 
 ## Roadmap
 
-### Phase 1 ✅ – Satoshi to smallest unit conversion
+### Phase 1 ✅ Satoshi to smallest unit conversion & data snapshots
 
 #### Data
 
 1. Pulls BTC/various fiat currency exchange rates from [external API](https://www.blockchain.com/explorer/api/exchange_rates_api)
 2. Saves the data into iterable array of objects, adding new values, removing ones that aren't needed.
+3. Automated snapshots once a week, github action to fetch exchange rates. Saves into a json.
+4. Undecided exactly what I'll do with this data, after a number of weeks.
 
 #### UI
 
 * Present percentages on the homepage index view of all currencies smallest units / satoshi
 * Skull icons to show if the unit is "killed" or the value of one sat has exceeded that unit. If smallest unit killed, one skull, if main unit killed two skulls.
 
-### Phase 2 ✅ – Historical data
-
-#### Data
-
-* Automated snapshots once a week, github action to fetch exchange rates. Saves into a json.
-* Undecided exactly what I'll do with this data, after a number of weeks.
-
-### Phase 3 ✅ – Dedicated page for each currency and conversion & conversion tool
+### Phase 2 ✅ Dedicated page for each currency and conversion & conversion tool
 
 #### UI
 
@@ -59,12 +54,12 @@ yarn dev
   * Sats per smallest unit (or vice-versa if the sat has exceeded the currency unit)
 2. Conversion tool, allowing users to input any amount of sats to find the conversion in their local currency.
 
-### Phase 4 🔜 — Accessibility and SEO audits
+### Phase 3 🔜 Accessibility and SEO audits
 
 1. Full accessibility and best-practice review and remediations
 2. Figure out how I can improve SEO, particularly on the currency pages. Given the boundaries between server and client-side rendering.
 
-### Phase 5 🔜 — Historical data presentation
+### Phase 4 🔜 Historical data presentation
 
 #### UI
 
