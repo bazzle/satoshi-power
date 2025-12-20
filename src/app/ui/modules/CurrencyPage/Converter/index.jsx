@@ -6,13 +6,13 @@ import { RadioGroup } from '@ark-ui/react/radio-group'
 import Icons from '@/app/ui/misc/Icons'
 
 
-function Converter({convCurrency}){
+function Converter({itemObj}){
 	const defaultSentence = 'Input number above for conversion'
 	const [mode, setMode] = useState('sats')
 	const [inputNumber, setInputNumber] = useState()
 	const [outputSentence, setOutputSentence] = useState(defaultSentence)
 	const localiseNumber = (num) => {
-		return new Intl.NumberFormat(convCurrency.locale).format(num)
+		return new Intl.NumberFormat(itemObj.locale).format(num)
 	}
 	const toNumber = (s) => {
 		if (!s) return null
@@ -23,17 +23,17 @@ function Converter({convCurrency}){
 		return isNaN(num) ? null : num
 	}
 
-	console.log(convCurrency)
+	console.log(itemObj)
 
 	// Run on load and when input number changes
 	useEffect(()=>{
 		let outputValue
 		let outputString
-		let currencyString = convCurrency.subUnitNameSingular
-		let currencyStringMain = convCurrency.unitName
-		let satPrice = convCurrency.satPrice
-		let satPriceSubUnit = convCurrency.satPriceSubUnit
-		let symbol = convCurrency.symbol
+		let currencyString = itemObj.subUnitNameSingular
+		let currencyStringMain = itemObj.unitName
+		let satPrice = itemObj.satPrice
+		let satPriceSubUnit = itemObj.satPriceSubUnit
+		let symbol = itemObj.symbol
 
 		const checkNum = (n) => Number.isNaN(n) ? 0 : n
 
@@ -49,7 +49,7 @@ function Converter({convCurrency}){
 			// The price of one sat in the main unit of currency.
 			const pretextString = `${satoshiLabelString(inputNumber)}`
 
-			if (!convCurrency.noSubUnit) {
+			if (!itemObj.noSubUnit) {
 				const outputValueSubUnit = checkNum(inputNumber * satPriceSubUnit)
 				outputValue = checkNum(inputNumber * satPrice)
 				const unitDisplaySubUnit = localiseNumber(outputValueSubUnit.toFixed(2))
@@ -75,8 +75,8 @@ function Converter({convCurrency}){
 
 		} else if(mode === 'fiat') {
 
-			if (convCurrency.noSubUnit) {
-				currencyString = convCurrency.unitNameSingular
+			if (itemObj.noSubUnit) {
+				currencyString = itemObj.unitNameSingular
 			}
 			outputValue = checkNum(inputNumber / satPrice)
 			const outputDisplay = outputValue.toFixed(2)
@@ -101,10 +101,11 @@ function Converter({convCurrency}){
 
 	const satString = 'Satoshi'
 
-	const singularName = convCurrency.unitNameSingular
-	const activeUnitName = convCurrency.subUnitKilled ? convCurrency.unitNameSingular : convCurrency.subUnitNameSingular
 
-	const unitChoices = [satString, convCurrency.noSubUnit ? singularName : activeUnitName]
+	const singularName = itemObj.unitNameSingular
+	const activeUnitName = itemObj.subUnitKilled ? itemObj.unitNameSingular : itemObj.subUnitNameSingular
+
+	const unitChoices = [satString, itemObj.noSubUnit ? singularName : activeUnitName]
 
 	const handleModeChange = (mode) => {
 		if(mode.value === "Sats"){

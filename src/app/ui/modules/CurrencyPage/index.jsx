@@ -44,7 +44,7 @@ function CurrencyPage({slug}){
 					<Stats currencyObj={currencyObj} />
 				</div>
 				<div className={styles.currencyPage__converter}>
-					<Converter convCurrency={currencyObj} />
+					<Converter itemObj={currencyObj} />
 				</div>
 				<div className={styles.currencyPage__backLink}>
 					{Icons.backArrow}
