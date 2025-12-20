@@ -8,14 +8,14 @@
 	font-size: $font-size-s;
 	text-align: center;
 	justify-content: center;
-	@include break(mobile){
+	@include break(tablet){
 		flex-direction: row;
 	}
 	> span{
 		display: flex;
 		align-items: center;
 		&::after{
-			@include break(mobile){
+			@include break(tablet){
 				@include divider;
 				content: '—';
 				display: inline-block;
