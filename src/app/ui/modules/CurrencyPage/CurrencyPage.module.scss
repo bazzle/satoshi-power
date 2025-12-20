@@ -16,6 +16,9 @@
 		display: flex;
 		gap: .5em;
 		text-align: center;
+		span{
+			color: $color-primary;
+		}
 	}
 	&__backLink{
 		display: flex;

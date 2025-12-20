@@ -29,13 +29,15 @@ function CurrencyPage({slug}){
 	
 	const successOutput = () => {
 
-		const titlePrefix = currencyObj.noSubUnit || currencyObj.subUnitKilled ? currencyObj.demonym : `${currencyObj.subUnitName} /`;
-		const titleSuffix = currencyObj.unitNameSingular;
+		const title1 = currencyObj.noSubUnit || currencyObj.subUnitKilled ? currencyObj.demonym : `${currencyObj.subUnitName} /`;
+		const title2 = currencyObj.unitNameSingular;
+		const title3 = "to satoshi / bitcoin"
 
 		return (
 			<div className={styles.currencyPage__inner}>
 				<h1 className={styles.currencyPage__title}>
-					{`${titlePrefix} ${titleSuffix}`}
+					{`${title1} ${title2}`}
+					<span>{title3}</span>
 					<Skulls howMany={currencyObj.score}/>
 				</h1>
 				<div className={styles.currencyPage__stats}>
