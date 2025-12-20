@@ -15,12 +15,12 @@ function Converter({convCurrency}){
 		return new Intl.NumberFormat(convCurrency.locale).format(num)
 	}
 	const toNumber = (s) => {
-	if (!s) return null
-	const cleaned = String(s).replace(/[^\d.,-]/g, '')
-	// Replace all commas that are NOT at the end (i.e. thousands)
-	const normalized = cleaned.replace(/,(\d{3})/g, '$1').replace(/,$/, '.')
-	const num = parseFloat(normalized)
-	return isNaN(num) ? null : num
+		if (!s) return null
+		const cleaned = String(s).replace(/[^\d.,-]/g, '')
+		// Replace all commas that are NOT at the end (i.e. thousands)
+		const normalized = cleaned.replace(/,(\d{3})/g, '$1').replace(/,$/, '.')
+		const num = parseFloat(normalized)
+		return isNaN(num) ? null : num
 	}
 
 	console.log(convCurrency)
@@ -29,7 +29,7 @@ function Converter({convCurrency}){
 	useEffect(()=>{
 		let outputValue
 		let outputString
-		let currencyString
+		let currencyString = convCurrency.subUnitNameSingular
 		let currencyStringMain = convCurrency.unitName
 		let satPrice = convCurrency.satPrice
 		let satPriceSubUnit = convCurrency.satPriceSubUnit
@@ -50,7 +50,6 @@ function Converter({convCurrency}){
 			const pretextString = `${satoshiLabelString(inputNumber)}`
 
 			if (!convCurrency.noSubUnit) {
-				let currencyString = convCurrency.subUnitNameSingular
 				const outputValueSubUnit = checkNum(inputNumber * satPriceSubUnit)
 				outputValue = checkNum(inputNumber * satPrice)
 				const unitDisplaySubUnit = localiseNumber(outputValueSubUnit.toFixed(2))
@@ -59,21 +58,17 @@ function Converter({convCurrency}){
 				outputString = (
 					<>{pretextString} = {unitDisplaySubUnit} {currencyString}</>
 				)
-				// Refine the output number
-				// If the main unit has not been killed, change the format when we go over 99. 101 cent > $1.01
-				if (!convCurrency.mainUnitKilled){
-					if(outputValueSubUnit > 99){
-						outputString = (
-							<>{pretextString} =  {symbol}{unitDisplay}</>
-						)
-					}
+				// When output subunits exceed 99 change to main unit
+				if(outputValueSubUnit > 99){
+					outputString = (
+						<>{pretextString} =  {symbol}{unitDisplay}</>
+					)
 				}
 			} else {
-				let currencyString = convCurrency.unitNameSingular
 				outputValue = checkNum(inputNumber * satPrice)
 				const unitDisplay = localiseNumber(outputValue.toFixed(2))
 				outputString = (
-					<>{pretextString} = {unitDisplay} {currencyString}</>
+					<>{pretextString} = {symbol}{unitDisplay}</>
 				)
 			}
 
