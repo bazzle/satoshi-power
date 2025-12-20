@@ -4,6 +4,7 @@ const getDataPromise = async ()=> {
 	try {
 		const response = await fetch("https://blockchain.info/ticker");
 		const parsedData = await response.json();
+		// console.log(parsedData)
 		return editDataObj(parsedData);
 	} catch(error) {
 		return {};

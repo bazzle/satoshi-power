@@ -30,6 +30,8 @@ function checkCurrencyRefObject(obj){
 	)
 }
 
+const excluded = ['GHS']
+
 const currenciesObj = {};
 function editDataObj(fetchedData){
 	// Loop through the fetchedData
@@ -42,6 +44,11 @@ function editDataObj(fetchedData){
 		// If there is no match, then skip it
 		if (currencyRefObj === undefined){
 			console.log(`${key} Unmatched so skipped`);
+			continue;
+		}
+		// If excluded, then skip it
+		if (excluded.includes(key)){
+			console.log(`${key} excluded so skipped`);
 			continue;
 		}
 
