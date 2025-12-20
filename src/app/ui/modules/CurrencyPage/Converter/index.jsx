@@ -1,6 +1,6 @@
-'use client';
-import { useEffect, useState } from "react";
-import styles from "./styles/Converter.module.scss";
+'use client'
+import { useEffect, useState } from "react"
+import styles from "./styles/Converter.module.scss"
 import { NumberInput } from '@ark-ui/react/number-input'
 import { RadioGroup } from '@ark-ui/react/radio-group'
 import Icons from '@/app/ui/misc/Icons'
@@ -8,20 +8,20 @@ import Icons from '@/app/ui/misc/Icons'
 
 function Converter({convCurrency}){
 	const defaultSentence = 'Input number above for conversion'
-	const [mode, setMode] = useState('sats');
-	const [inputNumber, setInputNumber] = useState();
-	const [outputSentence, setOutputSentence] = useState(defaultSentence);
+	const [mode, setMode] = useState('sats')
+	const [inputNumber, setInputNumber] = useState()
+	const [outputSentence, setOutputSentence] = useState(defaultSentence)
 	const localiseNumber = (num) => {
-		return new Intl.NumberFormat(convCurrency.locale).format(num);
+		return new Intl.NumberFormat(convCurrency.locale).format(num)
 	}
 	const toNumber = (s) => {
-	if (!s) return null;
-	const cleaned = String(s).replace(/[^\d.,-]/g, '');
+	if (!s) return null
+	const cleaned = String(s).replace(/[^\d.,-]/g, '')
 	// Replace all commas that are NOT at the end (i.e. thousands)
-	const normalized = cleaned.replace(/,(\d{3})/g, '$1').replace(/,$/, '.');
-	const num = parseFloat(normalized);
-	return isNaN(num) ? null : num;
-	};
+	const normalized = cleaned.replace(/,(\d{3})/g, '$1').replace(/,$/, '.')
+	const num = parseFloat(normalized)
+	return isNaN(num) ? null : num
+	}
 
 	console.log(convCurrency)
 
@@ -35,26 +35,26 @@ function Converter({convCurrency}){
 		let satPriceSubUnit = convCurrency.satPriceSubUnit
 		let symbol = convCurrency.symbol
 
-		const checkNum = (n) => Number.isNaN(n) ? 0 : n;
+		const checkNum = (n) => Number.isNaN(n) ? 0 : n
 
 		const satoshiLabelString = (num) => {
 			const label = num === '1' ? 'Satoshi' : "Satoshi's"
 			num = num > 10 ? Math.round(num) : num
-			num = localiseNumber(num);
+			num = localiseNumber(num)
 			return `${num} ${label}`
 		}
 
 		if(mode === 'sats'){
 			// sat price is the listed BTC price / 100m.
 			// The price of one sat in the main unit of currency.
-			const pretextString = `${satoshiLabelString(inputNumber)}`;
+			const pretextString = `${satoshiLabelString(inputNumber)}`
 
 			if (!convCurrency.noSubUnit) {
 				let currencyString = convCurrency.subUnitNameSingular
-				const outputValueSubUnit = checkNum(inputNumber * satPriceSubUnit);
-				outputValue = checkNum(inputNumber * satPrice);
-				const unitDisplaySubUnit = localiseNumber(outputValueSubUnit.toFixed(2));
-				const unitDisplay = localiseNumber(outputValue.toFixed(2));
+				const outputValueSubUnit = checkNum(inputNumber * satPriceSubUnit)
+				outputValue = checkNum(inputNumber * satPrice)
+				const unitDisplaySubUnit = localiseNumber(outputValueSubUnit.toFixed(2))
+				const unitDisplay = localiseNumber(outputValue.toFixed(2))
 				// As default, display the small unit
 				outputString = (
 					<>{pretextString} = {unitDisplaySubUnit} {currencyString}</>
@@ -70,8 +70,8 @@ function Converter({convCurrency}){
 				}
 			} else {
 				let currencyString = convCurrency.unitNameSingular
-				outputValue = checkNum(inputNumber * satPrice);
-				const unitDisplay = localiseNumber(outputValue.toFixed(2));
+				outputValue = checkNum(inputNumber * satPrice)
+				const unitDisplay = localiseNumber(outputValue.toFixed(2))
 				outputString = (
 					<>{pretextString} = {unitDisplay} {currencyString}</>
 				)
@@ -80,14 +80,14 @@ function Converter({convCurrency}){
 
 		} else if(mode === 'fiat') {
 
-			outputValue = checkNum(inputNumber / satPrice);
-			const outputDisplay = outputValue.toFixed(2);
+			outputValue = checkNum(inputNumber / satPrice)
+			const outputDisplay = outputValue.toFixed(2)
 			outputString = (
 				<p>{localiseNumber(inputNumber)} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
 			)
 		}
 
-		setOutputSentence(outputString);
+		setOutputSentence(outputString)
 
 		if (
 			inputNumber === '0' ||
@@ -96,7 +96,7 @@ function Converter({convCurrency}){
 			inputNumber === null
 		)
 		{
-			setOutputSentence(defaultSentence);
+			setOutputSentence(defaultSentence)
 		}
 
 	},[inputNumber, mode])
@@ -114,11 +114,11 @@ function Converter({convCurrency}){
 		} else {
 			setMode('fiat')
 		}
-		setInputNumber(null);
+		setInputNumber(null)
 	}
 
 	const handleValueChange = (num) => {
-		setInputNumber(toNumber(num));
+		setInputNumber(toNumber(num))
 	}
 
 	return(
@@ -160,4 +160,4 @@ function Converter({convCurrency}){
 	)
 }
 
-export default Converter;
+export default Converter
