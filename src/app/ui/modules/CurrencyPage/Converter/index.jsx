@@ -23,13 +23,13 @@ function Converter({convCurrency}){
 	return isNaN(num) ? null : num;
 	};
 
-	// console.log(convCurrency)
+	console.log(convCurrency)
 
 	// Run on load and when input number changes
 	useEffect(()=>{
 		let outputValue
 		let outputString
-		let currencyString = convCurrency.displayName
+		let currencyString
 		let currencyStringMain = convCurrency.unitName
 		let satPrice = convCurrency.satPrice
 		let satPriceSubUnit = convCurrency.satPriceSubUnit
@@ -50,23 +50,26 @@ function Converter({convCurrency}){
 			const pretextString = `${satoshiLabelString(inputNumber)}`;
 
 			if (!convCurrency.noSubUnit) {
-				// show main unit when over 1
+				let currencyString = convCurrency.subUnitNameSingular
 				const outputValueSubUnit = checkNum(inputNumber * satPriceSubUnit);
 				outputValue = checkNum(inputNumber * satPrice);
-				const showMainUnit = outputValueSubUnit > 100
 				const unitDisplaySubUnit = localiseNumber(outputValueSubUnit.toFixed(2));
 				const unitDisplay = localiseNumber(outputValue.toFixed(2));
-
-				if (showMainUnit) {
-					outputString = (
-						<>{pretextString} = {symbol}{unitDisplay}</>
-					)
-				} else {
-					outputString = (
-						<>{pretextString} = {unitDisplaySubUnit} {currencyString}</>
-					)
+				// As default, display the small unit
+				outputString = (
+					<>{pretextString} = {unitDisplaySubUnit} {currencyString}</>
+				)
+				// Refine the output number
+				// If the main unit has not been killed, change the format when we go over 99. 101 cent > $1.01
+				if (!convCurrency.mainUnitKilled){
+					if(outputValueSubUnit > 99){
+						outputString = (
+							<>{pretextString} =  {symbol}{unitDisplay}</>
+						)
+					}
 				}
 			} else {
+				let currencyString = convCurrency.unitNameSingular
 				outputValue = checkNum(inputNumber * satPrice);
 				const unitDisplay = localiseNumber(outputValue.toFixed(2));
 				outputString = (
@@ -84,6 +87,8 @@ function Converter({convCurrency}){
 			)
 		}
 
+		setOutputSentence(outputString);
+
 		if (
 			inputNumber === '0' ||
 			inputNumber === '' ||
@@ -92,15 +97,11 @@ function Converter({convCurrency}){
 		)
 		{
 			setOutputSentence(defaultSentence);
-		} else {
-			setOutputSentence(outputString);
 		}
 
 	},[inputNumber, mode])
 
 	const satString = 'Satoshi'
-
-	console.log(convCurrency)
 
 	const singularName = convCurrency.unitNameSingular
 	const activeUnitName = convCurrency.subUnitKilled ? convCurrency.unitNameSingular : convCurrency.subUnitNameSingular
