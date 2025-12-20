@@ -75,6 +75,9 @@ function Converter({convCurrency}){
 
 		} else if(mode === 'fiat') {
 
+			if (convCurrency.noSubUnit) {
+				currencyString = convCurrency.unitNameSingular
+			}
 			outputValue = checkNum(inputNumber / satPrice)
 			const outputDisplay = outputValue.toFixed(2)
 			outputString = (
