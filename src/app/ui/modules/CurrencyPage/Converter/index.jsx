@@ -100,7 +100,12 @@ function Converter({convCurrency}){
 
 	const satString = 'Satoshi'
 
-	const unitChoices = [satString, convCurrency.noSubUnit ? convCurrency.unitNameSingular : convCurrency.subUnitNameSingular];
+	console.log(convCurrency)
+
+	const singularName = convCurrency.unitNameSingular
+	const activeUnitName = convCurrency.subUnitKilled ? convCurrency.unitNameSingular : convCurrency.subUnitNameSingular
+
+	const unitChoices = [satString, convCurrency.noSubUnit ? singularName : activeUnitName]
 
 	const handleModeChange = (mode) => {
 		if(mode.value === "Sats"){
