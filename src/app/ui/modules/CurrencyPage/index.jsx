@@ -36,9 +36,9 @@ function CurrencyPage({slug}){
 		return (
 			<div className={styles.currencyPage__inner}>
 				<h1 className={styles.currencyPage__title}>
-					{`${title1} ${title2}`}
+					<span>{`${title1} ${title2}`}</span>
 					<span>{title3}</span>
-					<Skulls howMany={currencyObj.score}/>
+					<span><Skulls howMany={currencyObj.score}/></span>
 				</h1>
 				<div className={styles.currencyPage__stats}>
 					<Stats currencyObj={currencyObj} />
