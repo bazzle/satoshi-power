@@ -1,23 +1,23 @@
 "use client"
 import styles from "./CurrencyPage.module.scss"
-import { useContext, useEffect, useState } from "react";
-import { LiveDataContext } from "@/app/data/LiveDataContext";
-import Loading from "@/app/ui/components/Loading";
-import Converter from "@/app/ui/modules/CurrencyPage/Converter";
-import Skulls from "@/app/ui/components/Skulls";
-import Link from "next/link";
-import Icons from "@/app/ui/misc/Icons";
+import { useContext, useEffect, useState } from "react"
+import { LiveDataContext } from "@/app/data/LiveDataContext"
+import Loading from "@/app/ui/components/Loading"
+import Converter from "@/app/ui/modules/CurrencyPage/Converter"
+import Skulls from "@/app/ui/components/Skulls"
+import Link from "next/link"
+import Icons from "@/app/ui/misc/Icons"
 import Stats from "./Stats"
 
 function CurrencyPage({slug}){
-	const {liveData} = useContext(LiveDataContext);
-	const [currencyObj, setCurrencyObj] = useState(null);
+	const {liveData} = useContext(LiveDataContext)
+	const [currencyObj, setCurrencyObj] = useState(null)
 
 	useEffect(() => {
-		if (!liveData) return;
-		const code = slug.toUpperCase();
-		setCurrencyObj(liveData[code]);
-	}, [liveData, slug]);
+		if (!liveData) return
+		const code = slug.toUpperCase()
+		setCurrencyObj(liveData[code])
+	}, [liveData, slug])
 
 	// console.log(currencyObj)
 
@@ -29,8 +29,8 @@ function CurrencyPage({slug}){
 	
 	const successOutput = () => {
 
-		const title1 = currencyObj.noSubUnit || currencyObj.subUnitKilled ? currencyObj.demonym : `${currencyObj.subUnitName} /`;
-		const title2 = currencyObj.unitNameSingular;
+		const title1 = currencyObj.noSubUnit || currencyObj.subUnitKilled ? currencyObj.demonym : `${currencyObj.subUnitName} /`
+		const title2 = currencyObj.unitNameSingular
 		const title3 = "to satoshi / bitcoin"
 
 		return (
