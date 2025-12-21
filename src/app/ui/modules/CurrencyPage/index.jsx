@@ -8,6 +8,7 @@ import Skulls from "@/app/ui/components/Skulls"
 import Link from "next/link"
 import Icons from "@/app/ui/misc/Icons"
 import Stats from "./Stats"
+import ShareButtons from "@/app/ui/components/ShareButtons"
 
 function CurrencyPage({slug}){
 	const {liveData} = useContext(LiveDataContext)

@@ -1,0 +1,47 @@
+@use '@/app/styles/all-vars' as *;
+
+.shareButtons{
+	display: flex;
+	gap: .5em;
+	flex-wrap: wrap;
+	width: 100%;
+	flex-direction: column;
+	justify-content: flex-start;
+	@include break(tablet){
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+	&__label{
+		@include break-under(tablet){
+			margin-bottom: .5em;
+		}
+	}
+	&__divider{
+		content: '';
+		height: 1px;
+		width: 4rem;
+		background-color: $color-primary;
+		display: none;
+		@include break(tablet){
+			display: block;
+		}
+	}
+	&__list{
+		display: flex;
+		align-items: center;
+		gap: .5em;
+		flex-wrap: wrap;
+		button, a{
+			width: 36px;
+			height: 36px;
+			display: block;
+			cursor: pointer;
+			&:hover{
+				svg path{
+					fill: $color-primary;
+				}
+			}
+		}
+	}
+}

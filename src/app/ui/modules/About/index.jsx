@@ -1,5 +1,6 @@
 import styles from './About.module.scss'
 import Icons from '@/app/ui/misc/Icons'
+import ShareButtons from '@/app/ui/components/ShareButtons'
 
 function About(){
 
@@ -26,6 +27,7 @@ function About(){
 					</span>
 				</p>
 				<hr/>
+				<ShareButtons/>
 			</div>
 		</div>
 	)
