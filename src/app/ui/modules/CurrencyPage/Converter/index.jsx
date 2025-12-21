@@ -23,11 +23,9 @@ function Converter({itemObj}){
 		return isNaN(num) ? null : num
 	}
 
-	console.log(itemObj)
-
 	// Run on load and when input number changes
 	useEffect(()=>{
-		console.log(mode)
+		console.log(itemObj)
 		let outputValue
 		let outputDisplay
 		let outputString
@@ -86,11 +84,11 @@ function Converter({itemObj}){
 			)
 
 		} else if(mode === 'mainUnit') {
-			currencyString = itemObj.unitNameSingular
+			currencyString = itemObj.symbol
 			outputValue = checkNum(inputNumber / satPrice)
 			outputDisplay = outputValue.toFixed(2)
 			outputString = (
-				<p>{localiseNumber(inputNumber)} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
+				<p>{currencyString}{localiseNumber(inputNumber)} = {satoshiLabelString(outputDisplay)}</p>
 			)
 		}
 
@@ -120,20 +118,16 @@ function Converter({itemObj}){
 	} else{
 		if (itemObj.subUnitKilled){ // Like Naira
 			unitChoices.push(itemObj.unitNameSingular)
-		} else {
+		} else { // Like USD
 			unitChoices.push(itemObj.subUnitNameSingular)
 			unitChoices.push(itemObj.unitNameSingular)
 		}
 	}
 
-
-	console.log(unitChoices)
-
 	const handleModeChange = (mode) => {
-		console.log(mode)
 		if(mode.value === "Satoshi"){
 			setMode('sats')
-		} else if(mode.value === itemObj.mainUnitName) {
+		} else if(mode.value === itemObj.unitNameSingular) {
 			setMode('mainUnit')
 		} else {
 			setMode('subUnit')
