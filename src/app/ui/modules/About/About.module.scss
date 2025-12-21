@@ -40,4 +40,7 @@
 			@include divider;
 		}
 	}
+	&__share{
+		margin-bottom: $gap;
+	}
 }

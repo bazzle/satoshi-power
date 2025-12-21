@@ -2,16 +2,11 @@
 
 .shareButtons{
 	display: flex;
-	gap: .5em;
 	flex-wrap: wrap;
 	width: 100%;
 	flex-direction: column;
-	justify-content: flex-start;
-	@include break(tablet){
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-	}
+	align-items: center;
+	justify-content: center;
 	&__label{
 		@include break-under(tablet){
 			margin-bottom: .5em;

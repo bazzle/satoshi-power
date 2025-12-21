@@ -27,7 +27,9 @@ function About(){
 					</span>
 				</p>
 				<hr/>
-				<ShareButtons/>
+				<div className={styles.about__share}>
+					<ShareButtons/>
+				</div>
 			</div>
 		</div>
 	)
