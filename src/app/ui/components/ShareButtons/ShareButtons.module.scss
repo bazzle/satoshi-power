@@ -37,11 +37,29 @@
 			height: 36px;
 			display: block;
 			cursor: pointer;
+			display: grid;
+			place-content: center;
 			&:hover{
 				svg path{
 					fill: $color-primary;
 				}
 			}
 		}
+	}
+	&__copy{
+		position: relative;
+		svg{
+			width: 18px;
+			height: auto;
+		}
+	}
+	&__message{
+		position: absolute;
+		background: black;
+		@include text-blocky-small;
+		position: absolute;
+		top: 50%;
+		left: 100%;
+		transform: translate(0, -50%);
 	}
 }

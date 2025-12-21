@@ -1,27 +1,26 @@
 'use client'
 import { useEffect, useState } from "react";
 import styles from "./ShareButtons.module.scss";
+import CopyIcon from "./CopyIcon.jsx"
 import {
 	TwitterShareButton,
 	XIcon,
-	LinkedinShareButton,
-	LinkedinIcon,
 	TelegramShareButton,
-	TelegramIcon,
-	EmailShareButton,
-	EmailIcon
+	TelegramIcon
 } from "react-share";
 
 function ShareButtons({title, excerpt, preText}){
 	const [shareUrl, setShareUrl] = useState("");
 	const emailBody = shareUrl
 	const mailtoHref = shareUrl ? `mailto:?subject=${encodeURIComponent(title)}&body=${emailBody}` : undefined;
+	const [messageShow, setMessageShow] = useState(false)
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			setShareUrl(window.location.href);
 		}
 	}, []);
+
 	return(
 		<div className={styles.shareButtons}>
 			<div className={styles.shareButtons__label}>
@@ -53,7 +52,9 @@ function ShareButtons({title, excerpt, preText}){
 						iconFillColor="white"
 						bgStyle={{fill: 'transparent'}}
 					/>
-				</TelegramShareButton>
+				</TelegramShareButton >
+
+				<CopyIcon shareUrl={shareUrl} />
 
 			</div>
 		</div>
