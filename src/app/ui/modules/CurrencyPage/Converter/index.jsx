@@ -23,7 +23,7 @@ function Converter({itemObj}){
 		return isNaN(num) ? null : num
 	}
 
-	// console.log(itemObj)
+	console.log(itemObj)
 
 	// Run on load and when input number changes
 	useEffect(()=>{
@@ -110,15 +110,30 @@ function Converter({itemObj}){
 	
 	const singularName = itemObj.unitNameSingular
 	const activeUnitName = itemObj.subUnitKilled ? itemObj.unitNameSingular : itemObj.subUnitNameSingular
-	const mainUnitName = itemObj.subUnitKilled || itemObj.noSubUnit ? null : itemObj.unitNameSingular
 
-	const unitChoices = ['Satoshi', itemObj.noSubUnit ? singularName : activeUnitName, mainUnitName]
+	const unitChoices = [
+		'Satoshi'
+	]
+
+	if(itemObj.noSubUnit){ // Like KRW
+		unitChoices.push(itemObj.unitNameSingular)
+	} else{
+		if (itemObj.subUnitKilled){ // Like Naira
+			unitChoices.push(itemObj.unitNameSingular)
+		} else {
+			unitChoices.push(itemObj.subUnitNameSingular)
+			unitChoices.push(itemObj.unitNameSingular)
+		}
+	}
+
+
+	console.log(unitChoices)
 
 	const handleModeChange = (mode) => {
 		console.log(mode)
 		if(mode.value === "Satoshi"){
 			setMode('sats')
-		} else if(mode.value === mainUnitName) {
+		} else if(mode.value === itemObj.mainUnitName) {
 			setMode('mainUnit')
 		} else {
 			setMode('subUnit')
