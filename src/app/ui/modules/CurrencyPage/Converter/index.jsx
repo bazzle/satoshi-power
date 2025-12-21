@@ -23,11 +23,13 @@ function Converter({itemObj}){
 		return isNaN(num) ? null : num
 	}
 
-	console.log(itemObj)
+	// console.log(itemObj)
 
 	// Run on load and when input number changes
 	useEffect(()=>{
+		console.log(mode)
 		let outputValue
+		let outputDisplay
 		let outputString
 		let currencyString = itemObj.subUnitNameSingular
 		let currencyStringMain = itemObj.unitName
@@ -72,14 +74,21 @@ function Converter({itemObj}){
 				)
 			}
 
-
-		} else if(mode === 'fiat') {
+		} else if(mode === 'subUnit') {
 
 			if (itemObj.noSubUnit) {
 				currencyString = itemObj.unitNameSingular
 			}
+			outputValue = checkNum(inputNumber / satPrice / 100)
+			outputDisplay = outputValue.toFixed(2)
+			outputString = (
+				<p>{localiseNumber(inputNumber)} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
+			)
+
+		} else if(mode === 'mainUnit') {
+			currencyString = itemObj.unitNameSingular
 			outputValue = checkNum(inputNumber / satPrice)
-			const outputDisplay = outputValue.toFixed(2)
+			outputDisplay = outputValue.toFixed(2)
 			outputString = (
 				<p>{localiseNumber(inputNumber)} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
 			)
@@ -98,20 +107,21 @@ function Converter({itemObj}){
 		}
 
 	},[inputNumber, mode])
-
-	const satString = 'Satoshi'
-
-
+	
 	const singularName = itemObj.unitNameSingular
 	const activeUnitName = itemObj.subUnitKilled ? itemObj.unitNameSingular : itemObj.subUnitNameSingular
+	const mainUnitName = itemObj.subUnitKilled || itemObj.noSubUnit ? null : itemObj.unitNameSingular
 
-	const unitChoices = [satString, itemObj.noSubUnit ? singularName : activeUnitName]
+	const unitChoices = ['Satoshi', itemObj.noSubUnit ? singularName : activeUnitName, mainUnitName]
 
 	const handleModeChange = (mode) => {
-		if(mode.value === "Sats"){
+		console.log(mode)
+		if(mode.value === "Satoshi"){
 			setMode('sats')
+		} else if(mode.value === mainUnitName) {
+			setMode('mainUnit')
 		} else {
-			setMode('fiat')
+			setMode('subUnit')
 		}
 		setInputNumber(null)
 	}
