@@ -1,6 +1,4 @@
-import styles from "./Stats.module.scss";
-
-function output({ currencyObj }){
+export default function output({ currencyObj }){
 
 	const btcPrice = new Intl.NumberFormat(currencyObj.currencyLocale).format(currencyObj.btcPrice);
 
@@ -36,25 +34,6 @@ function output({ currencyObj }){
 		conversionMainUnitSpan = `${satoshiLabelString(satsPerUnit)} ${'per'} ${currencyObj.unitNameSingular}`;
 	}
 	
-	return {
-		outputBlock : (
-			<p className={styles.stats}>
-				<span>1 BTC = {currencyObj.symbol}{btcPrice}</span>
-				<span>{conversionMainUnitSpan}</span>
-				<span>{conversionSubUnitSpan && conversionSubUnitSpan}</span>
-			</p>
-		),
-		outputString : `${'1 BTC ='} ${currencyObj.symbol} ${btcPrice} ${conversionMainUnitSpan} ${conversionSubUnitSpan && conversionSubUnitSpan}`
-	}
+	return `${'1 BTC ='} ${currencyObj.symbol} ${btcPrice} ${conversionMainUnitSpan} ${conversionSubUnitSpan && conversionSubUnitSpan}`
 
-}
-
-export function StatsBlock({ currencyObj }){
-	const block = output({ currencyObj });
-	return block.outputBlock;
-}
-
-export function StatsString({ currencyObj }){
-	const block = output({ currencyObj });
-	return block.outputString;
 }

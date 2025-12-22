@@ -25,7 +25,6 @@ function Converter({itemObj}){
 
 	// Run on load and when input number changes
 	useEffect(()=>{
-		console.log(itemObj)
 		let outputValue
 		let outputDisplay
 		let outputString

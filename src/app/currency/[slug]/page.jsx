@@ -3,8 +3,7 @@ import Footer from "@/app/ui/modules/Footer";
 import About from "@/app/ui/modules/About";
 import getDataPromise from "@/app/data/getData";
 import CurrencyPage from "@/app/ui/modules/CurrencyPage";
-
-
+import output from "@/app/ui/modules/CurrencyPage/Stats/output.js";
 
 export const dynamicParams = false;
 
@@ -38,6 +37,17 @@ async function Page({ params }) {
 	catch(error) {
 		console.error(error);
 	}
+}
+
+export async function generateMetadata({ params }) {
+	const { slug } = await params;
+	const data = await getDataPromise();
+	const currencyObj = data[slug.toUpperCase()];
+	
+	return {
+		title: currencyObj ? `${currencyObj.unitName} to Satoshi / Bitcoin` : "Satoshi Power",
+		description: output({currencyObj})
+	};
 }
 
 export default Page;

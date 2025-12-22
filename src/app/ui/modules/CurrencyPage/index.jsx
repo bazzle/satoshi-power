@@ -7,8 +7,7 @@ import Converter from "@/app/ui/modules/CurrencyPage/Converter"
 import Skulls from "@/app/ui/components/Skulls"
 import Link from "next/link"
 import Icons from "@/app/ui/misc/Icons"
-import Stats from "./Stats"
-import ShareButtons from "@/app/ui/components/ShareButtons"
+import {StatsBlock} from "./Stats/index.jsx"
 
 function CurrencyPage({slug}){
 	const {liveData} = useContext(LiveDataContext)
@@ -19,8 +18,6 @@ function CurrencyPage({slug}){
 		const code = slug.toUpperCase()
 		setCurrencyObj(liveData[code])
 	}, [liveData, slug])
-
-	// console.log(currencyObj)
 
 	const loadingOutput = () => (
 		<div className={styles.currencyPage__inner}>
@@ -42,7 +39,7 @@ function CurrencyPage({slug}){
 					<span><Skulls howMany={currencyObj.score}/></span>
 				</h1>
 				<div className={styles.currencyPage__stats}>
-					<Stats currencyObj={currencyObj} />
+					<StatsBlock currencyObj={currencyObj} />
 				</div>
 				<div className={styles.currencyPage__converter}>
 					<Converter itemObj={currencyObj} />
