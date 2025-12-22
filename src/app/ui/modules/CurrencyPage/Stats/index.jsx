@@ -1,60 +1,24 @@
 import styles from "./Stats.module.scss";
+import output from "./output.js";
 
-function output({ currencyObj }){
+export default function StatsBlock({ currencyObj }){
 
-	const btcPrice = new Intl.NumberFormat(currencyObj.currencyLocale).format(currencyObj.btcPrice);
-
-	const satoshiLabelString = (num) => {
-		const label = num === '1' ? 'Satoshi' : "Satoshi's"
-		return `${num} ${label}`
-	}
-
-	let conversionSubUnitSpan;
-	let conversionMainUnitSpan;
-	const satsPerUnit = currencyObj.satsPerUnit.toFixed(0);
-	const unitsPerSat = currencyObj.unitsPerSat.toFixed(2);
-	
-	// Sub unit
-	if (currencyObj.noSubUnit) {
-		conversionSubUnitSpan = null;
-	} else {
-		const subUnitsPerSat = currencyObj.subUnitsPerSat.toFixed(0);
-		const satsPerSubUnit = currencyObj.satsPerSubUnit.toFixed(0);
-		if (currencyObj.noSubUnit) {
-			conversionSubUnitSpan = null;
-		} else if (currencyObj.subUnitKilled){
-			conversionSubUnitSpan = `${subUnitsPerSat} ${currencyObj.subUnitNameSingular} ${'per sat'}`;
+	const smallUnitOutput = () => {
+		if (output({currencyObj}).satsSmallUnit === null){
+			return false
 		} else {
-			conversionSubUnitSpan = `${satoshiLabelString(satsPerSubUnit)} ${'per'} ${currencyObj.subUnitNameSingular}`;
+			return <span>{output({currencyObj}).satsSmallUnit}</span>
 		}
 	}
-
-	// Main unit
-	if (currencyObj.mainUnitKilled) {
-		conversionMainUnitSpan = `${unitsPerSat} ${currencyObj.unitNameSingular} ${'per sat'}`;
-	} else {
-		conversionMainUnitSpan = `${satoshiLabelString(satsPerUnit)} ${'per'} ${currencyObj.unitNameSingular}`;
-	}
 	
-	return {
-		outputBlock : (
-			<p className={styles.stats}>
-				<span>1 BTC = {currencyObj.symbol}{btcPrice}</span>
-				<span>{conversionMainUnitSpan}</span>
-				<span>{conversionSubUnitSpan && conversionSubUnitSpan}</span>
-			</p>
-		),
-		outputString : `${'1 BTC ='} ${currencyObj.symbol} ${btcPrice} ${conversionMainUnitSpan} ${conversionSubUnitSpan && conversionSubUnitSpan}`
-	}
+	output({currencyObj}).satsSmallUnit
+	
+	return (
+		<p className={styles.stats}>
+			<span>{output({currencyObj}).btcConv}</span>
+			<span>{output({currencyObj}).satsMainUnit}</span>
+			{smallUnitOutput()}
+		</p>
+	)
 
-}
-
-export function StatsBlock({ currencyObj }){
-	const block = output({ currencyObj });
-	return block.outputBlock;
-}
-
-export function StatsString({ currencyObj }){
-	const block = output({ currencyObj });
-	return block.outputString;
 }

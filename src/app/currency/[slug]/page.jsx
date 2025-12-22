@@ -46,7 +46,7 @@ export async function generateMetadata({ params }) {
 	
 	return {
 		title: currencyObj ? `${currencyObj.unitName} to Satoshi / Bitcoin` : "Satoshi Power",
-		description: output({currencyObj})
+		description: output({currencyObj}).combinedString
 	};
 }
 

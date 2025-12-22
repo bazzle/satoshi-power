@@ -33,7 +33,19 @@ export default function output({ currencyObj }){
 	} else {
 		conversionMainUnitSpan = `${satoshiLabelString(satsPerUnit)} ${'per'} ${currencyObj.unitNameSingular}`;
 	}
+
+	const btcConv = `1 BTC = ${currencyObj.symbol}${btcPrice}`
+	const satsMainUnit = conversionMainUnitSpan
+	const satsSmallUnit = conversionSubUnitSpan ? conversionSubUnitSpan : null
+	const combinedString = `${btcConv}, ${satsMainUnit} ${satsSmallUnit ? `, ${satsSmallUnit}` : ''}`
+
+	const stringObj = {
+		btcConv : btcConv,
+		satsMainUnit : satsMainUnit,
+		satsSmallUnit : satsSmallUnit,
+		combinedString : combinedString.trim()
+	}
 	
-	return `${'1 BTC ='} ${currencyObj.symbol} ${btcPrice} ${conversionMainUnitSpan} ${conversionSubUnitSpan && conversionSubUnitSpan}`
+	return stringObj
 
 }

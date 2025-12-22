@@ -7,7 +7,7 @@ import Converter from "@/app/ui/modules/CurrencyPage/Converter"
 import Skulls from "@/app/ui/components/Skulls"
 import Link from "next/link"
 import Icons from "@/app/ui/misc/Icons"
-import {StatsBlock} from "./Stats/index.jsx"
+import StatsBlock from "./Stats/index.jsx"
 
 function CurrencyPage({slug}){
 	const {liveData} = useContext(LiveDataContext)
