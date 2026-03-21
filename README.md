@@ -54,16 +54,15 @@ yarn dev
   * Sats per smallest unit (or vice-versa if the sat has exceeded the currency unit)
 2. Conversion tool, allowing users to input any amount of sats to find the conversion in their local currency.
 
-### Phase 3 🔜 Accessibility and SEO audits
+### Phase 4 🔜 Historical data presentation and improvements
+
+#### Improvements
 
 1. Full accessibility and best-practice review and remediations
 2. Figure out how I can improve SEO, particularly on the currency pages. Given the boundaries between server and client-side rendering.
-
-### Phase 4 🔜 Historical data presentation
 
 #### UI
 
 * Using the data collected over time from the snapshots (when there's a meaningful amount) present line-charts showing price fluctuations over time.
 * Potentially pull in historical data instead (~5 years) possibly mempool.space or similar.
-
 
