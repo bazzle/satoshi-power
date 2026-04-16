@@ -47,10 +47,20 @@ export async function generateMetadata({ params }) {
 
 	const title1 = currencyObj.noSubUnit || currencyObj.subUnitKilled ? currencyObj.demonym : `${currencyObj.subUnitName} /`
 	const title2 = currencyObj.unitNameSingular
+	const title = `${currencyObj.unitName} to Satoshi / Bitcoin`
+	const description = `How many sats is one ${title1} ${title2}?`
+	const url = `https://satoshi-power.com/currency/${slug}`
 
 	return {
-		title: `${currencyObj.unitName} to Satoshi / Bitcoin`,
-		description: `How many sats is one ${title1} ${title2}?`,
+		title,
+		description,
+		openGraph: {
+			title,
+			description,
+			url,
+			type: "website",
+			siteName: "Satoshi Power",
+		},
 	};
 }
 

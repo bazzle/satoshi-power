@@ -21,6 +21,13 @@ const dmSans = DM_Sans({
 export const metadata = {
 	title: "Satoshi Power",
 	description: "Sats will eat the world. Comparing the price of a satoshi against fiat shitcoins",
+	openGraph: {
+		title: "Satoshi Power",
+		description: "Sats will eat the world. Comparing the price of a satoshi against fiat shitcoins",
+		url: "https://satoshi-power.com",
+		type: "website",
+		siteName: "Satoshi Power",
+	},
 };
 
 export default function RootLayout({ children }) {
