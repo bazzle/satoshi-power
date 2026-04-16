@@ -3,7 +3,6 @@ import Footer from "@/app/ui/modules/Footer";
 import About from "@/app/ui/modules/About";
 import getDataPromise from "@/app/data/getData";
 import CurrencyPage from "@/app/ui/modules/CurrencyPage";
-import output from "@/app/ui/modules/CurrencyPage/Stats/output.js";
 
 export const dynamicParams = false;
 
@@ -43,10 +42,15 @@ export async function generateMetadata({ params }) {
 	const { slug } = await params;
 	const data = await getDataPromise();
 	const currencyObj = data[slug.toUpperCase()];
-	
+
+	if (!currencyObj) return { title: "Satoshi Power" };
+
+	const title1 = currencyObj.noSubUnit || currencyObj.subUnitKilled ? currencyObj.demonym : `${currencyObj.subUnitName} /`
+	const title2 = currencyObj.unitNameSingular
+
 	return {
-		title: currencyObj ? `${currencyObj.unitName} to Satoshi / Bitcoin` : "Satoshi Power",
-		description: output({currencyObj}).combinedString
+		title: `${currencyObj.unitName} to Satoshi / Bitcoin`,
+		description: `How many sats is one ${title1} ${title2}?`,
 	};
 }
 
