@@ -61,6 +61,9 @@ export async function generateMetadata({ params }) {
 			type: "website",
 			siteName: "Satoshi Power",
 		},
+		alternates: {
+			canonical: url
+		}
 	};
 }
 
