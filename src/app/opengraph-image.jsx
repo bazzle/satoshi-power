@@ -21,7 +21,7 @@ export const size = { width: 1200, height: 630 }
 export default function OGImage({ params }) {
 	return new ImageResponse(
 		<>
-			<HomePageOG title="Satoshi Power" description="Comparing the price of a Satoshi against fiat sh!tcoins" />
+			<HomePageOG title="Satoshi Power" description="Comparing the price of a Satoshi against fiat sh!tcoins 💀" />
 		</>
 		,
 		{ ...size, fonts },
