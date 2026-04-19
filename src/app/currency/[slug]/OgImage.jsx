@@ -1,22 +1,10 @@
 import fs from 'fs'
+import Image from 'next/image'
 import path from 'path'
 
-function toArrayBuffer(buf) {
-	return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength)
-}
-
-const bebasNeueBuf = fs.readFileSync(path.join(process.cwd(), 'src/app/fonts/bebasneue.ttf'))
-const dmSansBuf = fs.readFileSync(path.join(process.cwd(), 'src/app/fonts/dmsans.ttf'))
-const bebasNeue = toArrayBuffer(bebasNeueBuf)
-const dmSans = toArrayBuffer(dmSansBuf)
-
+// Logo
 const logoData = fs.readFileSync(path.join(process.cwd(), 'public/logo.png'))
 const logoSrc = `data:image/png;base64,${logoData.toString('base64')}`
-
-export const fonts = [
-	{ name: 'Bebas Neue', data: bebasNeue, weight: 400, style: 'normal' },
-	{ name: 'DM Sans', data: dmSans, weight: 400, style: 'normal' },
-]
 
 export function CurrencyPageOG({ currencyTitle, description }) {
 	return (
@@ -34,7 +22,7 @@ export function CurrencyPageOG({ currencyTitle, description }) {
 			}}
 		>
 
-			<img width="400" src={logoSrc} alt="Logo" />
+			<img width="489" height="120" src={logoSrc} alt="Logo" />
 
 			<div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 				<div style={{ fontFamily: '"DM Sans"', fontSize: '50px' }}>
@@ -65,7 +53,7 @@ export function HomePageOG({ currencyTitle, description }) {
 			}}
 		>
 
-			<img width="400" src={logoSrc} alt="Logo" />
+			<img width="489" height="120" src={logoSrc} alt="Logo" />
 
 			<div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 				<div style={{ fontFamily: '"DM Sans"', fontSize: '50px' }}>
