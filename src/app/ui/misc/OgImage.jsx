@@ -37,7 +37,7 @@ export function CurrencyPageOG({ currencyTitle, description }) {
 	)
 }
 
-export function HomePageOG({ currencyTitle, description }) {
+export function HomePageOG({ title, description }) {
 	return (
 		<div
 			style={{
@@ -57,7 +57,7 @@ export function HomePageOG({ currencyTitle, description }) {
 
 			<div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 				<div style={{ fontFamily: '"DM Sans"', fontSize: '50px' }}>
-					{currencyTitle}
+					{title}
 				</div>
 			</div>
 

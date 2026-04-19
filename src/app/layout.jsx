@@ -20,14 +20,14 @@ const dmSans = DM_Sans({
 
 export const metadata = {
 	title: 'Satoshi Power',
-	description: 'Sats will eat the world. Comparing the price of a satoshi against fiat shitcoins',
+	description: 'Sats will eat the world. Comparing the price of a Satoshi against fiat sh!tcoins',
 	metadataBase: new URL('https://satoshi-power.com'),
 	alternates: {
 		canonical: '/',
 	},
 	openGraph: {
 		title: 'Satoshi Power',
-		description: 'Sats will eat the world. Comparing the price of a satoshi against fiat shitcoins',
+		description: 'Sats will eat the world. Comparing the price of a Satoshi against fiat sh!tcoins',
 		url: '/',
 		type: 'website',
 		siteName: 'Satoshi Power',

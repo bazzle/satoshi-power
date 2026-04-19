@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 import getDataPromise from '@/app/data/getData'
-import { CurrencyPageOG, HomePageOG } from './OgImage'
+import { CurrencyPageOG, HomePageOG } from '@/app/ui/misc/OgImage'
 
 export const dynamic = 'force-static'
 export const contentType = 'image/png'

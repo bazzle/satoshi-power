@@ -8,7 +8,7 @@ function About(){
 		<div className={styles.about}>
 			<div className={styles.about__inner}>
 				<p className={styles.about__intro}>
-					Comparing the price of a satoshi against fiat shitcoins
+					Comparing the price of a satoshi against fiat sh!tcoins
 				</p>
 				<p className={styles.about__key}>
 					<span className={styles.about__key__group}>
@@ -35,4 +35,4 @@ function About(){
 	)
 }
 
-export default About;
+export default About
