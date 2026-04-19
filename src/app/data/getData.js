@@ -1,15 +1,14 @@
-import editDataObj from "./EditDataObj";
+import editDataObj from './EditDataObj'
 
-const getDataPromise = async ()=> {
+const getDataPromise = async () => {
 	try {
-		const response = await fetch("https://blockchain.info/ticker");
-		const parsedData = await response.json();
-		// console.log(parsedData)
-		return editDataObj(parsedData);
+		const response = await fetch('https://blockchain.info/ticker')
+		const parsedData = await response.json()
+		return editDataObj(parsedData)
 	} catch(error) {
-		return {};
-		console.error(error);
+		console.error(error)
+		return {}
 	}
 }
 
-export default getDataPromise;
+export default getDataPromise
