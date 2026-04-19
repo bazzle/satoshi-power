@@ -1,10 +1,10 @@
-@use './all-vars' as *;
+@use './mixins' as *;
 
 hr {
-	margin-top: $gap*2;
-	margin-bottom: $gap*2;
+	margin-top: calc(var(--gap) * 2);
+	margin-bottom: calc(var(--gap) * 2);
 	height: .5px;
-	background-color: $color-bitcoin;
+	background-color: var(--color-bitcoin);
 	border: 0;
 	width: 80px;
 }
@@ -12,6 +12,6 @@ hr {
 h1{
 	&:not([class]){
 		@include text-heading;
-		color: $white;
+		color: var(--white);
 	}
 }

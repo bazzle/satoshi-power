@@ -1,4 +1,4 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .converter__form {
 	[data-scope='number-input'][data-part='root']{
@@ -6,7 +6,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border: 1px solid $color-primary;
+		border: 1px solid var(--color-primary);
 		border-radius: 1px;
 		box-sizing: border-box;
 		[data-part='label'] {
@@ -17,14 +17,14 @@
 			background: transparent;
 			border: 0;
 			outline: none;
-			caret-color: $color-primary;
+			caret-color: var(--color-primary);
 			padding: 0 .6em;
 			height: auto;
 			width: 100%;
-			font-size: $font-size-xl;
+			font-size: var(--font-size-xl);
 			padding: 1em;
 			@include break(tablet){
-				font-size: $font-size-m;
+				font-size: var(--font-size-m);
 			}
 			&:focus-visible{
 				@include focus;
@@ -39,7 +39,7 @@
 			}
 		}
 		[data-part='control'] {
-			border-left: 1px solid $color-primary;
+			border-left: 1px solid var(--color-primary);
 			top: 0;
 			display: flex;
 			flex-direction: column;
@@ -58,19 +58,19 @@
 					width: 12px;
 					height: auto;
 					cursor: pointer;
-					color: $color-primary;
+					color: var(--color-primary);
 					position: relative;
 					top: -2px;
 				}
 				&:hover{
 					svg{
-						color: $white;
+						color: var(--white);
 					}
 				}
 			}
 			[data-part='increment-trigger'] {
 				@include arrowButtonDefaults;
-				border-bottom: 1px solid $color-primary;
+				border-bottom: 1px solid var(--color-primary);
 			}
 			[data-part='decrement-trigger'] {
 				@include arrowButtonDefaults;

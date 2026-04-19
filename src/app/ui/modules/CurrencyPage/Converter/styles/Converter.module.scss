@@ -1,4 +1,4 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 @use './radioButtons.module.scss' as radioButtons;
 @use './numberInput.module.scss' as numberInput;
 
@@ -6,16 +6,16 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: calc($gap *2);
+	gap: calc(var(--gap) * 2);
 	&__form{
 		display: flex;
-		gap: calc($gap *2);
+		gap: calc(var(--gap) * 2);
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: center;
 	}
 	&__output{
-		font-size: $font-size-xl;
+		font-size: var(--font-size-xl);
 		text-align: center;
 	}
 }

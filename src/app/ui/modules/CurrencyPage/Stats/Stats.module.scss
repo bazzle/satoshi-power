@@ -1,11 +1,11 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .stats{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	flex-wrap: wrap;
-	font-size: $font-size-s;
+	font-size: var(--font-size-s);
 	text-align: center;
 	justify-content: center;
 	@include break(tablet){

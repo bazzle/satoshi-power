@@ -1,11 +1,11 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 @mixin headerDefaults{
-	padding-top: $gap;
-	padding-bottom: $gap;
+	padding-top: var(--gap);
+	padding-bottom: var(--gap);
 	@include break(tablet){
-		padding-top: calc($gap*2);
-		padding-bottom: calc($gap*2);
+		padding-top: calc(var(--gap) * 2);
+		padding-bottom: calc(var(--gap) * 2);
 	}
 }
 

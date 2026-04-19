@@ -1,7 +1,7 @@
 @use 'sass:color';
 
+@use './variables';
 @use './reset';
-@use './all-vars';
 @use './typography';
 @use './base';
 @use './layout';

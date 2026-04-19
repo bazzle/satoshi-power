@@ -1,4 +1,4 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .nostrCopy {
 	display: inline-flex;
@@ -8,20 +8,20 @@
 		display: flex;
 		align-items: center;
 		gap: .5em;
-		background-color: $color-bg-2;
+		background-color: var(--color-bg-2);
 		height: 2em;
 		border-radius: 2em;
 		padding: 0 1em;
 		position: relative;
 		&:focus {
-			outline: 2px solid $color-focus;
+			outline: 2px solid var(--color-focus);
 		}
 	}
 
 	&__key {
 		@include text-meta-tiny;
 		text-transform: lowercase;
-		color: $color-primary;
+		color: var(--color-primary);
 	}
 
 	&__message {

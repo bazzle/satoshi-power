@@ -1,17 +1,14 @@
-@use './all-vars' as *;
+@use './mixins' as *;
 
 // Padding
 
-$padding-std: clamp(3rem, 3vw, 4rem);
-$padding-deep: clamp(3rem, 5vw, 6rem);
-
 .padding {
-	padding-top: $padding-deep;
-	padding-bottom: $padding-deep;
+	padding-top: var(--padding-deep);
+	padding-bottom: var(--padding-deep);
 
 	.c-product-details & {
-		padding-top: $padding-deep;
-		padding-bottom: $padding-deep;
+		padding-top: var(--padding-deep);
+		padding-bottom: var(--padding-deep);
 	}
 }
 
@@ -45,7 +42,7 @@ $padding-deep: clamp(3rem, 5vw, 6rem);
 // backgrounds
 
 .background--white {
-	background-color: $white;
+	background-color: var(--white);
 }
 
 // Hide for screen readers
@@ -66,8 +63,8 @@ $padding-deep: clamp(3rem, 5vw, 6rem);
 	@include padding-loose;
 	&{
 		width: 100%;
-		margin-top: $gap;
-		margin-bottom: $gap;
+		margin-top: var(--gap);
+		margin-bottom: var(--gap);
 	}
 	&--nomargin {
 		margin-top: 0;
@@ -95,25 +92,25 @@ $padding-deep: clamp(3rem, 5vw, 6rem);
 	}
 
 	&--lighter {
-		background-color: $color-bg-2;
+		background-color: var(--color-bg-2);
 	}
 	&--lightest {
-		background-color: $color-bg-3;
+		background-color: var(--color-bg-3);
 	}
 }
 
 .row-container {
 	width: 100%;
-	max-width: $site-width-narrow;
+	max-width: var(--site-width-narrow);
 	margin-right: auto;
 	margin-left: auto;
 	&--wide {
 		@extend .row-container;
-		max-width: $site-width-wide;
+		max-width: var(--site-width-wide);
 	}
 	&--wider {
 		@extend .row-container;
-		max-width: $site-width-wider;
+		max-width: var(--site-width-wider);
 	}
 	&--full {
 		@extend .row-container;

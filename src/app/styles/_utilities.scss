@@ -1,25 +1,23 @@
-@use "./all-vars" as *;
+@use "./mixins" as *;
 
 .dark {
 	background-color: #333333;
-	color: $white;
+	color: var(--white);
 	p,
 	li,
 	a {
-		color: $white;
+		color: var(--white);
 	}
 }
 
 // Padding
 
-$padding-std: clamp(3rem, 3vw, 4rem);
-$padding-deep: clamp(3rem, 5vw, 6rem);
 .padding {
-	padding-top: $padding-deep;
-	padding-bottom: $padding-deep;
+	padding-top: var(--padding-deep);
+	padding-bottom: var(--padding-deep);
 	.c-product-details & {
-		padding-top: $padding-deep;
-		padding-bottom: $padding-deep;
+		padding-top: var(--padding-deep);
+		padding-bottom: var(--padding-deep);
 	}
 }
 .nopaddingtop {
@@ -47,7 +45,7 @@ $padding-deep: clamp(3rem, 5vw, 6rem);
 // backgrounds
 
 .background--white {
-	background-color: $white;
+	background-color: var(--white);
 }
 
 // Hide for screen readers

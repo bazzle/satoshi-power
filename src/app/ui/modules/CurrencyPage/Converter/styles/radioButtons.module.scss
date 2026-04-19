@@ -1,8 +1,8 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .converter__form {
 	[data-scope='radio-group']{
-		font-size: $font-size-m;
+		font-size: var(--font-size-m);
 		&[data-part='label'] {
 			@include sr-only;
 		}
@@ -32,7 +32,7 @@
 			height: 22px;
 			width: 22px;
 			border-radius: 50%;
-			border: 2px solid $color-primary;
+			border: 2px solid var(--color-primary);
 			background: transparent;
 			display: flex;
 			align-items: center;
@@ -47,7 +47,7 @@
 				content: '';
 				width: 10px;
 				height: 10px;
-				background: $color-primary;
+				background: var(--color-primary);
 				border-radius: 50%;
 				transform: scale(0);
 				transition: transform 0.15s ease-out;
@@ -56,7 +56,7 @@
 				transform: scale(1);
 			}
 		}
-		/* Ark’s root indicator – unused visually */
+		/* Ark's root indicator – unused visually */
 		&[data-part='indicator'] {
 			display: none;
 		}

@@ -1,4 +1,4 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .main{
 	display: flex;
@@ -11,8 +11,8 @@
 	&__content{
 		min-height: 465px;
 		display: flex;
-		border-top: 1px solid $color-line-off-black;
-		border-bottom: 1px solid $color-line-off-black;
-		background: $color-bg-3;
+		border-top: 1px solid var(--color-line-off-black);
+		border-bottom: 1px solid var(--color-line-off-black);
+		background: var(--color-bg-3);
 	}
 }

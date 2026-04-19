@@ -1,4 +1,4 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .shareButtons{
 	display: flex;
@@ -16,7 +16,7 @@
 		content: '';
 		height: 1px;
 		width: 4rem;
-		background-color: $color-primary;
+		background-color: var(--color-primary);
 		display: none;
 		@include break(tablet){
 			display: block;
@@ -36,7 +36,7 @@
 			place-content: center;
 			&:hover{
 				svg path{
-					fill: $color-primary;
+					fill: var(--color-primary);
 				}
 			}
 		}

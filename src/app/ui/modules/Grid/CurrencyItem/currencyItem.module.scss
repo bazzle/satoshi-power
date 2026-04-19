@@ -1,7 +1,7 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .currencyItem{
-    border: 2px solid $color-primary;
+    border: 2px solid var(--color-primary);
     position: relative;
 	cursor: default;
 	list-style-type: none;
@@ -10,7 +10,7 @@
         position: absolute;
 		top: 0;
 		left: 0;
-        background-color: $color-bitcoin-accessible;
+        background-color: var(--color-bitcoin-accessible);
 		height: 100%;
     }
 	&__inner{
@@ -45,16 +45,16 @@
 		gap: .5rem;
 		height: 100%;
 	}
-	
+
 	&:focus-visible{
-		outline: 2px solid $color-focus;
+		outline: 2px solid var(--color-focus);
 		border-color: transparent;
 	}
 
 	&--mainUnitKilled{
 		.currencyItem{
 			&__percentageBar{
-				background-color: $color-bitcoin;
+				background-color: var(--color-bitcoin);
 			}
 			&__text{
 				color: black;
@@ -75,10 +75,10 @@
 		cursor: pointer;
 		z-index: 4;
 		&:hover{
-			outline: 2px solid $white;
+			outline: 2px solid var(--white);
 		}
 		&:focus-visible{
-			outline: 2px solid $color-accent;
+			outline: 2px solid var(--color-accent);
 		}
 	}
 }

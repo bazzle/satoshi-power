@@ -1,4 +1,4 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .about{
 	display: block;
@@ -41,6 +41,6 @@
 		}
 	}
 	&__share{
-		margin-bottom: $gap;
+		margin-bottom: var(--gap);
 	}
 }

@@ -1,4 +1,4 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 $grid-gap: 2.2rem;
 .grid{
 	&__container{

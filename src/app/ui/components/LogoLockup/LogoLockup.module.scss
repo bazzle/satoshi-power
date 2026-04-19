@@ -1,4 +1,4 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .logoLockup{
     display: flex;
@@ -19,6 +19,6 @@
     }
     &__subtitle{
         @include text-blocky-small;
-        color: $color-bitcoin;
+        color: var(--color-bitcoin);
     }
 }

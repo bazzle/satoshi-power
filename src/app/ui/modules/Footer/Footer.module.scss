@@ -1,7 +1,7 @@
-@use '@/app/styles/all-vars' as *;
+@use '@/app/styles/mixins' as *;
 
 .footer{
-	padding-bottom: $gap;
+	padding-bottom: var(--gap);
     &__container{
         display: flex;
         justify-content: center;

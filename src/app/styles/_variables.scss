@@ -1,66 +1,61 @@
-$header-height: 147px;
-$header-height-mobile: 82px;
+:root {
+	// Layout
+	--header-height: 147px;
+	--header-height-mobile: 82px;
+	--site-width-narrow: 800px;
+	--site-width-wide: 1000px;
+	--site-width-wider: 1300px;
+	--gap: 1.5rem;
+	--gap-deep: 3.5rem;
+	--content-offset: 6rem;
+	--padding-std: clamp(3rem, 3vw, 4rem);
+	--padding-deep: clamp(3rem, 5vw, 6rem);
+	--border-radius: 3px;
+	--edgepadding: 3rem;
+	--edgepadding-mobile: 1rem;
+	--edgepadding-mobile-loose: 3rem;
 
-$site-width-narrow: 800px;
-$site-width-wide: 1000px;
-$site-width-wider: 1300px;
-$site-width-narrow-margins: calc(900px + 3rem);
-$site-width-wide-margins: calc(1100px + 3rem);
+	// Colors
+	--white: #ffffff;
+	--black: #000000;
+	--color-bitcoin: #f7931a;
+	--color-bitcoin-accessible: #D67600;
+	--color-primary: var(--color-bitcoin);
+	--color-primary--light: #e19539;
+	--color-accent: #00E0FF;
+	--color-accent--light: #9AF3FF;
+	--color-focus: #00E0FF;
+	--gradient: linear-gradient(45deg, rgba(0, 224, 255, 0.1) 0%, rgba(247, 147, 26, 0.1) 100%);
+	--color-bg-1: #000000;
+	--color-bg-2: #080808;
+	--color-bg-3: #151515;
+	--color-text: #ffffff;
+	--color-text-reverse: #000000;
+	--color-link: var(--white);
+	--color-text-link: var(--color-accent);
+	--color-line: #F2F2F2;
+	--color-line-dark: #d8d8d8;
+	--color-line-solid: #707070;
+	--color-line-off-black: #333333;
 
-// Mind the gap
-$gap: 1.5rem;
-$gap-deep: 3.5rem;
+	// Borders
+	--borderline: 2px solid #F2F2F2;
+	--borderline-darker: 2px solid #d8d8d8;
+	--borderline-solid: 2px solid #707070;
 
-$white: #ffffff;
-$black: #000000;
+	// Easings
+	--move-whip: cubic-bezier(0.8, 0, 0.3, 1);
+	--move-snap: cubic-bezier(0.7, -0.5, 0.3, 1.5);
+	--move-snap-in: cubic-bezier(0.6, -0.3, 0.7, 0);
+	--move-snap-out: cubic-bezier(0.2, 0.9, 0.3, 1.3);
+	--fast-to-slow: cubic-bezier(0.11, 0.71, 0.46, 0.91);
 
-// color options
-$color-bitcoin: #f7931a;
-$color-bitcoin-accessible: #D67600;
-
-// colors
-$color-primary: $color-bitcoin;
-$color-primary--light: #e19539;
-$color-accent: #00E0FF;
-$color-accent--light: #9AF3FF;
-$color-focus: #00E0FF;
-$gradient: linear-gradient(45deg, rgba($color-accent, .1) 0%, rgba($color-primary, .1) 100%);
-
-// Background colors
-$color-bg-1: #000000;
-$color-bg-2: #151515;
-
-// for testing
-$gold: rgb(242, 208, 14);
-$yellow: rgb(255, 255, 0);
-
-// Text colors
-$color-text: #ffffff;
-$color-text-reverse: #000000;
-$color-link: $color-primary;
-
-// line color
-$color-line: #F2F2F2;
-$color-line-dark: #d8d8d8;
-// for dark background
-$color-line-solid: #707070;
-$color-line-off-black: #333333;
-
-// standard border
-$borderline: 2px solid $color-line;
-$borderline-darker: 2px solid $color-line-dark;
-$borderline-solid: 2px solid $color-line-solid;
-
-// fancy transitions
-$move-whip: cubic-bezier(0.8, 0, 0.3, 1);
-$move-snap: cubic-bezier(0.7, -0.5, 0.3, 1.5);
-$move-snap-in: cubic-bezier(0.6, -0.3, 0.7, 0);
-$move-snap-out: cubic-bezier(0.2, 0.9, 0.3, 1.3);
-$fast-to-slow: cubic-bezier(0.11, 0.71, 0.46, 0.91);
-
-// misc
-$border-radius: 3px;
-$color-text-link: $color-accent;
-
-// theme specfic
-$content-offset: 6rem;
+	// Typography
+	--font-size-s: clamp(1.4rem, 1.45vw, 1.5rem);
+	--font-size-m: clamp(1.5rem, 1.6vw, 1.7rem);
+	--font-size-l: clamp(1.7rem, 1.85vw, 2rem);
+	--font-size-xl: clamp(2rem, 2.25vw, 2.5rem);
+	--font-size-xxl: clamp(2.5rem, 2.8vw, 3.2rem);
+	--font-size-standard: var(--font-size-s);
+	--line-height-standard: 1.6;
+}
