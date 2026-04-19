@@ -18,7 +18,7 @@ export const fonts = [
 	{ name: 'DM Sans', data: dmSans, weight: 400, style: 'normal' },
 ]
 
-export default function OGImageTemplate({ currencyName, title1, title2 }) {
+export function CurrencyPageOG({ currencyTitle, description }) {
 	return (
 		<div
 			style={{
@@ -37,12 +37,44 @@ export default function OGImageTemplate({ currencyName, title1, title2 }) {
 			<img width="400" src={logoSrc} alt="Logo" />
 
 			<div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-				<div style={{ fontFamily: '"DM Sans"', fontSize: '80px', fontWeight: 700 }}>{currencyName}</div>
-				<div style={{ fontSize: '48px', color: 'blue' }}>to Satoshi / Bitcoin</div>
+				<div style={{ fontFamily: '"DM Sans"', fontSize: '50px' }}>
+					{currencyTitle}
+				</div>
 			</div>
 
-			<div style={{ display: 'flex', color: '#00E0FF', fontSize: '32px' }}>
-				How many sats is one {title1} {title2}?
+			<div style={{ display: 'flex', color: '#f7931a', fontSize: '32px' }}>
+				{description}
+			</div>
+		</div>
+	)
+}
+
+export function HomePageOG({ currencyTitle, description }) {
+	return (
+		<div
+			style={{
+				width: '1200px',
+				height: '630px',
+				background: '#000000',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'space-between',
+				padding: '60px 70px',
+				color: '#ffffff',
+				fontFamily: '"DM Sans"',
+			}}
+		>
+
+			<img width="400" src={logoSrc} alt="Logo" />
+
+			<div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+				<div style={{ fontFamily: '"DM Sans"', fontSize: '50px' }}>
+					{currencyTitle}
+				</div>
+			</div>
+
+			<div style={{ display: 'flex', color: '#f7931a', fontSize: '32px' }}>
+				{description}
 			</div>
 		</div>
 	)

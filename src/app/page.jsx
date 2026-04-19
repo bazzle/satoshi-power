@@ -1,7 +1,7 @@
-import Header from "@/app/ui/modules/Header";
-import Footer from "@/app/ui/modules/Footer";
-import About from "@/app/ui/modules/About";
-import { Grid } from "@/app/ui/modules/Grid";
+import Header from '@/app/ui/modules/Header'
+import Footer from '@/app/ui/modules/Footer'
+import About from '@/app/ui/modules/About'
+import { Grid } from '@/app/ui/modules/Grid'
 
 export default function Home() {
 	return (
@@ -9,7 +9,7 @@ export default function Home() {
 			<Header location="homepage" />
 			<main className="main">
 				<div className="row row--nomargin-top main__content">
-                	<div className="row-container row-container--wider">
+					<div className="row-container row-container--wider">
 						<Grid/>
 					</div>
 				</div>
@@ -21,5 +21,5 @@ export default function Home() {
 			</main>
 			<Footer/>
 		</>
-	);
+	)
 }
