@@ -1,49 +1,49 @@
-import { Bebas_Neue, DM_Sans } from "next/font/google";
-import "./globals.scss";
-import { SnapshotsProvider } from "./data/SnapshotsDataContext";
-import { LiveDataProvider } from "./data/LiveDataContext";
+import { Bebas_Neue, DM_Sans } from 'next/font/google'
+import './globals.scss'
+import { SnapshotsProvider } from './data/SnapshotsDataContext'
+import { LiveDataProvider } from './data/LiveDataContext'
 
 const bebasNeue = Bebas_Neue({
-	subsets: ["latin"],
-	display: "swap",
-	weight: "400",
-	variable: "--font-bebas-neue",
-});
+	subsets: ['latin'],
+	display: 'swap',
+	weight: '400',
+	variable: '--font-bebas-neue',
+})
 
 const dmSans = DM_Sans({
-	subsets: ["latin"],
-	display: "swap",
-	style: ["normal", "italic"],
-	variable: "--font-dm-sans",
-	weight: ["300", "400", "700", "800"],
-});
+	subsets: ['latin'],
+	display: 'swap',
+	style: ['normal', 'italic'],
+	variable: '--font-dm-sans',
+	weight: ['300', '400', '700', '800'],
+})
 
 export const metadata = {
-	title: "Satoshi Power",
-	description: "Sats will eat the world. Comparing the price of a satoshi against fiat shitcoins",
+	title: 'Satoshi Power',
+	description: 'Sats will eat the world. Comparing the price of a satoshi against fiat shitcoins',
 	metadataBase: new URL('https://satoshi-power.com'),
 	alternates: {
 		canonical: '/',
 	},
 	openGraph: {
-		title: "Satoshi Power",
-		description: "Sats will eat the world. Comparing the price of a satoshi against fiat shitcoins",
-		url: "/",
-		type: "website",
-		siteName: "Satoshi Power",
+		title: 'Satoshi Power',
+		description: 'Sats will eat the world. Comparing the price of a satoshi against fiat shitcoins',
+		url: '/',
+		type: 'website',
+		siteName: 'Satoshi Power',
 	},
-};
+}
 
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body className={`${bebasNeue.variable} ${dmSans.variable}`}>
 				<SnapshotsProvider>
-				<LiveDataProvider>
-					{children}
-				</LiveDataProvider>
+					<LiveDataProvider>
+						{children}
+					</LiveDataProvider>
 				</SnapshotsProvider>
 			</body>
 		</html>
-	);
+	)
 }
