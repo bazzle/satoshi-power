@@ -1,16 +1,16 @@
-"use client"
-import styles from "./CurrencyPage.module.scss"
-import { useContext, useEffect, useState } from "react"
-import { LiveDataContext } from "@/app/data/LiveDataContext"
-import Loading from "@/app/ui/components/Loading"
-import Converter from "@/app/ui/modules/CurrencyPage/Converter"
-import Skulls from "@/app/ui/components/Skulls"
-import Link from "next/link"
-import Icons from "@/app/ui/misc/Icons"
-import StatsBlock from "./Stats/index.jsx"
+'use client'
+import styles from './CurrencyPage.module.scss'
+import { useContext, useEffect, useState } from 'react'
+import { LiveDataContext } from '@/app/data/LiveDataContext'
+import Loading from '@/app/ui/components/Loading'
+import Converter from '@/app/ui/modules/CurrencyPage/Converter'
+import Skulls from '@/app/ui/components/Skulls'
+import Link from 'next/link'
+import Icons from '@/app/ui/misc/Icons'
+import StatsBlock from './Stats/index.jsx'
 
-function CurrencyPage({slug}){
-	const {liveData} = useContext(LiveDataContext)
+function CurrencyPage({ slug }){
+	const { liveData } = useContext(LiveDataContext)
 	const [currencyObj, setCurrencyObj] = useState(null)
 
 	useEffect(() => {
@@ -24,12 +24,12 @@ function CurrencyPage({slug}){
 			<Loading/>
 		</div>
 	)
-	
+
 	const successOutput = () => {
 
 		const title1 = currencyObj.noSubUnit || currencyObj.subUnitKilled ? currencyObj.demonym : `${currencyObj.subUnitName} /`
 		const title2 = currencyObj.unitNameSingular
-		const title3 = "to satoshi / bitcoin"
+		const title3 = 'to satoshi / bitcoin'
 
 		return (
 			<div className={styles.currencyPage__inner}>
@@ -51,7 +51,7 @@ function CurrencyPage({slug}){
 			</div>
 		)
 	}
-	
+
 	return currencyObj ? successOutput() : loadingOutput()
 }
 

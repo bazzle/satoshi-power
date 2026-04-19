@@ -1,21 +1,21 @@
 'use client'
-import CurrencyItem from "./CurrencyItem";
-import styles from "./Grid.module.scss";
-import { LiveDataContext } from "@/app/data/LiveDataContext";
-import { useContext, useEffect } from "react";
-import Loading from "@/app/ui/components/Loading";
+import CurrencyItem from './CurrencyItem'
+import styles from './Grid.module.scss'
+import { LiveDataContext } from '@/app/data/LiveDataContext'
+import { useContext, useEffect } from 'react'
+import Loading from '@/app/ui/components/Loading'
 
 export function Grid(){
 
-	const {liveData} = useContext(LiveDataContext);
-	const liveDataArr = liveData ? Object.values(liveData) : [];
-	liveDataArr.sort((a, b) => a.percentage - b.percentage);
+	const { liveData } = useContext(LiveDataContext)
+	const liveDataArr = liveData ? Object.values(liveData) : []
+	liveDataArr.sort((a, b) => a.percentage - b.percentage)
 
 	const gridOutput = () => (
 		<ul className={styles.grid__grid}>
 			{
 				liveDataArr.map((item, index) => {
-					return <CurrencyItem key={item.currencyCodeSlug} itemObj={item} />;
+					return <CurrencyItem key={item.currencyCodeSlug} itemObj={item} />
 				})
 			}
 		</ul>

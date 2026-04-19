@@ -1,43 +1,43 @@
 'use client'
-import { useEffect, useState } from "react";
-import styles from "./ShareButtons.module.scss";
-import CopyIcon from "./CopyIcon.jsx"
+import { useEffect, useState } from 'react'
+import styles from './ShareButtons.module.scss'
+import CopyIcon from './CopyIcon.jsx'
 import {
 	TwitterShareButton,
 	XIcon,
 	TelegramShareButton,
-	TelegramIcon
-} from "react-share";
+	TelegramIcon,
+} from 'react-share'
 
-function ShareButtons({title, excerpt, preText}){
-	const [shareUrl, setShareUrl] = useState("");
+function ShareButtons({ title, excerpt, preText }){
+	const [shareUrl, setShareUrl] = useState('')
 	const emailBody = shareUrl
-	const mailtoHref = shareUrl ? `mailto:?subject=${encodeURIComponent(title)}&body=${emailBody}` : undefined;
+	const mailtoHref = shareUrl ? `mailto:?subject=${encodeURIComponent(title)}&body=${emailBody}` : undefined
 	const [messageShow, setMessageShow] = useState(false)
 
 	useEffect(() => {
-		if (typeof window !== "undefined") {
-			setShareUrl(window.location.href);
+		if (typeof window !== 'undefined') {
+			setShareUrl(window.location.href)
 		}
-	}, []);
+	}, [])
 
-	return(
+	return (
 		<div className={styles.shareButtons}>
 			<div className={styles.shareButtons__label}>
 				{preText ? preText : 'Share this'}
 			</div>
 			<div className={styles.shareButtons__list}>
 				<TwitterShareButton
-					url={shareUrl} 
-					htmlTitle="Share on X" 
-					title={title} 
+					url={shareUrl}
+					htmlTitle="Share on X"
+					title={title}
 					resetButtonStyle
 				>
 					<XIcon
 						round={false}
 						size={36}
 						iconFillColor="white"
-						bgStyle={{fill: 'transparent'}}
+						bgStyle={{ fill: 'transparent' }}
 					/>
 				</TwitterShareButton>
 
@@ -50,7 +50,7 @@ function ShareButtons({title, excerpt, preText}){
 						round={false}
 						size={36}
 						iconFillColor="white"
-						bgStyle={{fill: 'transparent'}}
+						bgStyle={{ fill: 'transparent' }}
 					/>
 				</TelegramShareButton >
 
@@ -61,4 +61,4 @@ function ShareButtons({title, excerpt, preText}){
 	)
 }
 
-export default ShareButtons;
+export default ShareButtons

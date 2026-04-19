@@ -1,29 +1,29 @@
-"use client";
-import styles from "./NostrCopy.module.scss"
+'use client'
+import styles from './NostrCopy.module.scss'
 import Icons from '@/app/ui/misc/Icons'
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 function NostrCopy(){
-	
+
 	const nostrKey = 'bazzle@br-web.me'
 	const [messageShow, setMessageShow] = useState(false)
 
-	const messageContainer = ()=>{
-		if (!messageShow) return 
+	const messageContainer = () => {
+		if (!messageShow) return
 		return (
 			<span className={styles.nostrCopy__message}>Copied!</span>
 		)
 	}
-	
-	const handleClick = ()=>{
+
+	const handleClick = () => {
 		navigator.clipboard.writeText(nostrKey)
-		.then(()=> {
-			setMessageShow(true)
-			setTimeout(()=>{
-				setMessageShow(false)
-			},700)
-		})
-		.catch((err)=> console.error('Failed to copy to clipboard: ', err))
+			.then(() => {
+				setMessageShow(true)
+				setTimeout(() => {
+					setMessageShow(false)
+				}, 700)
+			})
+			.catch((err) => console.error('Failed to copy to clipboard: ', err))
 	}
 
 	return (

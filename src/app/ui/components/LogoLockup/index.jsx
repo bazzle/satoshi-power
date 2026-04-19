@@ -1,8 +1,8 @@
-import styles from './LogoLockup.module.scss';
-import Icons from '@/app/ui/misc/Icons';
+import styles from './LogoLockup.module.scss'
+import Icons from '@/app/ui/misc/Icons'
 
 function LogoLockup(){
-	const {sat} = Icons
+	const { sat } = Icons
 	return (
 		<div className={styles.logoLockup}>
 			<div className={styles.logoLockup__logo}>
@@ -16,4 +16,4 @@ function LogoLockup(){
 	)
 }
 
-export default LogoLockup;
+export default LogoLockup

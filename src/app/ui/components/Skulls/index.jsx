@@ -1,14 +1,14 @@
 'use client'
-import icons from '@/app/ui/misc/Icons';
-import styles from './Skulls.module.scss';
+import icons from '@/app/ui/misc/Icons'
+import styles from './Skulls.module.scss'
 
-function Skulls({howMany, orangeBg}){
+function Skulls({ howMany, orangeBg }){
 
 	let classNameString
 	if (orangeBg){
-		classNameString = styles.skullIcon____black;
+		classNameString = styles.skullIcon____black
 	} else {
-		classNameString = styles.skullIcon;
+		classNameString = styles.skullIcon
 	}
 
 	const skullIcon = <span className={classNameString}>{icons.skull}</span>
@@ -32,4 +32,4 @@ function Skulls({howMany, orangeBg}){
 	)
 }
 
-export default Skulls;
+export default Skulls

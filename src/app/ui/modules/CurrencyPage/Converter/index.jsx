@@ -1,12 +1,11 @@
 'use client'
-import { useEffect, useState } from "react"
-import styles from "./styles/Converter.module.scss"
+import { useEffect, useState } from 'react'
+import styles from './styles/Converter.module.scss'
 import { NumberInput } from '@ark-ui/react/number-input'
 import { RadioGroup } from '@ark-ui/react/radio-group'
 import Icons from '@/app/ui/misc/Icons'
 
-
-function Converter({itemObj}){
+function Converter({ itemObj }){
 	const defaultSentence = 'Input number above for conversion'
 	const [mode, setMode] = useState('sats')
 	const [inputNumber, setInputNumber] = useState()
@@ -24,7 +23,7 @@ function Converter({itemObj}){
 	}
 
 	// Run on load and when input number changes
-	useEffect(()=>{
+	useEffect(() => {
 		let outputValue
 		let outputDisplay
 		let outputString
@@ -37,13 +36,13 @@ function Converter({itemObj}){
 		const checkNum = (n) => Number.isNaN(n) ? 0 : n
 
 		const satoshiLabelString = (num) => {
-			const label = num === '1' ? 'Satoshi' : "Satoshi's"
+			const label = num === '1' ? 'Satoshi' : 'Satoshi\'s'
 			num = num > 10 ? Math.round(num) : num
 			num = localiseNumber(num)
 			return `${num} ${label}`
 		}
 
-		if(mode === 'sats'){
+		if (mode === 'sats'){
 			// sat price is the listed BTC price / 100m.
 			// The price of one sat in the main unit of currency.
 			const pretextString = `${satoshiLabelString(inputNumber)}`
@@ -58,7 +57,7 @@ function Converter({itemObj}){
 					<>{pretextString} = {unitDisplaySubUnit} {currencyString}</>
 				)
 				// When output subunits exceed 99 change to main unit
-				if(outputValueSubUnit > 99){
+				if (outputValueSubUnit > 99){
 					outputString = (
 						<>{pretextString} =  {symbol}{unitDisplay}</>
 					)
@@ -71,7 +70,7 @@ function Converter({itemObj}){
 				)
 			}
 
-		} else if(mode === 'subUnit') {
+		} else if (mode === 'subUnit') {
 
 			if (itemObj.noSubUnit) {
 				currencyString = itemObj.unitNameSingular
@@ -82,7 +81,7 @@ function Converter({itemObj}){
 				<p>{localiseNumber(inputNumber)} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
 			)
 
-		} else if(mode === 'mainUnit') {
+		} else if (mode === 'mainUnit') {
 			currencyString = itemObj.symbol
 			outputValue = checkNum(inputNumber / satPrice)
 			outputDisplay = outputValue.toFixed(2)
@@ -103,18 +102,18 @@ function Converter({itemObj}){
 			setOutputSentence(defaultSentence)
 		}
 
-	},[inputNumber, mode])
-	
+	}, [inputNumber, mode])
+
 	const singularName = itemObj.unitNameSingular
 	const activeUnitName = itemObj.subUnitKilled ? itemObj.unitNameSingular : itemObj.subUnitNameSingular
 
 	const unitChoices = [
-		'Satoshi'
+		'Satoshi',
 	]
 
-	if(itemObj.noSubUnit){ // Like KRW
+	if (itemObj.noSubUnit){ // Like KRW
 		unitChoices.push(itemObj.unitNameSingular)
-	} else{
+	} else {
 		if (itemObj.subUnitKilled){ // Like Naira
 			unitChoices.push(itemObj.unitNameSingular)
 		} else { // Like USD
@@ -124,9 +123,9 @@ function Converter({itemObj}){
 	}
 
 	const handleModeChange = (mode) => {
-		if(mode.value === "Satoshi"){
+		if (mode.value === 'Satoshi'){
 			setMode('sats')
-		} else if(mode.value === itemObj.unitNameSingular) {
+		} else if (mode.value === itemObj.unitNameSingular) {
 			setMode('mainUnit')
 		} else {
 			setMode('subUnit')
@@ -138,9 +137,9 @@ function Converter({itemObj}){
 		setInputNumber(toNumber(num))
 	}
 
-	return(
+	return (
 		<div className={styles.converter}>
-			
+
 			<form className={styles.converter__form}>
 				<NumberInput.Root
 					min={1}

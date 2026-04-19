@@ -1,27 +1,27 @@
-'use client';
-import styles from './currencyItem.module.scss';
-import Link from 'next/link';
-import Skulls from '@/app/ui/components/Skulls';
+'use client'
+import styles from './currencyItem.module.scss'
+import Link from 'next/link'
+import Skulls from '@/app/ui/components/Skulls'
 
-function CurrencyItem({itemObj}){
+function CurrencyItem({ itemObj }){
 
 	const classesArray = [
 		styles.currencyItem,
-		itemObj.smallUnitKilled ? styles["currencyItem--subUnitKilled"] : '',
-		itemObj.mainUnitKilled ? styles["currencyItem--mainUnitKilled"] : '',
+		itemObj.smallUnitKilled ? styles['currencyItem--subUnitKilled'] : '',
+		itemObj.mainUnitKilled ? styles['currencyItem--mainUnitKilled'] : '',
 	]
-	const classes = classesArray.join(' ');
+	const classes = classesArray.join(' ')
 
 	const DomPercentageBar = () => {
-		const width = itemObj.percentage > 100 ? 100 : itemObj.percentage;
+		const width = itemObj.percentage > 100 ? 100 : itemObj.percentage
 		return (
-			<span style={{width: `${width}%`}} className={styles.currencyItem__percentageBar}></span>
+			<span style={{ width: `${width}%` }} className={styles.currencyItem__percentageBar}></span>
 		)
-	};
+	}
 
 	const DomTextString = () => {
-		const name = itemObj.displayName;
-		const itemTextString = itemObj.percentage < 1 ? `${name} <1%` : `${name} ${itemObj.percentage}%`;
+		const name = itemObj.displayName
+		const itemTextString = itemObj.percentage < 1 ? `${name} <1%` : `${name} ${itemObj.percentage}%`
 		return (
 			<span className={styles.currencyItem__text}>
 				{itemTextString}
@@ -36,34 +36,34 @@ function CurrencyItem({itemObj}){
 			</div>
 		)
 	}
-	const itemName = itemObj.displayName;
-	const itemTextString = itemObj.percentage < 1 ? `${itemName} <1%` : `${itemName} ${itemObj.percentage}%`; 
+	const itemName = itemObj.displayName
+	const itemTextString = itemObj.percentage < 1 ? `${itemName} <1%` : `${itemName} ${itemObj.percentage}%`
 
 	const itemAttributes = {
-		percentageBar : ()=> {
-			const width = itemObj.percentage > 100 ? 100 : itemObj.percentage;
+		percentageBar: () => {
+			const width = itemObj.percentage > 100 ? 100 : itemObj.percentage
 			return (
-				<span style={{width: `${width}%`}} className={styles.currencyItem__percentageBar}></span>
+				<span style={{ width: `${width}%` }} className={styles.currencyItem__percentageBar}></span>
 			)
 		},
-		textElem : ()=> {
+		textElem: () => {
 			return (
 				<span className={styles.currencyItem__text}>
 					{itemTextString}
 				</span>
 			)
 		},
-		status : ()=> {
+		status: () => {
 			return (
 				<div className={styles.currencyItem__statusContainer}>
 					{itemObj.mainUnitKilled ? <Skulls howMany={itemObj.score} orangeBg /> : <Skulls howMany={itemObj.score} />}
 				</div>
 			)
-		}
+		},
 	}
 
 	const currencyPagePath = `/currency/${itemObj.currencyCodeSlug}`
-	
+
 	return (
 		<li className={classes}>
 			<Link className={styles.currencyItem__link} href={currencyPagePath} aria-label={itemTextString}></Link>

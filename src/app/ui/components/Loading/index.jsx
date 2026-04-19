@@ -1,9 +1,9 @@
-import styles from "./Loading.module.scss"
-import Icons from '@/app/ui/misc/Icons';
+import styles from './Loading.module.scss'
+import Icons from '@/app/ui/misc/Icons'
 
 function Loading(){
-	const {sat} = Icons
-	return(
+	const { sat } = Icons
+	return (
 		<div className={styles.loading}>
 			<div className={styles.loading__icon}>
 				{sat}
@@ -12,4 +12,4 @@ function Loading(){
 	)
 }
 
-export default Loading;
+export default Loading
