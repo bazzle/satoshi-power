@@ -1,27 +1,17 @@
-import currenciesRef from "@/app/data/currenciesReference.json";
+import getDataPromise from '@/app/data/getData'
 
-export const dynamic = "force-static";
+export const dynamic = 'force-static'
 
-const BASE_URL = "https://satoshi-power.com";
-const excluded = ["ghs"];
+const BASE_URL = 'https://satoshi-power.com'
 
-export default function sitemap() {
-	const currencyEntries = Object.keys(currenciesRef)
-		.filter((code) => !excluded.includes(code))
-		.map((code) => ({
-			url: `${BASE_URL}/currency/${code}`,
-			lastModified: new Date(),
-			changeFrequency: "daily",
-			priority: 0.8,
-		}));
-
-	return [
-		{
-			url: BASE_URL,
-			lastModified: new Date(),
-			changeFrequency: "daily",
-			priority: 1,
-		},
-		...currencyEntries,
-	];
+export default async function sitemap() {
+	const data = await getDataPromise()
+	const dataArr = Object.values(data)
+	const newArr = dataArr.map((item) => ({
+		url: `${BASE_URL}/currency/${item.currencyCodeSlug}`,
+		changeFrequency: 'daily',
+		priority: 1,
+	}))
+	console.log(newArr)
+	return newArr
 }
