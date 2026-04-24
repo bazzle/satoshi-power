@@ -1,10 +1,7 @@
 import fs from 'fs'
 import Image from 'next/image'
 import path from 'path'
-
-// Logo
-const logoData = fs.readFileSync(path.join(process.cwd(), 'public/logo.png'))
-const logoSrc = `data:image/png;base64,${logoData.toString('base64')}`
+import logoSvg from '@/app/ui/misc/logo.jsx'
 
 export function CurrencyPageOG({ currencyTitle, description }) {
 	return (
@@ -27,7 +24,7 @@ export function CurrencyPageOG({ currencyTitle, description }) {
 				flexDirection: 'column',
 				justifyContent: 'space-between',
 			}}>
-				<img width="489" height="120" src={logoSrc} alt="Logo" />
+				{logoSvg}
 				<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '12px', flexGrow: 1 }}>
 					<div style={{ fontFamily: '"DM Sans"', fontSize: '50px' }}>
 						{currencyTitle}
@@ -63,7 +60,7 @@ export function HomePageOG({ title, description }) {
 				justifyContent: 'space-between',
 			}}>
 
-				<img width="489" height="120" src={logoSrc} alt="Logo" />
+				{logoSvg}
 				<div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '12px', flexGrow: 1 }}>
 					<div style={{ fontSize: '32px' }}>
 						{description}
