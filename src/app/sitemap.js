@@ -7,11 +7,17 @@ const BASE_URL = 'https://satoshi-power.com'
 export default async function sitemap() {
 	const data = await getDataPromise()
 	const dataArr = Object.values(data)
-	const newArr = dataArr.map((item) => ({
+	const currencyEntries = dataArr.map((item) => ({
 		url: `${BASE_URL}/currency/${item.currencyCodeSlug}`,
 		changeFrequency: 'daily',
 		priority: 1,
 	}))
-	console.log(newArr)
-	return newArr
+	return [
+		{
+			url: BASE_URL,
+			changeFrequency: 'daily',
+			priority: 1,
+		},
+		...currencyEntries,
+	]
 }
