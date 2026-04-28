@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2017",
+	"allowImportingTsExtensions": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -40,7 +41,7 @@
     "src/app/data/EditData.js",
     "src/app/currency/[slug]/page.jsx",
     "src/app/ui/components/Loading/index.jsx",
-    "src/app/page.jsx",
+    "src/app/page.tsx",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
