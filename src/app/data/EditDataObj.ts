@@ -33,7 +33,7 @@ function checkCurrencyRefObject(obj: any){
 const excluded = ['GHS']
 
 function editDataObj(fetchedData: { [key : string]: any }){
-	const currenciesObj = {}
+	let currenciesObj : { [key: string]: any } = {}
 	// Loop through the fetchedData
 	for (const [key, itemObj] of Object.entries(fetchedData)) {
 		// Get the itemcode format
@@ -163,7 +163,7 @@ function editDataObj(fetchedData: { [key : string]: any }){
 		// Add to new object ----------------------------------------------------
 
 		if (checkCurrencyRefObject(newData)){
-			currenciesObj[key] = newData
+			currenciesObj[key] = { ...newData }
 		}
 
 	}
