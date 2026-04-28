@@ -1,20 +1,16 @@
 import Utilities from '@/app/ui/misc/Utilities'
 import currenciesRef from './currenciesReference.json'
 
-function checkCurrencyRefObject(obj){
-	// Check all data values are present and the correct type before this goes out
+function checkCurrencyRefObject(obj: any){
+	// Check all data values are present and the correct type
 	return (
 		typeof obj.symbol === 'string' &&
 		typeof obj.unitName === 'string' &&
 		typeof obj.unitNameSingular === 'string' &&
-		(typeof obj.subUnitName === 'string' || 'null') &&
-		(typeof obj.subUnitNameSingular === 'string' || 'null') &&
 		typeof obj.subUnits === 'number' &&
 		typeof obj.btcPrice === 'number' &&
 		typeof obj.satPrice === 'number' &&
-		typeof obj.satPriceSubUnit === 'number' &&
 		typeof obj.satsPerUnit === 'number' &&
-		typeof obj.satsPerSubUnit === 'number' || 'null' &&
 		typeof obj.displayPrice === 'number' &&
 		typeof obj.percentage === 'number' &&
 		typeof obj.subUnitKilled === 'boolean' &&
@@ -26,20 +22,24 @@ function checkCurrencyRefObject(obj){
 		typeof obj.currencyCode === 'string' &&
 		typeof obj.currencyCodeSlug === 'string' &&
 		typeof obj.currencyLocale === 'string' &&
-		typeof obj.noSubUnit === 'boolean'
+		typeof obj.noSubUnit === 'boolean' &&
+		(obj.subUnitName === undefined || typeof obj.subUnitName === 'string') &&
+		(obj.subUnitNameSingular === undefined || typeof obj.subUnitNameSingular === 'string') &&
+		(obj.satsPerSubUnit === undefined || typeof obj.satsPerSubUnit === 'number') &&
+		(obj.satPriceSubUnit === undefined || typeof obj.satPriceSubUnit === 'number')
 	)
 }
 
 const excluded = ['GHS']
 
-function editDataObj(fetchedData){
+function editDataObj(fetchedData: { [key : string]: any }){
 	const currenciesObj = {}
 	// Loop through the fetchedData
 	for (const [key, itemObj] of Object.entries(fetchedData)) {
 		// Get the itemcode format
 		const itemCode = key.toLowerCase()
 		// Find the matching currency object from the reflist
-		const currencyRefObj = currenciesRef[itemCode]
+		const currencyRefObj = (currenciesRef as { [key: string]: any })[itemCode]
 
 		// If there is no match, then skip it
 		if (currencyRefObj === undefined){
@@ -63,15 +63,15 @@ function editDataObj(fetchedData){
 		const satPrice = btcPrice / 100000000
 		const noSubUnit = (subUnits === 1 || subUnitNameRaw === null || subUnitNameRaw === '')
 
-		const satPriceSubUnit = noSubUnit ? null : satPrice * 100
+		const satPriceSubUnit = noSubUnit ? undefined : satPrice * 100
 		const satsPerUnit = 1 / satPrice
-		const satsPerSubUnit = noSubUnit ? null : satsPerUnit / 100
+		const satsPerSubUnit = noSubUnit ? undefined : satsPerUnit / 100
 		const unitsPerSat = 1 / satsPerUnit
-		const subUnitsPerSat = noSubUnit ? null : 1 / satsPerSubUnit
+		const subUnitsPerSat = noSubUnit || satsPerSubUnit === undefined ? undefined : 1 / satsPerSubUnit
 
 		let subUnitNameMutated
 		if (noSubUnit){
-			subUnitNameMutated = null
+			subUnitNameMutated = undefined
 		} else {
 			let subUnitNamePrefix = Utilities.removeLastWord(currencyName)
 			if (subUnitNamePrefix === '') subUnitNamePrefix = currencyName
@@ -96,7 +96,10 @@ function editDataObj(fetchedData){
 		}
 
 		let subUnitNameSingular = null
-		if (!noSubUnit){
+		if (noSubUnit){
+			subUnitNameSingular = undefined
+		}
+		else {
 			if (subUnitKilled){
 				percentage = Math.round(percentage / 100)
 			}
@@ -105,7 +108,9 @@ function editDataObj(fetchedData){
 			} else {
 				mainUnitKilled = false
 			}
-			subUnitNameSingular = subUnitNameMutated.trim().split(' ').pop()
+			if (subUnitNameMutated) {
+				subUnitNameSingular = subUnitNameMutated.trim().split(' ').pop()
+			}
 		}
 
 		let displayName
@@ -159,9 +164,6 @@ function editDataObj(fetchedData){
 
 		if (checkCurrencyRefObject(newData)){
 			currenciesObj[key] = newData
-		} else {
-			console.log('Missing data')
-			continue
 		}
 
 	}
