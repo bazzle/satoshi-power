@@ -1,9 +1,14 @@
 import fs from 'fs'
 import Image from 'next/image'
 import path from 'path'
-import logoSvg from '@/app/ui/misc/logo.jsx'
+import logoSvg from '@/app/ui/misc/logo.tsx'
 
-export function CurrencyPageOG({ currencyTitle, description }) {
+type CurrencyPageOGprops = {
+	currencyTitle: string,
+	description: string
+}
+
+export function CurrencyPageOG({ currencyTitle, description } : CurrencyPageOGprops) {
 	return (
 		<div style={{
 			width: '1200px',
@@ -38,7 +43,12 @@ export function CurrencyPageOG({ currencyTitle, description }) {
 	)
 }
 
-export function HomePageOG({ title, description }) {
+type HomePageOGProps = {
+	title: string,
+	description: string
+}
+
+export function HomePageOG({ title, description } : HomePageOGProps) {
 	return (
 		<div style={{
 			width: '1200px',
