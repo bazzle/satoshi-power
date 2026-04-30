@@ -2,7 +2,12 @@
 import icons from '@/app/ui/misc/Icons'
 import styles from './Skulls.module.scss'
 
-function Skulls({ howMany, orangeBg }){
+type props = {
+	howMany: number,
+	orangeBg: boolean
+}
+
+function Skulls({ howMany, orangeBg }: props){
 
 	let classNameString
 	if (orangeBg){

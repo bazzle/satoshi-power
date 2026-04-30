@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import styles from './ShareButtons.module.scss'
-import CopyIcon from './CopyIcon.jsx'
+import CopyIcon from './CopyIcon.tsx'
 import {
 	TwitterShareButton,
 	XIcon,
@@ -9,11 +9,14 @@ import {
 	TelegramIcon,
 } from 'react-share'
 
-function ShareButtons({ title, excerpt, preText }){
+type props = {
+	title: string,
+	excerpt: string,
+	preText: string
+}
+
+function ShareButtons({ title, excerpt, preText } : props){
 	const [shareUrl, setShareUrl] = useState('')
-	const emailBody = shareUrl
-	const mailtoHref = shareUrl ? `mailto:?subject=${encodeURIComponent(title)}&body=${emailBody}` : undefined
-	const [messageShow, setMessageShow] = useState(false)
 
 	useEffect(() => {
 		if (typeof window !== 'undefined') {

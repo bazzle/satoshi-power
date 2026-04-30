@@ -2,7 +2,7 @@ import styles from './ShareButtons.module.scss'
 import { useState } from 'react'
 import Icons from '@/app/ui/misc/Icons'
 
-function CopyIcon({ shareUrl }){
+function CopyIcon({ shareUrl }: { shareUrl: string }){
 
 	const [messageShow, setMessageShow] = useState(false)
 
@@ -13,7 +13,7 @@ function CopyIcon({ shareUrl }){
 		)
 	}
 
-	const copyButtonHandler = (evt) => {
+	const copyButtonHandler = () => {
 		navigator.clipboard.writeText(shareUrl)
 			.then(() => {
 				setMessageShow(true)
