@@ -7,8 +7,8 @@ export const contentType = 'image/png'
 // Fonts
 import fs from 'fs'
 import path from 'path'
-function toArrayBuffer(buf) {
-	return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength)
+function toArrayBuffer(buf: Buffer): ArrayBuffer {
+	return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength) as ArrayBuffer
 }
 const dmSansBuf = fs.readFileSync(path.join(process.cwd(), 'src/app/fonts/dmsans.ttf'))
 const dmSans = toArrayBuffer(dmSansBuf)
@@ -18,12 +18,13 @@ const fonts = [
 // Size
 export const size = { width: 1200, height: 630 }
 
-export default function OGImage({ params }) {
+export default function OGImage() {
 	return new ImageResponse(
 		<>
 			<HomePageOG title="Satoshi Power" description="Comparing the price of a Satoshi against fiat sh!tcoins 💀" />
 		</>
 		,
+		// @ts-ignore
 		{ ...size, fonts },
 	)
 

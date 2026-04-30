@@ -2,7 +2,7 @@ import styles from './Header.module.scss'
 import LogoLockup from '@/app/ui/components/LogoLockup'
 import Link from 'next/link'
 
-function Header({ location }){
+function Header({ location } : { location: string }){
 	const className = location === 'homepage' ? styles.header____homepage : styles.header
 	return (
 		<header className={className}>

@@ -9,13 +9,7 @@ import {
 	TelegramIcon,
 } from 'react-share'
 
-type props = {
-	title: string,
-	excerpt: string,
-	preText: string
-}
-
-function ShareButtons({ title, excerpt, preText } : props){
+function ShareButtons(){
 	const [shareUrl, setShareUrl] = useState('')
 
 	useEffect(() => {
@@ -27,13 +21,13 @@ function ShareButtons({ title, excerpt, preText } : props){
 	return (
 		<div className={styles.shareButtons}>
 			<div className={styles.shareButtons__label}>
-				{preText ? preText : 'Share this'}
+				Share this
 			</div>
 			<div className={styles.shareButtons__list}>
 				<TwitterShareButton
 					url={shareUrl}
 					htmlTitle="Share on X"
-					title={title}
+					title="Share on X"
 					resetButtonStyle
 				>
 					<XIcon
@@ -47,7 +41,7 @@ function ShareButtons({ title, excerpt, preText } : props){
 				<TelegramShareButton
 					url={shareUrl}
 					htmlTitle="Share on Telegram"
-					title={title}
+					title="Share on Telegram"
 				>
 					<TelegramIcon
 						round={false}
@@ -57,7 +51,9 @@ function ShareButtons({ title, excerpt, preText } : props){
 					/>
 				</TelegramShareButton >
 
-				<CopyIcon shareUrl={shareUrl} />
+				<CopyIcon
+					shareUrl={shareUrl}
+				/>
 
 			</div>
 		</div>
