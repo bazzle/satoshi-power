@@ -2,13 +2,13 @@
 import CurrencyItem from './CurrencyItem'
 import styles from './Grid.module.scss'
 import { LiveDataContext } from '@/app/data/LiveDataContext'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import Loading from '@/app/ui/components/Loading'
 
 export function Grid(){
 
-	const { liveData } = useContext(LiveDataContext)
-	const liveDataArr = liveData ? Object.values(liveData) : []
+	const { liveData } = useContext(LiveDataContext)!
+	const liveDataArr: any[] = [] = liveData ? Object.values(liveData) : []
 	liveDataArr.sort((a, b) => a.percentage - b.percentage)
 
 	const gridOutput = () => (

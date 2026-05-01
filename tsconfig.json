@@ -36,7 +36,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/ui/modules/Grid/index.jsx",
+    "src/app/ui/modules/Grid/index.tsx",
     "src/app/ui/modules/Grid/CurrencyItem/index.tsx",
     "src/app/data/EditData.js",
     "src/app/currency/[slug]/page.jsx",
