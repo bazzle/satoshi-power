@@ -4,7 +4,7 @@ import styles from './Skulls.module.scss'
 
 type props = {
 	howMany: number,
-	orangeBg: boolean
+	orangeBg?: boolean
 }
 
 function Skulls({ howMany, orangeBg }: props){
