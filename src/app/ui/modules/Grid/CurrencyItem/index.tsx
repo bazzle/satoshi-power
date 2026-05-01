@@ -31,6 +31,7 @@ function CurrencyItem( { itemObj }: Record<string, any> ){
 	}
 	const itemName = itemObj.displayName
 	const itemTextString = itemObj.percentage < 1 ? `${itemName} <1%` : `${itemName} ${itemObj.percentage}%`
+	const linkLabel = `${itemTextString} ${itemObj.score === 1 ? 'Sub unit dead' : itemObj.score === 2 ? 'Main unit dead' : 'no score' }`
 
 	const itemAttributes = {
 		percentageBar: () => {
@@ -49,7 +50,7 @@ function CurrencyItem( { itemObj }: Record<string, any> ){
 		status: () => {
 			return (
 				<div className={styles.currencyItem__statusContainer}>
-					{itemObj.mainUnitKilled ? <Skulls howMany={itemObj.score} orangeBg /> : <Skulls howMany={itemObj.score} />}
+					{itemObj.mainUnitKilled ? <Skulls howMany={itemObj.score} hideAria orangeBg /> : <Skulls howMany={itemObj.score} hideAria />}
 				</div>
 			)
 		},
@@ -59,7 +60,7 @@ function CurrencyItem( { itemObj }: Record<string, any> ){
 
 	return (
 		<li className={classes}>
-			<Link className={styles.currencyItem__link} href={currencyPagePath} aria-label={itemTextString}></Link>
+			<Link className={styles.currencyItem__link} href={currencyPagePath} aria-label={linkLabel}></Link>
 			{itemAttributes.percentageBar()}
 			<div className={styles.currencyItem__inner}>
 				{itemAttributes.status()}

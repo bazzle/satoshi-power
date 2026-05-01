@@ -4,10 +4,11 @@ import styles from './Skulls.module.scss'
 
 type props = {
 	howMany: number,
-	orangeBg?: boolean
+	orangeBg?: boolean,
+	hideAria?: boolean
 }
 
-function Skulls({ howMany, orangeBg }: props){
+function Skulls({ howMany, orangeBg, hideAria }: props){
 
 	let classNameString
 	if (orangeBg){
@@ -16,7 +17,7 @@ function Skulls({ howMany, orangeBg }: props){
 		classNameString = styles.skullIcon
 	}
 
-	const skullIcon = <span className={classNameString}>{icons.skull}</span>
+	const skullIcon = <span className={classNameString} aria-hidden={hideAria ? true : false}>{icons.skull}</span>
 
 	const skullsOutput = () => {
 		if (howMany === 1){
