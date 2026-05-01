@@ -3,7 +3,7 @@ import styles from './currencyItem.module.scss'
 import Link from 'next/link'
 import Skulls from '@/app/ui/components/Skulls'
 
-function CurrencyItem({ itemObj }){
+function CurrencyItem( { itemObj }: Record<string, any> ){
 
 	const classesArray = [
 		styles.currencyItem,
@@ -11,13 +11,6 @@ function CurrencyItem({ itemObj }){
 		itemObj.mainUnitKilled ? styles['currencyItem--mainUnitKilled'] : '',
 	]
 	const classes = classesArray.join(' ')
-
-	const DomPercentageBar = () => {
-		const width = itemObj.percentage > 100 ? 100 : itemObj.percentage
-		return (
-			<span style={{ width: `${width}%` }} className={styles.currencyItem__percentageBar}></span>
-		)
-	}
 
 	const DomTextString = () => {
 		const name = itemObj.displayName
@@ -32,7 +25,7 @@ function CurrencyItem({ itemObj }){
 	const status = () => {
 		return (
 			<div className={styles.currencyItem__statusContainer}>
-				{itemObj.mainUnitKilled ? <Skulls howMany={itemObj.score} orangeBg /> : <Skulls howMany={itemObj.score} />}
+				{itemObj.mainUnitKilled ? <Skulls howMany={itemObj.score} orangeBg /> : <Skulls howMany={itemObj.score} orangeBg />}
 			</div>
 		)
 	}
