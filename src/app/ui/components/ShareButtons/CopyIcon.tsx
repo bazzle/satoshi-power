@@ -26,7 +26,12 @@ function CopyIcon({ shareUrl }: { shareUrl: string }){
 
 	return (
 		<>
-			<button className={styles.shareButtons__copy} onClick={copyButtonHandler}>
+			<button
+				className={styles.shareButtons__copy}
+				onClick={copyButtonHandler}
+				title="Copy url"
+				aria-label='Copy url'
+			>
 				{Icons.copy}
 				{messageContainer()}
 			</button>
