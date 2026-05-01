@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react'
 import styles from './styles/Converter.module.scss'
 import { NumberInput } from '@ark-ui/react/number-input'
 import { RadioGroup } from '@ark-ui/react/radio-group'
-import Icons from '@/app/ui/misc/Icons'
 
-function Converter({ itemObj }){
+function Converter({ itemObj } : { [key : string]: any }){
 	const defaultSentence = 'Input number above for conversion'
-	const [mode, setMode] = useState('sats')
-	const [inputNumber, setInputNumber] = useState()
-	const [outputSentence, setOutputSentence] = useState(defaultSentence)
-	const localiseNumber = (num) => {
-		return new Intl.NumberFormat(itemObj.locale).format(num)
+	const [mode, setMode] = useState<string>('sats')
+	const [inputNumber, setInputNumber] = useState<number | undefined | null>(undefined)
+	const [outputSentence, setOutputSentence] = useState<React.ReactNode>(defaultSentence)
+	const localiseNumber = (num : number) : string => {
+		const output = new Intl.NumberFormat(itemObj.locale).format(num)
+		return output
 	}
-	const toNumber = (s) => {
+	const toNumber = (s: string) => {
 		if (!s) return null
 		const cleaned = String(s).replace(/[^\d.,-]/g, '')
 		// Replace all commas that are NOT at the end (i.e. thousands)
@@ -24,18 +24,16 @@ function Converter({ itemObj }){
 
 	// Run on load and when input number changes
 	useEffect(() => {
+		if (!inputNumber) return
 		let outputValue
 		let outputDisplay
-		let outputString
+		let outputString = <>defaultSentence</>
 		let currencyString = itemObj.subUnitNameSingular
-		let currencyStringMain = itemObj.unitName
 		let satPrice = itemObj.satPrice
 		let satPriceSubUnit = itemObj.satPriceSubUnit
 		let symbol = itemObj.symbol
 
-		const checkNum = (n) => Number.isNaN(n) ? 0 : n
-
-		const satoshiLabelString = (num) => {
+		const satoshiLabelString = (num: any) => {
 			const label = num === '1' ? 'Satoshi' : 'Satoshi\'s'
 			num = num > 10 ? Math.round(num) : num
 			num = localiseNumber(num)
@@ -48,9 +46,11 @@ function Converter({ itemObj }){
 			const pretextString = `${satoshiLabelString(inputNumber)}`
 
 			if (!itemObj.noSubUnit) {
-				const outputValueSubUnit = checkNum(inputNumber * satPriceSubUnit)
-				outputValue = checkNum(inputNumber * satPrice)
+				const outputValueSubUnit = inputNumber * satPriceSubUnit
+				outputValue = inputNumber * satPrice
+				// @ts-ignore there's no way this will be undefined
 				const unitDisplaySubUnit = localiseNumber(outputValueSubUnit.toFixed(2))
+				// @ts-ignore there's no way this will be undefined
 				const unitDisplay = localiseNumber(outputValue.toFixed(2))
 				// As default, display the small unit
 				outputString = (
@@ -63,7 +63,8 @@ function Converter({ itemObj }){
 					)
 				}
 			} else {
-				outputValue = checkNum(inputNumber * satPrice)
+				outputValue = inputNumber * satPrice
+				// @ts-ignore there's no way this will be undefined
 				const unitDisplay = localiseNumber(outputValue.toFixed(2))
 				outputString = (
 					<>{pretextString} = {symbol}{unitDisplay}</>
@@ -75,7 +76,7 @@ function Converter({ itemObj }){
 			if (itemObj.noSubUnit) {
 				currencyString = itemObj.unitNameSingular
 			}
-			outputValue = checkNum(inputNumber / satPrice / 100)
+			outputValue = inputNumber / satPrice / 100
 			outputDisplay = outputValue.toFixed(2)
 			outputString = (
 				<p>{localiseNumber(inputNumber)} {currencyString} = {satoshiLabelString(outputDisplay)}</p>
@@ -83,7 +84,7 @@ function Converter({ itemObj }){
 
 		} else if (mode === 'mainUnit') {
 			currencyString = itemObj.symbol
-			outputValue = checkNum(inputNumber / satPrice)
+			outputValue = inputNumber / satPrice
 			outputDisplay = outputValue.toFixed(2)
 			outputString = (
 				<p>{currencyString}{localiseNumber(inputNumber)} = {satoshiLabelString(outputDisplay)}</p>
@@ -93,15 +94,13 @@ function Converter({ itemObj }){
 		setOutputSentence(outputString)
 
 		if (
-			inputNumber === '0' ||
-			inputNumber === '' ||
-			inputNumber === undefined ||
-			inputNumber === null
+			inputNumber === 0 || inputNumber === undefined || inputNumber === null
 		)
 		{
 			setOutputSentence(defaultSentence)
 		}
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [inputNumber, mode])
 
 	const singularName = itemObj.unitNameSingular
@@ -122,10 +121,10 @@ function Converter({ itemObj }){
 		}
 	}
 
-	const handleModeChange = (mode) => {
-		if (mode.value === 'Satoshi'){
+	const handleModeChange = (obj: Record<string, any>) => {
+		if (obj.value === 'Satoshi'){
 			setMode('sats')
-		} else if (mode.value === itemObj.unitNameSingular) {
+		} else if (obj.value === itemObj.unitNameSingular) {
 			setMode('mainUnit')
 		} else {
 			setMode('subUnit')
@@ -133,7 +132,7 @@ function Converter({ itemObj }){
 		setInputNumber(null)
 	}
 
-	const handleValueChange = (num) => {
+	const handleValueChange = (num: string) => {
 		setInputNumber(toNumber(num))
 	}
 
@@ -144,7 +143,7 @@ function Converter({ itemObj }){
 				<NumberInput.Root
 					min={1}
 					step={1}
-					value={inputNumber}
+					value={String(inputNumber)}
 					locale="en-US"
 					onValueChange={(details) => handleValueChange(details.value)}
 				>
