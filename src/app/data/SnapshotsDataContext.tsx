@@ -1,8 +1,8 @@
 'use client'
 
-import { createContext, useContext, useState, useEffect  } from 'react'
+import { createContext, useState, useEffect  } from 'react'
 
-export const SnapshotsDataContext = createContext<{ snapshots: any } | null>(null)
+export const SnapshotsDataContext = createContext<any | null>(null)
 
 export function SnapshotsProvider({ children } : { children: React.ReactNode }) {
 	const dataSource = '/data-snapshots/snapshots.json'
