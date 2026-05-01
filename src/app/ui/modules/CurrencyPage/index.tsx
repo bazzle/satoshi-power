@@ -9,9 +9,9 @@ import Link from 'next/link'
 import Icons from '@/app/ui/misc/Icons'
 import StatsBlock from './Stats/index.jsx'
 
-function CurrencyPage({ slug }){
-	const { liveData } = useContext(LiveDataContext)
-	const [currencyObj, setCurrencyObj] = useState(null)
+function CurrencyPage({ slug } : { slug: string }){
+	const { liveData } = useContext(LiveDataContext)!
+	const [currencyObj, setCurrencyObj] = useState<any>(null)
 
 	useEffect(() => {
 		if (!liveData) return
@@ -26,9 +26,10 @@ function CurrencyPage({ slug }){
 	)
 
 	const successOutput = () => {
+		const obj = currencyObj!
 
-		const title1 = currencyObj.noSubUnit || currencyObj.subUnitKilled ? currencyObj.demonym : `${currencyObj.subUnitName} /`
-		const title2 = currencyObj.unitNameSingular
+		const title1 = obj.noSubUnit || obj.subUnitKilled ? obj.demonym : `${obj.subUnitName} /`
+		const title2 = obj.unitNameSingular
 		const title3 = 'to satoshi / bitcoin'
 
 		return (
@@ -36,13 +37,13 @@ function CurrencyPage({ slug }){
 				<h1 className={styles.currencyPage__title}>
 					<span>{`${title1} ${title2}`}</span>
 					<span>{title3}</span>
-					<span><Skulls howMany={currencyObj.score}/></span>
+					<span><Skulls howMany={obj.score}/></span>
 				</h1>
 				<div className={styles.currencyPage__stats}>
-					<StatsBlock currencyObj={currencyObj} />
+					<StatsBlock currencyObj={obj} />
 				</div>
 				<div className={styles.currencyPage__converter}>
-					<Converter itemObj={currencyObj} />
+					<Converter itemObj={obj} />
 				</div>
 				<div className={styles.currencyPage__backLink}>
 					{Icons.backArrow}
