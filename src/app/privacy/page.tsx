@@ -37,7 +37,7 @@ export default function PrivacyPage() {
 							<p>The following third-party services are used by this website:</p>
 							<ul>
 								<li>
-									<strong>Google Search Console</strong> – used to monitor search performance. Data is collected and processed by Google in accordance with <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.
+									<strong>Google Search Console</strong> – used to monitor search performance. Data is collected and processed by Google in accordance with <a href="https://policies.google.com/privacy">Google&apos;s Privacy Policy</a>.
 								</li>
 								<li>
 									<strong>blockchain.com API</strong> – used to fetch publicly available Bitcoin price data for display on the site. No personal or visitor information is sent as part of these requests.

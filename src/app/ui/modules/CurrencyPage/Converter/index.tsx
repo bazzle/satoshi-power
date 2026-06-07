@@ -1,8 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import styles from './styles/Converter.module.scss'
-import { NumberInput } from '@ark-ui/react/number-input'
-import { RadioGroup } from '@ark-ui/react/radio-group'
+import { NumberInput, RadioGroup } from '@ark-ui/react'
 
 function Converter({ itemObj } : { [key : string]: any }){
 	const defaultSentence = 'Input number above for conversion'
