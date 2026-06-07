@@ -12,7 +12,7 @@ export const metadata = {
 export default function PrivacyPage() {
 	return (
 		<>
-			<Header />
+			<Header location="page" />
 			<main className="main">
 				<div className="row row--nomargin-top main__content">
 					<div className="row-container">
