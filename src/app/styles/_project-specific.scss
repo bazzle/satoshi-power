@@ -16,3 +16,17 @@
 		background: var(--color-bg-3);
 	}
 }
+
+.bodyText{
+	margin-top: var(--gap-deep);
+	margin-bottom: var(--gap-deep);
+	h1, h2, h3, h4, h5{
+		padding-bottom: var(--gap);
+	}
+	p{
+		padding-bottom: var(--gap);
+	}
+	a{
+		@include text-link;
+	}
+}
