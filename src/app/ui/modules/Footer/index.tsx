@@ -11,6 +11,7 @@ function Footer(){
 							Any feedback? please <a href="https://x.com/bazzle" title="X account">DM me on X – @bazzle</a>
 						</p>
 						<p>Or find me on nostr: <NostrCopy/></p>
+						<a href="/privacy">Privacy policy</a>
 					</div>
 				</div>
 			</div>

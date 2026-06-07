@@ -15,13 +15,12 @@
 		position: relative;
 		&:focus {
 			outline: 2px solid var(--color-focus);
+			text-decoration: none;
 		}
 	}
 
 	&__key {
-		@include text-meta-tiny;
 		text-transform: lowercase;
-		color: var(--color-primary);
 	}
 
 	&__message {
